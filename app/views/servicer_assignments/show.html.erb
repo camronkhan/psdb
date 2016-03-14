@@ -1,0 +1,31 @@
+<% @page_title = "Servicer Assignments - Details" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="servicer_assignments show">
+	<h2>Servicer Assignment Details</h2>
+
+	<table summary="Servicer assignment detail view" class="table table-striped">
+		<tr>
+			<th>Servicer</th>
+			<td><%= @servicer_assignment.servicer.name %></td>
+		</tr>
+		<tr>
+			<th>Product</th>
+			<td><%= @servicer_assignment.product.name %></td>
+		</tr>
+		<tr>
+			<th>Condition</th>
+			<td><%= @servicer_assignment.condition %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @servicer_assignment.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @servicer_assignment.updated_at %></td>
+		</tr>
+	</table>
+	
+</div>

@@ -1,0 +1,39 @@
+<% @page_title = "Technologists - Details" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="technologists show">
+	<h2>Servicer Details</h2>
+
+	<table summary="Technologist detail view" class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<td><%= @technologist.name %></td>
+		</tr>
+		<tr>
+			<th>Phone - Internal</th>
+			<td><%= @technologist.internal_phone %></td>
+		</tr>
+		<tr>
+			<th>Phone - External</th>
+			<td><%= @technologist.external_phone %></td>
+		</tr>
+		<tr>
+			<th>Hours of Operation</th>
+			<td><%= @technologist.hours %></td>
+		</tr>
+		<tr>
+			<th>Escalations</th>
+			<td><%= @technologist.eslcalation %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @technologist.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @technologist.updated_at %></td>
+		</tr>
+	</table>
+	
+</div>

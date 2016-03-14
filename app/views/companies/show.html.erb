@@ -1,0 +1,31 @@
+<% @page_title = "Companies - Details" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="comapnies show">
+	<h2>Show Company</h2>
+
+	<table summary="Company detail view">
+		<tr>
+			<th>Name</th>
+			<td><%= @company.name %></td>
+		</tr>
+		<tr>
+			<th>Website</th>
+			<td><%= @company.website %></td>
+		</tr>
+		<tr>
+			<th>Products</th>
+			<td><%= @company.products.size %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @company.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @company.updated_at %></td>
+		</tr>
+	</table>
+	
+</div>

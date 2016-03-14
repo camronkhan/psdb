@@ -1,0 +1,15 @@
+<% @page_title = "Technologists - Edit" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="technologists edit">
+	<h2>Edit Technologist</h2>
+
+	<%= form_for(:technologist, :url => {:action => 'update', :id => @technologist.id}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<%= render(:partial => "shared/submit_button") %>
+
+	<% end %>
+</div>

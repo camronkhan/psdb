@@ -1,0 +1,15 @@
+<% @page_title = "Servicer Assignments - Create" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="servicer_assignments new">
+	<h2>Create Servicer Assignment</h2>
+
+	<%= form_for(:servicer_assignment, :url => {:action => 'create'}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<%= render(:partial => "shared/submit_button") %>
+
+	<% end %>
+</div>

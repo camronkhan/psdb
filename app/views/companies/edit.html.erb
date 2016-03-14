@@ -1,0 +1,15 @@
+<% @page_title = "Companies - Edit" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="companies edit">
+	<h2>Update Company</h2>
+
+	<%= form_for(:company, :url => {:action => 'update', :id => @company.id}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<%= render(:partial => "shared/submit_button") %>
+
+	<% end %>
+</div>

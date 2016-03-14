@@ -1,0 +1,27 @@
+<% @page_title = "Products - Details" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="products show">
+	<h2>Product Details</h2>
+
+	<table summary="Product detail view" class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<td><%= @product.name %></td>
+		</tr>
+		<tr>
+			<th>Company</th>
+			<td><%= @product.company.name %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @product.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @product.updated_at %></td>
+		</tr>
+	</table>
+	
+</div>

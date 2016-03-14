@@ -1,0 +1,31 @@
+<% @page_title = "Technologists" %>
+
+<div class="technologists index">
+	<h2><%= @page_title %></h2>
+	
+	<%= link_to("Add New Technologist", {:action => 'new'}, :class => 'action new') %>
+
+	<div><%= pluralize(@technologists.size, 'technologist') %> found</div>
+	<table class="table table-striped listing" summary="Technologist list">
+		<thead>
+			<tr class="header">
+				<th>Technologist</th>
+				<th>Assignments</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @technologists.each do |technologist| %>
+				<tr>
+					<td><%= technologist.name %></td>
+					<td><%= technologist.technologist_assignments.size %></td>
+					<td class="actions">
+						<%= link_to("Details", {:action => 'show', :id => technologist.id}, :class => 'action show') %>
+						<%= link_to("Edit", {:action => 'edit', :id => technologist.id}, :class => 'action edit') %>
+						<%= link_to("Delete", {:action => 'delete', :id => technologist.id}, :class => 'action delete') %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,16 @@
+<% @page_title = "Servicers - Delete" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="servicers delete">
+	<h2>Delete Servicer</h2>
+
+	<%= form_for(:servicer, :url => {:action => 'destroy', :id => @servicer.id}) do |f| %>
+
+		<p>Are you sure you want to permanently delete this servicer?</p>
+		<p class="reference-name"><%= @servicer.name %></p>
+
+		<%= render(:partial => "shared/submit_button") %>
+
+	<% end %>
+</div>

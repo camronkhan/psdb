@@ -1,0 +1,14 @@
+<table summary="Product form fields">
+	<tr>
+		<th><%= f.label(:name, "Name") %></th>
+		<td><%= f.text_field(:name) %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:image, "Image URL") %></th>
+		<td><%= f.text_field(:image) %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:company_id, "Company") %></th>
+		<td><%= f.select(:company_id, Company.all.map {|c| [c.name, c.id]}) %></td>
+	</tr>
+</table>

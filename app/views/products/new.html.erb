@@ -1,0 +1,15 @@
+<% @page_title = "Products - Create" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="products new">
+	<h2>Create Product</h2>
+
+	<%= form_for(:product, :url => {:action => 'create'}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<%= render(:partial => "shared/submit_button") %>
+
+	<% end %>
+</div>

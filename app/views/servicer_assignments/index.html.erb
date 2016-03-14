@@ -1,0 +1,33 @@
+<% @page_title = "Servicer Assignments" %>
+
+<div class="servicer_assignments index">
+	<h2><%= @page_title %></h2>
+	
+	<%= link_to("Add New Servicer Assignment", {:action => 'new'}, :class => 'action new') %>
+
+	<div><%= pluralize(@servicer_assignments.size, 'assignment') %> found</div>
+	<table class="table table-striped listing" summary="Servicer assignment list">
+		<thead>
+			<tr class="header">
+				<th>Servicer</th>
+				<th>Product</th>
+				<th>Condition</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @servicer_assignments.each do |servicer_assignment| %>
+				<tr>
+					<td><%= servicer_assignment.servicer.name %></td>
+					<td><%= servicer_assignment.product.name %></td>
+					<td><%= servicer_assignment.condition %></td>
+					<td class="actions">
+						<%= link_to("Details", {:action => 'show', :id => servicer_assignment.id}, :class => 'action show') %>
+						<%= link_to("Edit", {:action => 'edit', :id => servicer_assignment.id}, :class => 'action edit') %>
+						<%= link_to("Delete", {:action => 'delete', :id => servicer_assignment.id}, :class => 'action delete') %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

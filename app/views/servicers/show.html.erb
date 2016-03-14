@@ -1,0 +1,35 @@
+<% @page_title = "Servicers - Details" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="servicers show">
+	<h2>Servicer Details</h2>
+
+	<table summary="Servicer detail view" class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<td><%= @servicer.name %></td>
+		</tr>
+		<tr>
+			<th>Phone - Internal</th>
+			<td><%= @servicer.internal_phone %></td>
+		</tr>
+		<tr>
+			<th>Phone - External</th>
+			<td><%= @servicer.external_phone %></td>
+		</tr>
+		<tr>
+			<th>Address</th>
+			<td><%= @servicer.address %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @servicer.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @servicer.updated_at %></td>
+		</tr>
+	</table>
+	
+</div>

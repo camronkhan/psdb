@@ -1,0 +1,31 @@
+<% @page_title = "Servicers" %>
+
+<div class="servicers index">
+	<h2><%= @page_title %></h2>
+	
+	<%= link_to("Add New Servicer", {:action => 'new'}, :class => 'action new') %>
+
+	<div><%= pluralize(@servicers.size, 'servicer') %> found</div>
+	<table class="table table-striped listing" summary="Servicer list">
+		<thead>
+			<tr class="header">
+				<th>Servicer</th>
+				<th>Assignments</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @servicers.each do |servicer| %>
+				<tr>
+					<td><%= servicer.name %></td>
+					<td><%= servicer.servicer_assignments.size %></td>
+					<td class="actions">
+						<%= link_to("Details", {:action => 'show', :id => servicer.id}, :class => 'action show') %>
+						<%= link_to("Edit", {:action => 'edit', :id => servicer.id}, :class => 'action edit') %>
+						<%= link_to("Delete", {:action => 'delete', :id => servicer.id}, :class => 'action delete') %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

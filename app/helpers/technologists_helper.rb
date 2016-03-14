@@ -1,0 +1,2 @@
+module TechnologistsHelper
+end

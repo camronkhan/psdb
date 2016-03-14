@@ -1,0 +1,33 @@
+<% @page_title = "Technologist Assignments" %>
+
+<div class="technologist_assignments index">
+	<h2><%= @page_title %></h2>
+	
+	<%= link_to("Add New Technologist Assignment", {:action => 'new'}, :class => 'action new') %>
+
+	<div><%= pluralize(@technologist_assignments.size, 'assignment') %> found</div>
+	<table class="table table-striped listing" summary="Technologist assignment list">
+		<thead>
+			<tr class="header">
+				<th>Technologist</th>
+				<th>Product</th>
+				<th>Condition</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @technologist_assignments.each do |technologist_assignment| %>
+				<tr>
+					<td><%= technologist_assignment.technologist.name %></td>
+					<td><%= technologist_assignment.product.name %></td>
+					<td><%= technologist_assignment.condition %></td>
+					<td class="actions">
+						<%= link_to("Details", {:action => 'show', :id => technologist_assignment.id}, :class => 'action show') %>
+						<%= link_to("Edit", {:action => 'edit', :id => technologist_assignment.id}, :class => 'action edit') %>
+						<%= link_to("Delete", {:action => 'delete', :id => technologist_assignment.id}, :class => 'action delete') %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

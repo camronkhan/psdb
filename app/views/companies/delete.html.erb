@@ -1,0 +1,16 @@
+<% @page_title = "Companies - Delete" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="companies delete">
+	<h2>Delete Company</h2>
+
+	<%= form_for(:subject, :url => {:action => 'destroy', :id => @company.id}) do |f| %>
+
+		<p>Are you sure you want to permanently delete this company?</p>
+		<p class="reference-name"><%= @company.name %></p>
+
+		<%= render(:partial => "shared/submit_button") %>
+
+	<% end %>
+</div>

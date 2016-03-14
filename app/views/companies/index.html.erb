@@ -1,0 +1,33 @@
+<% @page_title = "Companies" %>
+
+<div class="companies index">
+	<h2>Companies</h2>
+	
+	<%= link_to("Add New Company", {:action => 'new'}, :class => 'action new') %>
+
+	<div><%= pluralize(@companies.size, 'company') %> found</div>
+	<table class="table table-striped listing" summary="company list">
+		<thead>
+			<tr class="header">
+				<th>Company</th>
+				<th>Website</th>
+				<th>Products</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @companies.each do |company| %>
+				<tr class="<%= cycle('odd', 'even') %>">
+					<td><%= company.name %></td>
+					<td><a href="<%= company.website %>"><%= company.website %></a></td>
+					<td class="center"><%= company.products.size %></td>
+					<td class="actions">
+						<%= link_to("Details", {:action => 'show', :id => company.id}, :class => 'action show') %>
+						<%= link_to("Edit", {:action => 'edit', :id => company.id}, :class => 'action edit') %>
+						<%= link_to("Delete", {:action => 'delete', :id => company.id}, :class => 'action delete') %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

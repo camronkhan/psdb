@@ -1,0 +1,16 @@
+<% @page_title = "Technologist Assignments - Delete" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="technologist_assignments delete">
+	<h2>Delete Technologist Assignment</h2>
+
+	<%= form_for(:technologist_assignment, :url => {:action => 'destroy', :id => @technologist_assignment.id}) do |f| %>
+
+		<p>Are you sure you want to permanently delete this technologist assignment?</p>
+		<p class="reference-name"><%= @technologist_assignment.technologist.name %> + " supporting " + <%= @technologist_assignment.product.name %></p>
+
+		<%= render(:partial => "shared/submit_button") %>
+
+	<% end %>
+</div>

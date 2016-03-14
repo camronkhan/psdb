@@ -1,0 +1,31 @@
+<% @page_title = "Technologist Assignments - Details" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="technologist_assignments show">
+	<h2>Technologist Assignment Details</h2>
+
+	<table summary="Technologist assignment detail view" class="table table-striped">
+		<tr>
+			<th>Technologist</th>
+			<td><%= @technologist_assignment.servicer.name %></td>
+		</tr>
+		<tr>
+			<th>Product</th>
+			<td><%= @technologist_assignment.product.name %></td>
+		</tr>
+		<tr>
+			<th>Condition</th>
+			<td><%= @technologist_assignment.condition %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @technologist_assignment.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @technologist_assignment.updated_at %></td>
+		</tr>
+	</table>
+	
+</div>

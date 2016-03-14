@@ -1,0 +1,33 @@
+<% @page_title = "Products" %>
+
+<div class="products index">
+	<h2><%= @page_title %></h2>
+	
+	<%= link_to("Add New Product", {:action => 'new'}, :class => 'action new') %>
+
+	<div><%= pluralize(@products.size, 'product') %> found</div>
+	<table class="table table-striped listing" summary="Product list">
+		<thead>
+			<tr class="header">
+				<th>&nbsp</th>
+				<th>Product</th>
+				<th>Company</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @products.each do |product| %>
+				<tr>
+					<td><img src="<%= product.image %>" class="img-thumbnail" alt="<%= product.name %>" style="height:50px; width:50px; overflow:hidden;"></td>
+					<td><%= product.name %></td>
+					<td><%= product.company.name %></td>
+					<td class="actions">
+						<%= link_to("Details", {:action => 'show', :id => product.id}, :class => 'action show') %>
+						<%= link_to("Edit", {:action => 'edit', :id => product.id}, :class => 'action edit') %>
+						<%= link_to("Delete", {:action => 'delete', :id => product.id}, :class => 'action delete') %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -1,10 +1,33 @@
 class Product < ActiveRecord::Base
 
+	include PgSearch
+
 	belongs_to :company
 	has_many :technologist_assignments
 	has_many :technologists, :through => :technologist_assignments
 	has_many :annotations, as: :annotated
 
-	scope :sorted, lambda { order("products.name ASC") }
+	pg_search_scope :search_by_product_name, :against => :name
+	pg_search_scope :search_by_product_name_and_tag,
+					:against => {
+						:name => 'A',					# product name --> highest weighting in search
+						:tag => 'B'						# tags --> second highest weighting in search
+					},
+					:using => {
+						:tsearch => {
+							:prefix => true,			# search for partial words
+							:dictionary => 'english',	# allows for stemming
+							:any_word => true			# returns all hits containing any word in search terms
+						},
+						:trigram => {
+							:threshold => 0.3 			# higher threshold --> more strict --> fewer results
+						}
+					}
+
+	scope :search, -> (value) { where("products.name LIKE ?", "%#{value}%") }
+	scope :sorted, -> { joins(:company).order("products.name ASC", "companies.name ASC") }
+	scope :reverse_sorted, -> { joins(:company).order("products.name DESC", "companies.name ASC") }
+	scope :company_sorted, -> { joins(:company).order("companies.name ASC", "products.name ASC") }
+	scope :company_reverse_sorted, -> { joins(:company).order("companies.name DESC", "products.name ASC") }
 	
 end

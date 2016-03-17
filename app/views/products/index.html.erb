@@ -32,7 +32,7 @@
 					<td><img src="<%= product.image_url %>" class="img-thumbnail" alt="<%= product.name %>" style="height:50px; width:50px; overflow:hidden;"></td>
 					<td><%= product.name %></td>
 					<td><%#= product.company.name %></td>
-					<td><%= product.tag %></td>
+					<td><%= product.tags %></td>
 					<td class="actions">
 						<%= link_to("Details", {:action => 'show', :id => product.id}, :class => 'action show') %>
 						<%= link_to("Edit", {:action => 'edit', :id => product.id}, :class => 'action edit') %>

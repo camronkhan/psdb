@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
 	pg_search_scope :search_by_product_name_and_tag,
 					:against => {
 						:name => 'A',					# product name --> highest weighting in search
-						:tag => 'B'						# tags --> second highest weighting in search
+						:tags => 'B'						# tags --> second highest weighting in search
 					},
 					:using => {
 						:tsearch => {

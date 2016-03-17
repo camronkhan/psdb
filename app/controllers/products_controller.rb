@@ -72,7 +72,7 @@ class ProductsController < ApplicationController
 	    def sort_direction
 	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : nil
 	    end
-
+	    
 	    def search_and_sort(value, column, direction)
 	    	if !column && !direction
 	    		Product.search_by_product_name_and_tag(value)

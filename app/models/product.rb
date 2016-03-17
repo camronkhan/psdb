@@ -26,7 +26,8 @@ class Product < ActiveRecord::Base
 							:threshold => 0.2 			# higher threshold --> more strict --> fewer results
 						},
 						:dmetaphone => {}
-					}
+					},
+					:ranked_by => '(:dmetaphone / 2) + (:trigram * 2)'
 
 	scope :search, -> (value) { where("products.name LIKE ?", "%#{value}%") }
 	scope :sorted, -> { joins(:company).order("products.name ASC", "companies.name ASC") }

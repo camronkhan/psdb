@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
+# Use pg_search for postresql full text search
+gem 'pg_search'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -17,7 +19,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 # Use Autoprefixer
 gem 'autoprefixer-rails'
-
+# Use will_paginate https://github.com/mislav/will_paginate
+gem 'will_paginate'
 
 
 # Use jquery as the JavaScript library

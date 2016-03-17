@@ -4,8 +4,12 @@
 		<td><%= f.text_field(:name) %></td>
 	</tr>
 	<tr>
-		<th><%= f.label(:image, "Image URL") %></th>
-		<td><%= f.text_field(:image) %></td>
+		<th><%= f.label(:image_url, "Image URL") %></th>
+		<td><%= f.text_field(:image_url) %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:tag, "Tag") %></th>
+		<td><%= f.text_field(:tag) %></td>
 	</tr>
 	<tr>
 		<th><%= f.label(:company_id, "Company") %></th>

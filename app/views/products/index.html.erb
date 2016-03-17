@@ -4,23 +4,35 @@
 	<h2><%= @page_title %></h2>
 	
 	<%= link_to("Add New Product", {:action => 'new'}, :class => 'action new') %>
+	
+	<%= form_tag('/products', method: 'get') do %>
+	<%= hidden_field_tag(:direction, params[:direction => nil]) %>
+	<%= hidden_field_tag(:sort, params[:sort => nil]) %>
+	<p>
+		<%= label_tag(:product, "Search for:") %>
+		<%= text_field_tag(:product, @search_value) %>
+		<%= submit_tag("Search") %>
+	</p>
+	<% end %>
 
 	<div><%= pluralize(@products.size, 'product') %> found</div>
 	<table class="table table-striped listing" summary="Product list">
 		<thead>
 			<tr class="header">
 				<th>&nbsp</th>
-				<th>Product</th>
-				<th>Company</th>
+				<th><%= sortable('Product') %></th>
+				<th><%= sortable('Company') %></th>
+				<th>Tags</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @products.each do |product| %>
 				<tr>
-					<td><img src="<%= product.image %>" class="img-thumbnail" alt="<%= product.name %>" style="height:50px; width:50px; overflow:hidden;"></td>
+					<td><img src="<%= product.image_url %>" class="img-thumbnail" alt="<%= product.name %>" style="height:50px; width:50px; overflow:hidden;"></td>
 					<td><%= product.name %></td>
-					<td><%= product.company.name %></td>
+					<td><%#= product.company.name %></td>
+					<td><%= product.tag %></td>
 					<td class="actions">
 						<%= link_to("Details", {:action => 'show', :id => product.id}, :class => 'action show') %>
 						<%= link_to("Edit", {:action => 'edit', :id => product.id}, :class => 'action edit') %>
@@ -30,4 +42,5 @@
 			<% end %>
 		</tbody>
 	</table>
+	<%#= will_paginate @products %>
 </div>

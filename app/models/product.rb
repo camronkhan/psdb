@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
 							:any_word => true			# returns all hits containing any word in search terms
 						},
 						:trigram => {
-							:threshold => 0.3 			# higher threshold --> more strict --> fewer results
+							:threshold => 0.2 			# higher threshold --> more strict --> fewer results
 						}
 					}
 

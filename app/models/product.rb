@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
 						:trigram => {
 							:threshold => 0.2 			# higher threshold --> more strict --> fewer results
 						},
-						:dmetaphone
+						:dmetaphone => {}
 					}
 
 	scope :search, -> (value) { where("products.name LIKE ?", "%#{value}%") }

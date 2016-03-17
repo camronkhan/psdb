@@ -75,22 +75,22 @@ class ProductsController < ApplicationController
 	    
 	    def search_and_sort(value, column, direction)
 	    	if !column && !direction
-	    		Product.search_by_product_name_and_tag(value)
+	    		Product.search_by_product_name_and_tag(value).with_pg_search_rank
 	    	elsif column=='Product' && direction=='asc'
 	    		#Product.search(value).sorted
-	    		Product.search_by_product_name_and_tag(value).reorder("products.name ASC")
+	    		Product.search_by_product_name_and_tag(value).reorder("products.name ASC").with_pg_search_rank
 	    	elsif column=='Product' && direction=='desc'
 	    		#Product.search(value).reverse_sorted
-	    		Product.search_by_product_name_and_tag(value).reorder("products.name DESC")
+	    		Product.search_by_product_name_and_tag(value).reorder("products.name DESC").with_pg_search_rank
     		elsif column=='Company' && direction=='asc'
 	    		#Product.search(value).company_sorted
-	    		Product.search_by_product_name_and_tag(value).reorder("companies.name ASC", "products.name ASC")
+	    		Product.search_by_product_name_and_tag(value).reorder("companies.name ASC", "products.name ASC").with_pg_search_rank
     		elsif column=='Company' && direction=='desc'
 	    		#Product.search(value).company_reverse_sorted
-	    		Product.search_by_product_name_and_tag(value).reorder("companies.name DESC", "products.name ASC")
+	    		Product.search_by_product_name_and_tag(value).reorder("companies.name DESC", "products.name ASC").with_pg_search_rank
 	    	else
 	    		#Product.search(value).sorted
-	    		Product.search_by_product_name_and_tag(value)
+	    		Product.search_by_product_name_and_tag(value).with_pg_search_rank
 	    	end
 	    end
 end

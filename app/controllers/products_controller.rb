@@ -1,7 +1,13 @@
 class ProductsController < ApplicationController
 
+	# Access methods from view (helpers/application_helper.rb#sortable)
+	helper_method :sort_column, :sort_direction
+
 	def index
-		@products = Product.sorted
+		#@products = search_and_sort(search_value, sort_column, sort_direction).paginate(:per_page => 2, :page => params[:page])
+		#@products = Product.search_by_product_name_and_tag(params[:product])
+		@search_value = search_value
+		@products = search_and_sort(@search_value, sort_column, sort_direction)
 	end
 
 	def show
@@ -55,4 +61,36 @@ class ProductsController < ApplicationController
 	      params.require(:product).permit(:company_id, :name, :image)
 	    end
 
+	    def search_value
+	    	params[:product] || nil
+	    end
+
+	    def sort_column
+	    	%w[Product Company].include?(params[:sort]) ? params[:sort] : nil
+	    end
+
+	    def sort_direction
+	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : nil
+	    end
+
+	    def search_and_sort(value, column, direction)
+	    	if !column && !direction
+	    		Product.search_by_product_name_and_tag(value)
+	    	elsif column=='Product' && direction=='asc'
+	    		#Product.search(value).sorted
+	    		Product.search_by_product_name_and_tag(value).reorder("products.name ASC")
+	    	elsif column=='Product' && direction=='desc'
+	    		#Product.search(value).reverse_sorted
+	    		Product.search_by_product_name_and_tag(value).reorder("products.name DESC")
+    		elsif column=='Company' && direction=='asc'
+	    		#Product.search(value).company_sorted
+	    		Product.search_by_product_name_and_tag(value).reorder("companies.name ASC", "products.name ASC")
+    		elsif column=='Company' && direction=='desc'
+	    		#Product.search(value).company_reverse_sorted
+	    		Product.search_by_product_name_and_tag(value).reorder("companies.name DESC", "products.name ASC")
+	    	else
+	    		#Product.search(value).sorted
+	    		Product.search_by_product_name_and_tag(value)
+	    	end
+	    end
 end

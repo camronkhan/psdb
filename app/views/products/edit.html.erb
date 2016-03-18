@@ -6,8 +6,6 @@
 	<h2>Edit Product</h2>
 
 	<%= form_for(:product, :url => {:action => 'update', :id => @product.id}) do |f| %>
-		<%= hidden_field_tag(:direction => params[:direction]) %>
-		<%= hidden_field_tag(:product => params[:product]) %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 		<%= render(:partial => "shared/submit_button") %>
 	<% end %>

@@ -1,15 +1,12 @@
 <% @page_title = "Products - Edit" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", {:action => 'index', :product => params[:product], :direction => params[:direction]}, :class => 'back-link') %>
 
 <div class="products edit">
 	<h2>Edit Product</h2>
 
 	<%= form_for(:product, :url => {:action => 'update', :id => @product.id}) do |f| %>
-
 		<%= render(:partial => "form", :locals => {:f => f}) %>
-
 		<%= render(:partial => "shared/submit_button") %>
-
 	<% end %>
 </div>

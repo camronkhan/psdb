@@ -1,19 +1,17 @@
 <% @page_title = "Products" %>
 
-<%= params.inspect %>
-
 <div class="products index">
 	<h2><%= @page_title %></h2>
 	
 	<%= link_to("Add New Product", {:action => 'new'}, :class => 'action new') %>
 	
 	<%= form_tag('/products', method: 'get') do %>
-	<%= hidden_field_tag(:direction, params[:direction => nil]) %>
-	<p>
-		<%= label_tag(:product, "Search for:") %>
-		<%= text_field_tag(:product, @search_value) %>
-		<%= submit_tag("Search") %>
-	</p>
+		<%= hidden_field_tag(:direction, params[:direction => nil]) %>
+		<p>
+			<%= label_tag(:product, "Search for:") %>
+			<%= text_field_tag(:product, @search_value) %>
+			<%= submit_tag("Search") %>
+		</p>
 	<% end %>
 
 	<div><%= pluralize(@products.size, 'product') %> found</div>
@@ -38,8 +36,8 @@
 					<td><%= product.tags %></td>
 					<td class="actions">
 						<%= link_to("Details", {:action => 'show', :id => product.id, :product => @search_value, :direction => @sort_direction}, :class => 'action show') %>
-						<%= link_to("Edit", {:action => 'edit', :id => product.id}, :class => 'action edit') %>
-						<%= link_to("Delete", {:action => 'delete', :id => product.id}, :class => 'action delete') %>
+						<%= link_to("Edit", {:action => 'edit', :id => product.id, :product => @search_value, :direction => @sort_direction}, :class => 'action edit') %>
+						<%= link_to("Delete", {:action => 'delete', :id => product.id, :product => @search_value, :direction => @sort_direction}, :class => 'action delete') %>
 					</td>
 				</tr>
 			<% end %>

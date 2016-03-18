@@ -10,10 +10,14 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@product = Product.find(params[:id])
 	end
 
 	def new
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@product = Product.new({:name => "Default"})
 	end
 
@@ -28,6 +32,8 @@ class ProductsController < ApplicationController
 	end
 
 	def edit
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@product = Product.find(params[:id])
 	end
 
@@ -42,6 +48,8 @@ class ProductsController < ApplicationController
 	end
 
 	def delete
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@product = Product.find(params[:id])
 	end
 

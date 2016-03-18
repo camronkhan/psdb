@@ -3,7 +3,7 @@
 <div class="products index">
 	<h2><%= @page_title %></h2>
 	
-	<%= link_to("Add New Product", {:action => 'new'}, :class => 'action new') %>
+	<%= link_to("Add New Product", {:action => 'new', :product => @search_value, :direction => @sort_direction}, :class => 'action new') %>
 	
 	<%= form_tag('/products', method: 'get') do %>
 		<%= hidden_field_tag(:direction, params[:direction => nil]) %>

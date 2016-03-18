@@ -1,6 +1,6 @@
 <% @page_title = "Products - Details" %>
 
-<%= link_to("<< Back to List", {:action => 'index', :product => params[:product], :direction => params[:direction]}, :class => 'back-link') %>
+<%= link_to("<< Back to List", {:action => 'index', :product => @search_value, :direction => @sort_direction}, :class => 'back-link') %>
 
 <div class="products show">
 	<h2>Product Details</h2>

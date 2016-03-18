@@ -54,5 +54,5 @@ class CompaniesController < ApplicationController
 	      # - allows listed attributes to be mass-assigned
 	      params.require(:company).permit(:name, :website_url)
 	    end
-	
+	    
 end

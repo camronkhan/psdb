@@ -7,11 +7,11 @@ class ProductsController < ApplicationController
 		#@products = search_and_sort(search_value, sort_column, sort_direction).paginate(:per_page => 2, :page => params[:page])
 		#@products = Product.search_by_product_name_and_tag(params[:product])
 		@search_value = search_value
+		@sort_direction = sort_direction
 		@products = search_and_sort(@search_value, sort_direction)
 	end
 
 	def show
-		@search_value = search_value
 		@product = Product.find(params[:id])
 	end
 

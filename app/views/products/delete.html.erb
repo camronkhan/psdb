@@ -5,7 +5,13 @@
 <div class="products delete">
 	<h2>Delete Product</h2>
 
-	<%= form_for(:product, :url => {:action => 'destroy', :id => @product.id}) do |f| %>
+	<%= form_for(:product,
+				 :url => {
+				 	:action => 'destroy',
+				 	:id => @product.id,
+				 	:search => @search_value,
+				 	:sort => @sort_direction
+				 }) do |f| %>
 
 		<p>Are you sure you want to permanently delete this product?</p>
 		<p class="reference-name"><%= @product.name %></p>

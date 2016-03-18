@@ -25,7 +25,10 @@ class ProductsController < ApplicationController
 		@product = Product.new(product_params)
 		if @product.save
 			flash[:notice] = "Product '#{@product.name}' created successfully."
-			redirect_to(:action => 'index')
+			redirect_to(:action => 'show',
+						:id => @product.id,
+						:sort => sort_direction,
+						:search => search_value)
 		else
 			render('new')
 		end
@@ -59,7 +62,9 @@ class ProductsController < ApplicationController
 	def destroy
 		product = Product.find(params[:id]).destroy
 		flash[:notice] = "Product '#{product.name}' deleted successfully."
-		redirect_to(:action => 'index')
+		redirect_to(:action => 'index',
+					:sort => sort_direction,
+					:search => search_value)
 	end
 
 	private

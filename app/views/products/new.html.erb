@@ -5,7 +5,12 @@
 <div class="products new">
 	<h2>Create Product</h2>
 
-	<%= form_for(:product, :url => {:action => 'create'}) do |f| %>
+	<%= form_for(:product, 
+				 :url => {
+				 	:action => 'create',
+				 	:search => @search_value,
+				 	:sort => @sort_direction
+				 }) do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 		<%= render(:partial => "shared/submit_button") %>
 	<% end %>

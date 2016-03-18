@@ -6,10 +6,8 @@
 	<h2>Create Product</h2>
 
 	<%= form_for(:product, :url => {:action => 'create'}) do |f| %>
-
 		<%= render(:partial => "form", :locals => {:f => f}) %>
-
 		<%= render(:partial => "shared/submit_button") %>
-
 	<% end %>
+	
 </div>

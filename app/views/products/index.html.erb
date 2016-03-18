@@ -1,5 +1,7 @@
 <% @page_title = "Products" %>
 
+<%= params.inspect %>
+
 <div class="products index">
 	<h2><%= @page_title %></h2>
 	
@@ -36,7 +38,7 @@
 					<td><%= product.pg_search_rank %></td>
 					<td><%= product.tags %></td>
 					<td class="actions">
-						<%= link_to("Details", {:action => 'show', :id => product.id}, :class => 'action show') %>
+						<%= link_to("Details", {:action => 'show', :id => product.id, :product => @search_value, :direction, :sort}, :class => 'action show') %>
 						<%= link_to("Edit", {:action => 'edit', :id => product.id}, :class => 'action edit') %>
 						<%= link_to("Delete", {:action => 'delete', :id => product.id}, :class => 'action delete') %>
 					</td>

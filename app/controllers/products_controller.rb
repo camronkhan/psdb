@@ -41,7 +41,10 @@ class ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 		if @product.update_attributes(product_params)
 			flash[:notice] = "Product '#{@product.name}' updated successfully."
-			redirect_to(:action => 'show', :id => @product.id)
+			redirect_to(:action => 'show',
+						:id => @product.id,
+						:sort => sort_direction,
+						:search => search_value)
 		else
 			render('edit')
 		end
@@ -69,14 +72,14 @@ class ProductsController < ApplicationController
 	    end
 
 	    def search_value
-	    	params[:product] || nil
+	    	params[:search] || nil
 	    end
 
 	    def sort_direction
-	    	# If direction param includes ascending or descending option,
-	    	# then set direction to option
-	    	# Else set direction to nil 
-	    	%w[asc desc].include?(params[:direction]) ? params[:direction] : nil
+	    	# If sort direction param includes ascending or descending option,
+	    	# then set sort direction to option
+	    	# Else set sort direction to nil 
+	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
 	    end
 	    
 	    def search_and_sort(value, direction)

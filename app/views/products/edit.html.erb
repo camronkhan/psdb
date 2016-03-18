@@ -1,12 +1,21 @@
 <% @page_title = "Products - Edit" %>
 
-<%= link_to("<< Back to List", {:action => 'index', :product => @search_value, :direction => @sort_direction}, :class => 'back-link') %>
+<%= params.inspect %>
+
+<%= link_to("<< Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, :class => 'back-link') %>
 
 <div class="products edit">
 	<h2>Edit Product</h2>
 
-	<%= form_for(:product, :url => {:action => 'update', :id => @product.id}) do |f| %>
+	<%= form_for(:product,
+				 :url => {
+				 	:action => 'update',
+				 	:id => @product.id,
+				 	:search => @search_value,
+				 	:sort => @sort_direction
+				 }) do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 		<%= render(:partial => "shared/submit_button") %>
 	<% end %>
+
 </div>

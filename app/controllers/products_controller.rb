@@ -4,11 +4,9 @@ class ProductsController < ApplicationController
 	helper_method :sort_direction
 
 	def index
-		#@products = search_and_sort(search_value, sort_column, sort_direction).paginate(:per_page => 2, :page => params[:page])
-		#@products = Product.search_by_product_name_and_tag(params[:product])
 		@search_value = search_value
 		@sort_direction = sort_direction
-		@products = search_and_sort(@search_value, sort_direction)
+		@products = search_and_sort(@search_value, sort_direction).paginate(:per_page => 10, :page => params[:page])
 	end
 
 	def show

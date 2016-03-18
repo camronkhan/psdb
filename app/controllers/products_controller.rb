@@ -90,16 +90,16 @@ class ProductsController < ApplicationController
 	    def search_and_sort(value, direction)
 	    	if !direction
 	    		# Sort by relevance ranking
-	    		Product.search_by_product_name_and_tag(value).with_pg_search_rank
+	    		Product.full_text_search(value).with_pg_search_rank
 	    	elsif direction=='asc'
 	    		# Sort by product ascending
-	    		Product.search_by_product_name_and_tag(value).reorder("products.name ASC").with_pg_search_rank
+	    		Product.full_text_search(value).reorder("products.name ASC").with_pg_search_rank
 	    	elsif direction=='desc'
 	    		# Sort by product descending
-	    		Product.search_by_product_name_and_tag(value).reorder("products.name DESC").with_pg_search_rank
+	    		Product.full_text_search(value).reorder("products.name DESC").with_pg_search_rank
 	    	else
 	    		# Sort by relevance ranking
-	    		Product.search_by_product_name_and_tag(value).with_pg_search_rank
+	    		Product.full_text_search(value).with_pg_search_rank
 	    	end
 	    end
 end

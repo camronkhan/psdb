@@ -7,8 +7,7 @@ class Product < ActiveRecord::Base
 	has_many :technologists, :through => :technologist_assignments
 	has_many :annotations, as: :annotated
 
-	pg_search_scope :search_by_product_name, :against => :name
-	pg_search_scope :search_by_product_name_and_tag,
+	pg_search_scope :full_text_search,
 					:against => {
 						:name => 'A',					# product name --> highest weighting in search
 						:tags => 'B'					# tags --> second highest weighting in search
@@ -29,10 +28,10 @@ class Product < ActiveRecord::Base
 					},
 					:ranked_by => '(:dmetaphone / 2) + (:trigram * 2)'
 
-	scope :search, -> (value) { where("products.name LIKE ?", "%#{value}%") }
-	scope :sorted, -> { joins(:company).order("products.name ASC", "companies.name ASC") }
-	scope :reverse_sorted, -> { joins(:company).order("products.name DESC", "companies.name ASC") }
-	scope :company_sorted, -> { joins(:company).order("companies.name ASC", "products.name ASC") }
-	scope :company_reverse_sorted, -> { joins(:company).order("companies.name DESC", "products.name ASC") }
+	#scope :search, -> (value) { where("products.name LIKE ?", "%#{value}%") }
+	#scope :sorted, -> { joins(:company).order("products.name ASC", "companies.name ASC") }
+	#scope :reverse_sorted, -> { joins(:company).order("products.name DESC", "companies.name ASC") }
+	#scope :company_sorted, -> { joins(:company).order("companies.name ASC", "products.name ASC") }
+	#scope :company_reverse_sorted, -> { joins(:company).order("companies.name DESC", "products.name ASC") }
 	
 end

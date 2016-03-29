@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+=begin
 Product.create([
 	{ company_id: 1, name: 'APX 1000', image_url: 'http://www.motorolasolutions.com/content/dam/msi/images/products/two-way-radios/apx/APX1000/APX_1000_Image1_LG.jpg', tags: 'subscriber'},
 	{ company_id: 1, name: 'APX 1500', image_url: 'http://www.motorolasolutions.com/content/dam/msi/images/business/products/two-way_radios/portable_radios/apx_1500/_images/apx1500_main_324x324_lg.jpg', tags: 'subscriber'},
@@ -19,3 +20,4 @@ Company.create([
 	{ name: 'Zebra Technologies', website_url: 'https://www.zebra.com/'}
 	
 ])
+=end

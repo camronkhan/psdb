@@ -5,7 +5,6 @@ class Product < ActiveRecord::Base
 	belongs_to :company
 	has_many :technologist_assignments
 	has_many :technologists, :through => :technologist_assignments
-	has_many :annotations, as: :annotated
 
 	pg_search_scope :full_text_search,
 					:against => {

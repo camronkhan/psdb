@@ -6,6 +6,10 @@ class Product < ActiveRecord::Base
 	has_many :technologist_assignments
 	has_many :technologists, :through => :technologist_assignments
 
+	validates :name, presence: true,
+					 uniqueness: { scope: :company_id,
+					 			   message: "can appear only once for each company"}
+
 	pg_search_scope :full_text_search,
 					:against => {
 						:name => 'A',					# product name --> highest weighting in search

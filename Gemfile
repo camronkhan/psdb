@@ -19,9 +19,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 # Use Autoprefixer
 gem 'autoprefixer-rails'
-# Use will_paginate https://github.com/mislav/will_paginate
+# Use will_paginate  https://github.com/mislav/will_paginate
 gem 'will_paginate'
-
+# Use acts-as-taggable-on  https://github.com/mbleigh/acts-as-taggable-on
+gem 'acts-as-taggable-on', '~> 3.4'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

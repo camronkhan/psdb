@@ -7,6 +7,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :tags
       t.timestamps null: false
     end
-    add_index :products, :company_id
+    add_index :products, :company_id                          # foreign key index
+    add_index :products, [:name, :company_id], unique: true   # unique index allowing exactly one product name per company
   end
 end

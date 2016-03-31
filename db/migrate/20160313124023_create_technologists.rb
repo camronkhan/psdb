@@ -8,5 +8,6 @@ class CreateTechnologists < ActiveRecord::Migration
       t.string :escalation
       t.timestamps null: false
     end
+    add_index :technologists, :name, unique: true   # unique index on technologist name
   end
 end

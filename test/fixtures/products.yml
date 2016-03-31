@@ -1,11 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+apx1000:
+  name: APX 1000
+  image_url: http://www.motorolasolutions.com/content/dam/msi/images/products/two-way-radios/apx/APX1000/APX_1000_Image1_LG.jpg
+  tags: portable
+  company: motorola_solutions
+
+ap_7502:
+  name: AP 7502 Dual-Radio Access Point
+  image_url: https://www.zebra.com/content/dam/MSI_Rebranded/EN_US/Products/Wireless%20LAN/Access%20Points/Dual%20Radio/AP%207502/Technical_Product%20Specs/AP%207502%20spec%20sheet/7502-ISO-v1-TransBk.jpg/_jcr_content/renditions/cq5dam.thumbnail.319.319.png
+  tags: third_party
+  company: zebra_technologies
+
+vx-264:
+  name: VX-264
+  image_url: portable
+  tags: http://www.vertexstandard.com/lmr/images/products/VX-260.png
+  company: vertex_standard

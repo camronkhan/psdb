@@ -1,11 +1,12 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 
+motorola_solutions:
+  name: Motorola Solutions
+  website_url: http://motorolasolutions.com/
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+vertex_standard:
+  name: Vertex Standard
+  website_url: http://www.vertexstandard.com/
+
+zebra_technologies:
+  name: Zebra Technologies
+  website_url: https://www.zebra.com/

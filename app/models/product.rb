@@ -6,6 +6,8 @@ class Product < ActiveRecord::Base
 	has_many :technologist_assignments
 	has_many :technologists, :through => :technologist_assignments
 
+	acts_as_taggable # alias for acts_as_taggable_on :tags
+
 	validates :name, presence: true,
 					 uniqueness: { scope: :company_id,
 					 			   message: "can appear only once for each company"}

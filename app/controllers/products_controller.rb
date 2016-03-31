@@ -73,7 +73,7 @@ class ProductsController < ApplicationController
 	      # same as using "params[:subject]", except that it:
 	      # - raises an error if :subject is not present
 	      # - allows listed attributes to be mass-assigned
-	      params.require(:product).permit(:company_id, :name, :image_url, :tags)
+	      params.require(:product).permit(:company_id, :name, :image_url, :tag_list)
 	    end
 
 	    def search_value

@@ -6,6 +6,7 @@ class CreateTechnologistAssignments < ActiveRecord::Migration
       t.string :condition
       t.timestamps null: false
     end
+    # foreign key index
     add_index :technologist_assignments, [:product_id, :technologist_id], :name => 'technologist_assignments_index'
   end
 end

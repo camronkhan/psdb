@@ -1,3 +1,4 @@
+# includes postgresql packages for full text search extensions - trigram, fuzzystrmatch
 class InstallPostgresqlContribPackages < ActiveRecord::Migration
   def up
     execute "CREATE EXTENSION IF NOT EXISTS pg_trgm;"

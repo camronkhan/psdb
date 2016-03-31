@@ -6,6 +6,7 @@ class CreateServicerAssignments < ActiveRecord::Migration
       t.string :condition
       t.timestamps null: false
     end
+    # foreign key index
     add_index :servicer_assignments, [:product_id, :servicer_id], :name => 'servicer_assignments_index'
   end
 end

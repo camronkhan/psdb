@@ -13,12 +13,10 @@ class Product < ActiveRecord::Base
 					 			   message: "can appear only once for each company"}
 
 	pg_search_scope :full_text_search,
-					:against => {
-						:name => 'A',					# product name --> highest weighting in search
-						:tags => 'B'					# tags --> second highest weighting in search
-					},
+					:against => :name,
 					:associated_against => {
-						:company => :name
+						:company => :name,
+						:tags => :name
 					},
 					:using => {
 						:tsearch => {

@@ -8,8 +8,8 @@
 		<td><%= f.text_field(:image_url) %></td>
 	</tr>
 	<tr>
-		<th><%= f.label(:tags, "Tags") %></th>
-		<td><%= f.text_field(:tags) %></td>
+		<th><%= f.label(:tags, "Tags (separated by commas)") %></th>
+		<td><%= f.text_field(:tag_list, value: @product.tag_list.to_s) %></td>
 	</tr>
 	<tr>
 		<th><%= f.label(:company_id, "Company") %></th>

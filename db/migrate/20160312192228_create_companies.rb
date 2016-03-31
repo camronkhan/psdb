@@ -5,5 +5,6 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :website_url
       t.timestamps null: false
     end
+    add_index :companies, :name, unique: true	# unique index on company name
   end
 end

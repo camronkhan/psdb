@@ -3,8 +3,8 @@
 <%= link_to("<< Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, :class => 'back-link') %>
 
 <div class="products show">
-	<h2>Product Details</h2>
 
+	<h2>Product Details</h2>
 	<table summary="Product detail view" class="table table-striped">
 		<tr>
 			<th>Name</th>
@@ -27,5 +27,54 @@
 			<td><%= @product.updated_at %></td>
 		</tr>
 	</table>
-	
+
+
+	<h2>Technical Support</h2>
+	<% @product.technologists.each do |technologist| %>
+		<table summary="Technologists" class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<td><%= technologist.name %></td>
+			</tr>
+			<tr>
+				<th>Phone - Internal</th>
+				<td><%= technologist.internal_phone %></td>
+			</tr>
+			<tr>
+				<th>Phone - External</th>
+				<td><%= technologist.external_phone %></td>
+			</tr>
+			<tr>
+				<th>Hours of Operation</th>
+				<td><%= technologist.hours %></td>
+			</tr>
+			<tr>
+				<th>Escalation</th>
+				<td><%= technologist.escalation %></td>
+			</tr>
+		</table>
+	<% end %>
+
+	<h2>Repair Service</h2>
+	<% @product.servicers.each do |servicer| %>
+		<table summary="Servicers" class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<td><%= servicer.name %></td>
+			</tr>
+			<tr>
+				<th>Phone - Internal</th>
+				<td><%= servicer.internal_phone %></td>
+			</tr>
+			<tr>
+				<th>Phone - External</th>
+				<td><%= servicer.external_phone %></td>
+			</tr>
+			<tr>
+				<th>Address</th>
+				<td><%= servicer.address %></td>
+			</tr>
+		</table>
+	<% end %>
+
 </div>

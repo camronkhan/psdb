@@ -5,6 +5,8 @@ class Product < ActiveRecord::Base
 	belongs_to :company
 	has_many :technologist_assignments
 	has_many :technologists, :through => :technologist_assignments
+	has_many :servicer_assignments
+	has_many :servicers, :through => :servicer_assignments
 
 	acts_as_taggable # alias for acts_as_taggable_on :tags
 

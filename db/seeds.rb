@@ -20,3 +20,29 @@ Company.create([
 	{ name: 'Zebra Technologies', website_url: 'https://www.zebra.com/'}
 	
 ])
+
+Technologist.create([
+	{ name: 'SSC APX', internal_phone: 'XGPS-SSC APX', external_phone: '800-422-4210 Options 3 > 3', hours: 'M-F 7:00a-7:00p CST' },
+	{ name: 'Vertex Standard', internal_phone: 'XGPS-Vertex Tech Support', external_phone: '800-283-7839', hours: 'M-F 7:00a-7:00p CST', escalation: 'Contact Greg Spears (CGS006) regarding escalations' },
+	{ name: 'Zebra Technologies', external_phone: '800-653-5350' }
+])
+
+Servicer.create([
+	{ name: 'Motorola Repair Center (MRC) - El Paso', internal_phone: 'XGPS-CCS Radio Repair', address: '1220 Don Haskins Dr, Suite A, El Paso, TX 79936' },
+	{ name: 'Vertex Standard Repair Center', external_phone: '800-283-7839', address: '7201-A Intermodal Drive, Louisville KY 40258' },
+	{ name: 'Zebra Technologies', external_phone: '800-653-5350' }
+])
+
+TechnologistAssignment.create([
+	{ product_id: '1', technologist_id: '1', condition: 'All' },
+	{ product_id: '2', technologist_id: '1', condition: 'All' },
+	{ product_id: '3', technologist_id: '3', condition: 'All' },
+	{ product_id: '4', technologist_id: '2', condition: 'All' }
+])
+
+ServicerAssignment.create([
+	{ product_id: '1', servicer_id: '1', condition: 'All' },
+	{ product_id: '2', servicer_id: '1', condition: 'All' },
+	{ product_id: '3', servicer_id: '3', condition: 'All' },
+	{ product_id: '4', servicer_id: '2', condition: 'All' }
+])

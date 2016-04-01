@@ -5,13 +5,14 @@
 	
 	<%= link_to("Add New Product", {:action => 'new', :search => @search_value, :sort => @sort_direction}, :class => 'action new') %>
 	
-	<%= form_tag('/products', method: 'get') do %>
+	<%= form_tag('/products', method: 'get', class: 'form-inline') do %>
 		<%= hidden_field_tag(:sort, params[:sort => nil]) %>
-		<p>
-			<%= label_tag(:search, "Search for:") %>
-			<%= text_field_tag(:search, @search_value) %>
-			<%= submit_tag("Search") %>
-		</p>
+		<div class="form-group">
+			<%= text_field_tag(:search, @search_value, class: 'form-control') %>
+			<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+			    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+			<% end %>
+		</div>
 	<% end %>
 
 	<div><%= pluralize(@products.size, 'product') %> found</div>
@@ -45,3 +46,6 @@
 	</table>
 	<%= will_paginate @products %>
 </div>
+
+<br><br>
+<%= params.inspect %>

@@ -23,6 +23,8 @@ gem 'autoprefixer-rails'
 gem 'will_paginate'
 # Use acts-as-taggable-on  https://github.com/mbleigh/acts-as-taggable-on
 gem 'acts-as-taggable-on', '~> 3.4'
+# Use simple-form  https://github.com/plataformatec/simple_form
+gem 'simple_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -1,18 +1,20 @@
-<table summary="Product form fields">
-	<tr>
-		<th><%= f.label(:name, "Name") %></th>
-		<td><%= f.text_field(:name) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:image_url, "Image URL") %></th>
-		<td><%= f.text_field(:image_url) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:tags, "Tags (separated by commas)") %></th>
-		<td><%= f.text_field(:tag_list, value: @product.tag_list.to_s) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:company_id, "Company") %></th>
-		<td><%= f.select(:company_id, Company.all.map {|c| [c.name, c.id]}) %></td>
-	</tr>
-</table>
+<div>
+	<div>
+		<%= f.input :name %>	
+	</div>
+	<div>
+		<%= f.input :image_url, label: 'Image URL' %>
+	</div>
+	<div>
+		<%= f.input :tag_list, label: 'Tags' %>
+		<%= f.hint 'Separated by commas' %>
+	</div>
+	<div>
+		<%= f.input :company do %>
+			<%= f.select(:company_id, Company.all.map {|c| [c.name, c.id]}, {}, class: 'form-control') %>
+		<% end %>
+	</div>
+	<div>
+		<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+	</div>
+</div>

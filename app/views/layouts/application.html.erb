@@ -13,8 +13,11 @@
 	<body>
 		
 		<!-- navbar fixed top -->
-		<nav class="navbar navbar-default">
-	      <div class="container-fluid">
+		<div class="container">
+			<img style="height:50px;padding-top:10px;padding-bottom:10px;" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Motorola_Solutions_Logo.svg" alt="Motorola Solutions logo">
+		</div>
+		<nav class="navbar navbar-default navbar-static-top">
+	      <div class="container">
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 	            <span class="sr-only">Toggle navigation</span>
@@ -25,11 +28,13 @@
 	          <a class="navbar-brand" href="#">SSC Product Support</a>
 	        </div>
 	        <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav navbar-right">
+	          <ul class="nav navbar-nav">
 	            <li><a href="/products">Products</a></li>
 	            <li><a href="/companies">Companies</a></li>
 	            <li><a href="/technologists">Technical Support</a></li>
 	            <li><a href="/servicers">Repair Service</a></li>
+	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
 	            <li><a href="#">Requests</a></li>
 	            <li><a href="#">Help</a></li>
 	          </ul>
@@ -37,7 +42,7 @@
 	      </div>
 	    </nav>
 
-		<div class="main container-fluid">
+		<div class="main container">
 
 			<% if !flash[:notice].blank? %>
 				<div class="notice">

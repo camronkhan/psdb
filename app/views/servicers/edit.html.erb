@@ -5,11 +5,12 @@
 <div class="servicers edit">
 	<h2>Edit Servicer</h2>
 
-	<%= form_for(:servicer, :url => {:action => 'update', :id => @servicer.id}) do |f| %>
-
+	<%= simple_form_for(:servicer,
+						:url => {
+							:action => 'update',
+							:id => @servicer.id
+						},
+						class: 'form-group') do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
-
-		<%= render(:partial => "shared/submit_button") %>
-
 	<% end %>
 </div>

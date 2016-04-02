@@ -1,10 +1,9 @@
-<table summary="Company form fields">
-	<tr>
-		<th><%= f.label(:name, "Name") %></th>
-		<td><%= f.text_field(:name) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:website_url, "Website URL") %></th>
-		<td><%= f.text_field(:website) %></td>
-	</tr>
-</table>
+<div>
+	<%= f.input :name %>	
+</div>
+<div>
+	<%= f.input :website_url, label: 'Website URL' %>
+</div>
+<div>
+	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+</div>

@@ -1,14 +1,16 @@
-<table summary="Servicer assignment form fields">
-	<tr>
-		<th><%= f.label(:servicer_id, "Servicer") %></th>
-		<td><%= f.select(:servicer_id, Servicer.all.map {|s| [s.name, s.id]}) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:product_id, "Product") %></th>
-		<td><%= f.select(:product_id, Product.all.map {|p| [p.name, p.id]}) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:condition, "Condition") %></th>
-		<td><%= f.text_field(:condition) %></td>
-	</tr>
-</table>
+<div>
+	<%= f.input :servicer do %>
+		<%= f.select(:servicer_id, Servicer.all.map {|s| [s.name, s.id]}, {}, class: 'form-control') %>
+	<% end %>
+</div>
+<div>
+	<%= f.input :product do %>
+		<%= f.select(:product_id, Product.all.map {|p| [p.name, p.id]}, {}, class: 'form-control') %>
+	<% end %>
+</div>
+<div>
+	<%= f.input :condition %>	
+</div>
+<div>
+	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+</div>

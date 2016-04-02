@@ -1,14 +1,16 @@
-<table summary="Technologist assignment form fields">
-	<tr>
-		<th><%= f.label(:technologist_id, "Technologist") %></th>
-		<td><%= f.select(:technologist_id, Technologist.all.map {|t| [t.name, t.id]}) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:product_id, "Product") %></th>
-		<td><%= f.select(:product_id, Product.all.map {|p| [p.name, p.id]}) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:condition, "Condition") %></th>
-		<td><%= f.text_field(:condition) %></td>
-	</tr>
-</table>
+<div>
+	<%= f.input :technologist do %>
+		<%= f.select(:technologist_id, Technologist.all.map {|t| [t.name, t.id]}, {}, class: 'form-control') %>
+	<% end %>
+</div>
+<div>
+	<%= f.input :product do %>
+		<%= f.select(:product_id, Product.all.map {|p| [p.name, p.id]}, {}, class: 'form-control') %>
+	<% end %>
+</div>
+<div>
+	<%= f.input :condition %>	
+</div>
+<div>
+	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+</div>

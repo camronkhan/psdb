@@ -5,11 +5,11 @@
 <div class="companies new">
 	<h2>Create Companies</h2>
 
-	<%= form_for(:company, :url => {:action => 'create'}) do |f| %>
-
+	<%= simple_form_for(:company,
+						:url => {
+							:action => 'create'
+						},
+						class: 'form-group') do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
-
-		<%= render(:partial => "shared/submit_button") %>
-
 	<% end %>
 </div>

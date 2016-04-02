@@ -5,11 +5,12 @@
 <div class="technologist_assignments edit">
 	<h2>Edit Technologist Assignment</h2>
 
-	<%= form_for(:technologist_assignment, :url => {:action => 'update', :id => @technologist_assignment.id}) do |f| %>
-
+	<%= simple_form_for(:technologist_assignment,
+						:url => {
+							:action => 'update',
+							:id => @technologist_assignment.id
+						},
+						class: 'form-group') do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
-
-		<%= render(:partial => "shared/submit_button") %>
-
 	<% end %>
 </div>

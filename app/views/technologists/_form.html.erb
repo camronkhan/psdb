@@ -1,22 +1,18 @@
-<table summary="Technologist form fields">
-	<tr>
-		<th><%= f.label(:name, "Name") %></th>
-		<td><%= f.text_field(:name) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:internal_phone, "Phone - Internal") %></th>
-		<td><%= f.text_field(:internal_phone) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:external_phone, "Phone - External") %></th>
-		<td><%= f.text_field(:external_phone) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:hours, "Hours of Operation") %></th>
-		<td><%= f.text_field(:hours) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:escalation, "Escalations") %></th>
-		<td><%= f.text_field(:escalation) %></td>
-	</tr>
-</table>
+<div>
+	<%= f.input :name %>	
+</div>
+<div>
+	<%= f.input :internal_phone, label: 'Phone - Internal' %>
+</div>
+<div>
+	<%= f.input :external_phone, label: 'Phone - External' %>
+</div>
+<div>
+	<%= f.input :hours, label: 'Hours of Operation' %>
+</div>
+<div>
+	<%= f.input :escalation, label: 'Escalations' %>
+</div>
+<div>
+	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+</div>

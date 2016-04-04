@@ -1,7 +1,9 @@
 class Company < ActiveRecord::Base
 
 	has_many :products
-	has_many :notes, as: :annotatable
+	has_many :notes, as: :annotatable, dependent: :destroy
+
+	accepts_nested_attributes_for :notes
 
 	validates :name, presence: true, 
 					 uniqueness: true

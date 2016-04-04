@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
 
 	has_many :products
+	has_many :notes, as: :annotatable
 
 	validates :name, presence: true, 
 					 uniqueness: true

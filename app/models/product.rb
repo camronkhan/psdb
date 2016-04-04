@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
 	has_many :technologists, :through => :technologist_assignments
 	has_many :servicer_assignments
 	has_many :servicers, :through => :servicer_assignments
+	has_many :notes, as: :annotatable
 
 	acts_as_taggable # alias for acts_as_taggable_on :tags
 

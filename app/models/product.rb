@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
 	has_many :servicers, :through => :servicer_assignments
 	has_many :notes, as: :annotatable, dependent: :destroy
 
-	accepts_nested_attributes_for :notes
+	accepts_nested_attributes_for :notes, :reject_if => lambda { |a| a[:data].blank? }
 
 	acts_as_taggable # alias for acts_as_taggable_on :tags
 

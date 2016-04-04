@@ -26,6 +26,16 @@
 			<th>Updated</th>
 			<td><%= @product.updated_at %></td>
 		</tr>
+		<tr>
+			<th>Notes</th>
+			<td>
+				<ul>
+					<% @product.notes.each do |note| %>
+						<li><%= note.data %></li>
+					<% end %>
+				</ul>
+			</td>
+		</tr>
 	</table>
 
 

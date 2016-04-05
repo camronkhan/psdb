@@ -1,5 +1,5 @@
 <div>
-	<%= f.input :name %>	
+	<%= f.input :name %>
 </div>
 <div>
 	<%= f.input :image_url, label: 'Image URL' %>
@@ -12,6 +12,14 @@
 	<%= f.input :company do %>
 		<%= f.select(:company_id, Company.all.map {|c| [c.name, c.id]}, {}, class: 'form-control') %>
 	<% end %>
+</div>
+<div>
+	<%= f.simple_fields_for :notes do |note| %>
+		<%= render 'note_fields', :f => note %>
+	<% end %>
+	<div class='links'>
+		<%= link_to_add_association 'Add', f, :notes, class: 'btn btn-xs btn-success' %>
+	</div>
 </div>
 <div>
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>

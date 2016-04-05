@@ -5,7 +5,7 @@
 <div class="products edit">
 	<h2>Edit Product</h2>
 
-	<%= simple_form_for(:product,
+	<%= simple_form_for(@product,
 				 		:url => {
 						 	:action => 'update',
 						 	:id => @product.id,

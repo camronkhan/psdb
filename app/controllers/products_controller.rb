@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
 		@search_value = search_value
 		@sort_direction = sort_direction
 		@product = Product.new({:name => "Default"})
+		@product.notes.build
 	end
 
 	def create
@@ -38,6 +39,7 @@ class ProductsController < ApplicationController
 		@search_value = search_value
 		@sort_direction = sort_direction
 		@product = Product.find(params[:id])
+		@product.notes.build
 	end
 
 	def update
@@ -73,7 +75,7 @@ class ProductsController < ApplicationController
 	      # same as using "params[:subject]", except that it:
 	      # - raises an error if :subject is not present
 	      # - allows listed attributes to be mass-assigned
-	      params.require(:product).permit(:company_id, :name, :image_url, :tag_list)
+	      params.require(:product).permit(:id, :company_id, :name, :image_url, :tag_list, notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
 	    end
 
 	    def search_value

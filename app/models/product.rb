@@ -9,7 +9,9 @@ class Product < ActiveRecord::Base
 	has_many :servicers, :through => :servicer_assignments
 	has_many :notes, as: :annotatable, dependent: :destroy
 
-	accepts_nested_attributes_for :notes, :reject_if => lambda { |a| a[:data].blank? }
+	accepts_nested_attributes_for :notes, 
+								  reject_if: lambda { |a| a[:data].blank? },
+								  allow_destroy: true
 
 	acts_as_taggable # alias for acts_as_taggable_on :tags
 
@@ -35,11 +37,4 @@ class Product < ActiveRecord::Base
 						:dmetaphone => {}
 					},
 					:ranked_by => '(:dmetaphone / 2) + (:trigram * 2)'
-
-	#scope :search, -> (value) { where("products.name LIKE ?", "%#{value}%") }
-	#scope :sorted, -> { joins(:company).order("products.name ASC", "companies.name ASC") }
-	#scope :reverse_sorted, -> { joins(:company).order("products.name DESC", "companies.name ASC") }
-	#scope :company_sorted, -> { joins(:company).order("companies.name ASC", "products.name ASC") }
-	#scope :company_reverse_sorted, -> { joins(:company).order("companies.name DESC", "products.name ASC") }
-	
 end

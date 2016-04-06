@@ -4,15 +4,13 @@
 
 <div class="products new">
 	<h2>Create Product</h2>
-
-	<%= simple_form_for(:product, 
-				 :url => {
-				 	:action => 'create',
-				 	:search => @search_value,
-				 	:sort => @sort_direction
-				 },
-				 class: 'form-group') do |f| %>
+	<%= simple_form_for(@product,
+				 		:url => {
+						 	:action => 'create',
+						 	:search => @search_value,
+						 	:sort => @sort_direction
+						},
+				 		class: 'form-group') do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 	<% end %>
-	
 </div>

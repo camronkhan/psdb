@@ -36,9 +36,9 @@
 					<td><%= product.pg_search_rank %></td>
 					<td><%= product.tag_list %></td>
 					<td class="actions">
-						<%= link_to("Details", {:action => 'show', :id => product.id, :search => @search_value, :sort => @sort_direction}, :class => 'action show') %>
-						<%= link_to("Edit", {:action => 'edit', :id => product.id, :search => @search_value, :sort => @sort_direction}, :class => 'action edit') %>
-						<%= link_to("Delete", {:action => 'delete', :id => product.id, :search => @search_value, :sort => @sort_direction}, :class => 'action delete') %>
+						<%= link_to("Details", {action: 'show', :id => product.id, :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
+						<%= link_to("Edit", {:action => 'edit', :id => product.id, :search => @search_value, :sort => @sort_direction}, class: 'btn btn-warning') %>
+						<%= link_to("Delete", {:action => 'delete', :id => product.id, :search => @search_value, :sort => @sort_direction}, class: 'btn btn-danger') %>
 					</td>
 				</tr>
 			<% end %>

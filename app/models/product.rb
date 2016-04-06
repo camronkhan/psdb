@@ -33,8 +33,6 @@ class Product < ActiveRecord::Base
 						},
 						:trigram => {
 							:threshold => 0.2 			# higher threshold --> more strict --> fewer results
-						},
-						:dmetaphone => {}
-					},
-					:ranked_by => '(:dmetaphone / 2) + (:trigram * 2)'
+						}
+					}
 end

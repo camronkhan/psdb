@@ -9,18 +9,23 @@ class Product < ActiveRecord::Base
 	has_many :servicers, :through => :servicer_assignments
 	has_many :notes, as: :annotatable, dependent: :destroy
 
+	# Accept nested attributes to allow add/delete notes from within product form
 	accepts_nested_attributes_for :notes, 
 								  reject_if: lambda { |a| a[:data].blank? },
 								  allow_destroy: true
 
-	acts_as_taggable # alias for acts_as_taggable_on :tags
+	# Alias for acts_as_taggable_on :tags
+	acts_as_taggable
 
+	# Validate product name is provided and unique (per company) before saving product
 	validates :name, presence: true,
 					 uniqueness: { scope: :company_id,
 					 			   message: "can appear only once for each company"}
 
+	# Validate presence of company before saving product
 	validates :company, presence: true
 
+	# PostgreSQL full text search
 	pg_search_scope :full_text_search,
 					:against => :name,
 					:associated_against => {
@@ -34,14 +39,16 @@ class Product < ActiveRecord::Base
 							:any_word => true			# returns all hits containing any word in search terms
 						},
 						:trigram => {
-							:threshold => 0.2 			# higher threshold --> more strict --> fewer results
+							:threshold => 0.2 			# higher threshold --> more strict --> fewer results (default==0.3)
 						}
 					}
 
+	# Define company_name virtual attribute utilized for form autocompletion
+	# Getter method - return nil if name is not found
 	def company_name
 		company.try(:name)
 	end
-
+	# Setter method - only set if name is present
 	def company_name=(name)
 		self.company = Company.find_by(name: name) if name.present?
 	end

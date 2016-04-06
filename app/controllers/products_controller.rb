@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 	# Access methods from view (helpers/application_helper.rb#sortable)
 	helper_method :sort_direction
 
+	# Autocompletion of company name in product form
 	autocomplete :company, :name, full: true
 
 	def index
@@ -73,24 +74,24 @@ class ProductsController < ApplicationController
 
 	private
 
+      	# Whitelist allowable attributes to be mass-assigned; raises an error if :subject is not present
 	    def product_params
-	      # same as using "params[:subject]", except that it:
-	      # - raises an error if :subject is not present
-	      # - allows listed attributes to be mass-assigned
 	      params.require(:product).permit(:id, :company_id, :name, :image_url, :tag_list, :company_name, notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
 	    end
 
+	    # Use search value provided if params if present, else use nil
 	    def search_value
 	    	params[:search] || nil
 	    end
 
+		# If sort direction param includes ascending or descending option,
+    		# Then set sort direction to option
+    		# Else set sort direction to nil 
 	    def sort_direction
-	    	# If sort direction param includes ascending or descending option,
-	    	# then set sort direction to option
-	    	# Else set sort direction to nil 
 	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
 	    end
 	    
+	    # Sort product table by relevance rank, asc product name, or dsc product name
 	    def search_and_sort(value, direction)
 	    	if !direction
 	    		# Sort by relevance ranking

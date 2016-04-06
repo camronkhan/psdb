@@ -19,6 +19,8 @@ class Product < ActiveRecord::Base
 					 uniqueness: { scope: :company_id,
 					 			   message: "can appear only once for each company"}
 
+	validates :company, presence: true
+
 	pg_search_scope :full_text_search,
 					:against => :name,
 					:associated_against => {
@@ -35,4 +37,13 @@ class Product < ActiveRecord::Base
 							:threshold => 0.2 			# higher threshold --> more strict --> fewer results
 						}
 					}
+
+	def company_name
+		company.try(:name)
+	end
+
+	def company_name=(name)
+		self.company = Company.find_by(name: name) if name.present?
+	end
+
 end

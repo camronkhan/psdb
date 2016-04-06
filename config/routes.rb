@@ -2,6 +2,10 @@ Rails.application.routes.draw do
  
   root 'products#index'
 
+  resources :products do
+    get :autocomplete_company_name, :on => :collection
+  end
+
   match ':controller(/:action(/:id))', :via => [:get, :post, :patch]
   
   # The priority is based upon order of creation: first created -> highest priority.

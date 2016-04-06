@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
 	# Access methods from view (helpers/application_helper.rb#sortable)
 	helper_method :sort_direction
 
+	autocomplete :company, :name, full: true
+
 	def index
 		@search_value = search_value
 		@sort_direction = sort_direction
@@ -75,7 +77,7 @@ class ProductsController < ApplicationController
 	      # same as using "params[:subject]", except that it:
 	      # - raises an error if :subject is not present
 	      # - allows listed attributes to be mass-assigned
-	      params.require(:product).permit(:id, :company_id, :name, :image_url, :tag_list, notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
+	      params.require(:product).permit(:id, :company_id, :name, :image_url, :tag_list, :company_name, notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
 	    end
 
 	    def search_value

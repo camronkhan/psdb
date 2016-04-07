@@ -1,12 +1,12 @@
 <% @page_title = "Products" %>
 
-<div class="products index">
+<div>
 	<h2><%= @page_title %></h2>
 	
-	<%= link_to("Add New Product", {:action => 'new', :search => @search_value, :sort => @sort_direction}, :class => 'action new') %>
+	<%= link_to("Add New Product", {action: 'new', search: @search_value, sort: @sort_direction}) %>
 	
 	<%= form_tag('/products', method: 'get', class: 'form-inline') do %>
-		<%= hidden_field_tag(:sort, params[:sort => nil]) %>
+		<%= hidden_field_tag(:sort, params[sort: nil]) %>
 		<div class="form-group">
 			<%= text_field_tag(:search, @search_value, class: 'form-control') %>
 			<%= button_tag(type: "submit", class: "btn btn-primary") do %>
@@ -35,9 +35,9 @@
 					<td><%= product.company.name %></td>
 					<td><%= product.pg_search_rank %></td>
 					<td><%= product.tag_list %></td>
-					<td class="actions">
-						<%= link_to("Details", {action: 'show', :id => product.id, :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
-						<%= link_to("Edit", {action: 'edit', :id => product.id, :search => @search_value, :sort => @sort_direction}, class: 'btn btn-warning') %>
+					<td>
+						<%= link_to("Details", {action: 'show', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
+						<%= link_to("Edit", {action: 'edit', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-warning') %>
 						<%= link_to("Delete", {action: 'delete', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-danger') %>
 					</td>
 				</tr>
@@ -48,4 +48,3 @@
 </div>
 
 <br><br>
-<%#= params.inspect %>

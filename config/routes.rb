@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   # Autocompletion of specified form fields
   resources :products do
-    get :autocomplete_company_name, :on => :collection    # company_name
+    get :autocomplete_company_name, on: :collection    # company
+    get :autocomplete_tag_name, on: :collection        # tag
   end
 
   match ':controller(/:action(/:id))', :via => [:get, :post, :patch]

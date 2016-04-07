@@ -3,8 +3,9 @@ class ProductsController < ApplicationController
 	# Access methods from view (helpers/application_helper.rb#sortable)
 	helper_method :sort_direction
 
-	# Autocompletion of company name in product form
+	# Autocompletion in product form
 	autocomplete :company, :name, full: true
+	autocomplete :tag, :name, class_name: 'ActsAsTaggableOn::Tag'
 
 	def index
 		@search_value = search_value

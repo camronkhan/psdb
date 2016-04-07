@@ -5,12 +5,11 @@
 	<%= f.input :image_url, label: 'Image URL' %>
 </div>
 <div>
-	<%#= f.input :tag_list, label: 'Tags' %>
-	<%= f.input :tag_list, as: :autocomplete, url: autocomplete_tag_name_products_path, 'data-auto-focus' => true, input_html: {'data-delimiter' => ','} %>
-	<%= f.hint 'Separated by commas' %>
+	<%= f.autocomplete_field :tag_list, autocomplete_tag_name_products_path, 'data-delimiter' => ' ', :multiple => true, class: 'form-control' %>
+	<%= f.hint 'Tags separated by a space' %>
 </div>
 <div>
-	<%= f.input :company_name, as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true %>
+	<%= f.input :company_name, as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true, 'data-delimiter' => ' ', :multiple => true %>
 </div>
 <div>
 	<h3>Notes</h3>

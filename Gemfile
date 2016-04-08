@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 # Use Bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
+# Use font awesome icons  https://github.com/bokmann/font-awesome-rails
+gem "font-awesome-rails"
 # Use Autoprefixer
 gem 'autoprefixer-rails'
 # Use will_paginate  https://github.com/mislav/will_paginate

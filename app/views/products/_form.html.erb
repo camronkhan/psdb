@@ -1,24 +1,25 @@
 <div>
-	<%= f.input :name %>
-</div>
-<div>
+	<h3>Basic Information</h3>
+	<%= f.input :name, label: 'Product Name' %>
 	<%= f.input :image_url, label: 'Image URL' %>
-</div>
-<div>
+	<%= f.input :company_name, label: 'Company', as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true %>
+	<%= f.label :tags %>
 	<%= f.autocomplete_field :tag_list, autocomplete_tag_name_products_path, 'data-delimiter' => ' ', :multiple => true, class: 'form-control' %>
 	<%= f.hint 'Tags separated by a space' %>
 </div>
+<hr>
 <div>
-	<%= f.input :company_name, as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true %>
-</div>
-<div>
+	<h3>Technical Support</h3>
 	<%= f.association :technologists %>
 </div>
+<hr>
 <div>
+	<h3>Repair Service</h3>
 	<%= f.association :servicers %>
 </div>
+<hr>
 <div>
-	<h3>Notes</h3>
+	<h3>Product Notes</h3>
 	<%= f.simple_fields_for :notes do |note| %>
 		<%= render 'note_fields', :f => note %>
 	<% end %>
@@ -26,6 +27,7 @@
 		<%= link_to_add_association 'Add', f, :notes, class: 'btn btn-xs btn-success' %>
 	</div>
 </div>
+<hr>
 <div>
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
 </div>

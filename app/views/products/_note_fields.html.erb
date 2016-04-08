@@ -1,4 +1,7 @@
-<div class='nested-fields'>
+<div class='nested-fields input-group'>
     <%= f.input :data, as: :string, label: false, class: 'form-input form-control' %>
-    <%= link_to_remove_association 'Remove', f, class: 'btn btn-xs btn-danger' %>
+    <span class='input-group-btn'>
+    	<%= link_to_remove_association 'Remove', f, class: 'btn btn-danger' %>
+    </span>
+    
 </div>

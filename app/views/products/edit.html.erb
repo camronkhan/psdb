@@ -1,10 +1,8 @@
 <% @page_title = "Products - Edit" %>
 
-<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-primary') %>
-
-<div class="products edit">
+<div>
 	<h2>Edit Product</h2>
-
+	<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-primary') %>
 	<%= simple_form_for(@product,
 				 		:url => {
 						 	:action => 'update',

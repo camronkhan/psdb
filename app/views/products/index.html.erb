@@ -3,7 +3,7 @@
 <div>
 	<h2><%= @page_title %></h2>
 	
-	<%= link_to("Add New Product", {action: 'new', search: @search_value, sort: @sort_direction}) %>
+	<%= link_to("Add New Product", {action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') %>
 	
 	<%= form_tag('/products', method: 'get', class: 'form-inline') do %>
 		<%= hidden_field_tag(:sort, params[sort: nil]) %>

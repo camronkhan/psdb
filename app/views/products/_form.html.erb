@@ -9,7 +9,13 @@
 	<%= f.hint 'Tags separated by a space' %>
 </div>
 <div>
-	<%= f.input :company_name, as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true, 'data-delimiter' => ' ', :multiple => true %>
+	<%= f.input :company_name, as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true %>
+</div>
+<div>
+	<%= f.association :technologists %>
+</div>
+<div>
+	<%= f.association :servicers %>
 </div>
 <div>
 	<h3>Notes</h3>

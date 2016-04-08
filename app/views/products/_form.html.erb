@@ -20,10 +20,11 @@
 <hr>
 <div>
 	<h3>Product Notes</h3>
+	<%= f.hint 'Notes appear in the order they are entered' %>
 	<%= f.simple_fields_for :notes do |note| %>
 		<%= render 'note_fields', :f => note %>
 	<% end %>
-	<div class='links'>
+	<div>
 		<%= link_to_add_association 'Add', f, :notes, class: 'btn btn-success' %>
 	</div>
 </div>

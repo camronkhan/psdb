@@ -1,7 +1,10 @@
-<div class='nested-fields input-group'>
-    <%= f.input :data, as: :string, label: false, class: 'form-input form-control' %>
-    <span class='input-group-btn'>
-    	<%= link_to_remove_association 'Remove', f, class: 'btn btn-danger' %>
-    </span>
-    
+<div class='nested-fields'>
+    <%= f.input :data, label: false, wrapper: :vertical_input_group do %>
+	    <%= f.input_field :data, as: :string, placeholder: 'Enter product note here', class: 'form-control' %>
+	    <span class='input-group-btn'>
+	    	<%= link_to_remove_association 'Remove', f, class: 'btn btn-danger' %>
+	    </span>
+    <% end %>
 </div>
+
+

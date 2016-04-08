@@ -1,9 +1,10 @@
 <% @page_title = "Products - Delete" %>
 
-<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-primary') %>
-
 <div class="products delete">
 	<h2>Delete Product</h2>
+	
+	<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
+
 	<%= simple_form_for(@product,
 				 		url: {
 						 	action: 'destroy',

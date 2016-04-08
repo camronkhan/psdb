@@ -1,10 +1,10 @@
 <% @page_title = "Products - Details" %>
 
-<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-primary') %>
-
 <div class="products show">
-
 	<h2>Product Details</h2>
+
+	<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
+	
 	<table summary="Product detail view" class="table table-striped">
 		<tr>
 			<th>Name</th>
@@ -30,7 +30,7 @@
 			<th>Notes</th>
 			<td>
 				<ul>
-					<% @product.notes.each do |note| %>
+					<% @product.notes.reverse.each do |note| %>
 						<li><%= note.data %></li>
 					<% end %>
 				</ul>

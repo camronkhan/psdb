@@ -2,7 +2,9 @@
 
 <div>
 	<h2>Edit Product</h2>
-	<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-primary') %>
+
+	<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
+	
 	<%= simple_form_for(@product,
 				 		:url => {
 						 	:action => 'update',
@@ -10,6 +12,7 @@
 						 	:search => @search_value,
 						 	:sort => @sort_direction
 						},
+						wrapper: :vertical_form,
 				 		class: 'form-group') do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 	<% end %>

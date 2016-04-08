@@ -20,12 +20,14 @@
 <hr>
 <div>
 	<h3>Product Notes</h3>
-	<%= f.hint 'Notes appear in the order they are entered' %>
+	<%= f.hint 'Current note order is not guaranteed' %>
 	<%= f.simple_fields_for :notes do |note| %>
 		<%= render 'note_fields', :f => note %>
 	<% end %>
 	<div>
-		<%= link_to_add_association 'Add', f, :notes, class: 'btn btn-success' %>
+		<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
+			<%= fa_icon 'plus', class: 'fa-lg' %>
+		<% end %>
 	</div>
 </div>
 <hr>

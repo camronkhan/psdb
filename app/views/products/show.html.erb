@@ -1,45 +1,52 @@
 <% @page_title = "Products - Details" %>
 
-<div class="products show">
-	<h2>Product Details</h2>
+<div>
+	<div class="page-header">
+		<h2>Product Details</h2>
+		<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
+	</div>
 
-	<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
-	
-	<table summary="Product detail view" class="table table-striped">
-		<tr>
-			<th>Name</th>
-			<td><%= @product.name %></td>
-		</tr>
-		<tr>
-			<th>Company</th>
-			<td><%= @product.company.name %></td>
-		</tr>
-		<tr>
-			<th>Tags</th>
-			<td><%= @product.tag_list %></td>
-		</tr>
-		<tr>
-			<th>Created</th>
-			<td><%= @product.created_at %></td>
-		</tr>
-		<tr>
-			<th>Updated</th>
-			<td><%= @product.updated_at %></td>
-		</tr>
-		<tr>
-			<th>Notes</th>
-			<td>
-				<ul>
-					<% @product.notes.reverse.each do |note| %>
-						<li><%= note.data %></li>
-					<% end %>
-				</ul>
-			</td>
-		</tr>
-	</table>
+	<div class='panel panel-default'>
+		<div class='panel-heading'>
+			<h3>Basic Information</h3>
+		</div>
+		<div class="panel-body">
+			<table summary="Product detail view" class="table">
+				<tr>
+					<th>Name</th>
+					<td><%= @product.name %></td>
+				</tr>
+				<tr>
+					<th>Company</th>
+					<td><%= @product.company.name %></td>
+				</tr>
+				<tr>
+					<th>Tags</th>
+					<td><%= @product.tag_list %></td>
+				</tr>
+				<tr>
+					<th>Created</th>
+					<td><%= @product.created_at %></td>
+				</tr>
+				<tr>
+					<th>Updated</th>
+					<td><%= @product.updated_at %></td>
+				</tr>
+				<tr>
+					<th>Notes</th>
+					<td>
+						<ul>
+							<% @product.notes.reverse.each do |note| %>
+								<li><%= note.data %></li>
+							<% end %>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 
-
-	<h2>Technical Support</h2>
+	<h3>Technical Support</h3>
 	<% @product.technologists.each do |technologist| %>
 		<table summary="Technologists" class="table table-striped">
 			<tr>
@@ -65,7 +72,7 @@
 		</table>
 	<% end %>
 
-	<h2>Repair Service</h2>
+	<h3>Repair Service</h3>
 	<% @product.servicers.each do |servicer| %>
 		<table summary="Servicers" class="table table-striped">
 			<tr>

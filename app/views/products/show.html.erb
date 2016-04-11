@@ -48,6 +48,10 @@
 
 	<h3>Technical Support</h3>
 	<% @product.technologists.each do |technologist| %>
+		<div>
+			<h4>Condition</h4>
+			<p><%= TechnologistAssignment.condition(@product.id, technologist.id) %></p>
+		</div>
 		<table summary="Technologists" class="table table-striped">
 			<tr>
 				<th>Name</th>
@@ -74,6 +78,10 @@
 
 	<h3>Repair Service</h3>
 	<% @product.servicers.each do |servicer| %>
+		<div>
+			<h4>Condition</h4>
+			<p><%= ServicerAssignment.condition(@product.id, servicer.id) %></p>
+		</div>
 		<table summary="Servicers" class="table table-striped">
 			<tr>
 				<th>Name</th>

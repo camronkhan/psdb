@@ -9,7 +9,9 @@ class Product < ActiveRecord::Base
 	has_many :servicers, :through => :servicer_assignments
 	has_many :notes, as: :annotatable, dependent: :destroy
 
-	# Accept nested attributes to allow add/delete notes from within product form
+	# Accept nested attributes within product form
+	accepts_nested_attributes_for :technologist_assignments
+	accepts_nested_attributes_for :servicer_assignments
 	accepts_nested_attributes_for :notes, 
 								  reject_if: lambda { |a| a[:data].blank? },
 								  allow_destroy: true

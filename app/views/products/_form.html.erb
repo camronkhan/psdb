@@ -10,12 +10,26 @@
 <hr>
 <div>
 	<h3>Technical Support</h3>
-	<%= f.association :technologists %>
+	<%= f.simple_fields_for :technologist_assignments do |assignment| %>
+		<%= render 'technologist_assignment_fields', :f => assignment %>
+	<% end %>
+	<div>
+		<%= link_to_add_association f, :technologist_assignments, class: 'btn btn-success' do %>
+			<%= fa_icon 'plus', class: 'fa-lg' %>
+		<% end %>
+	</div>
 </div>
 <hr>
 <div>
 	<h3>Repair Service</h3>
-	<%= f.association :servicers %>
+	<%= f.simple_fields_for :servicer_assignments do |assignment| %>
+		<%= render 'servicer_assignment_fields', :f => assignment %>
+	<% end %>
+	<div>
+		<%= link_to_add_association f, :servicer_assignments, class: 'btn btn-success' do %>
+			<%= fa_icon 'plus', class: 'fa-lg' %>
+		<% end %>
+	</div>
 </div>
 <hr>
 <div>

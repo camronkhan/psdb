@@ -77,7 +77,17 @@ class ProductsController < ApplicationController
 
       	# Whitelist allowable attributes to be mass-assigned; raises an error if :subject is not present
 	    def product_params
-	      params.require(:product).permit(:id, :company_id, :name, :image_url, :company_name, tag_list: [],  notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
+	      params.require(:product).permit(:id,
+	      								  :company_id,
+	      								  :name,
+	      								  :image_url,
+	      								  :company_name,
+	      								  tag_list: [],
+	      								  technologist_ids: [],
+	      								  servicer_ids: [],
+	      								  technologist_assignments_attributes: [:id, :product_id, :technologist_id, :condition, :_destroy],
+	      								  servicer_assignments_attributes: [:id, :product_id, :servicer_id, :condition, :_destroy],
+	      								  notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
 	    end
 
 	    # Use search value provided if params if present, else use nil

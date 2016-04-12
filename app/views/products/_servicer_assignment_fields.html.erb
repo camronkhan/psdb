@@ -1,7 +1,7 @@
-<div class="nested-fields">
+<div class="nested-fields well clearfix">
 	<%= f.association :servicer %>
 	<%= f.input :condition %>
-	<%= link_to_remove_association f, class: 'btn btn-danger' do %>
+	<%= link_to_remove_association f, class: 'btn btn-danger pull-right' do %>
 		<%= fa_icon 'trash-o', class: 'fa-lg' %>
 	<% end %>
 </div>

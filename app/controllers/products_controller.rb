@@ -23,6 +23,8 @@ class ProductsController < ApplicationController
 		@search_value = search_value
 		@sort_direction = sort_direction
 		@product = Product.new({:name => "Default"})
+		@product.technologist_assignments.build
+		@product.servicer_assignments.build
 		@product.notes.build
 	end
 

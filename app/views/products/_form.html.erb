@@ -1,13 +1,16 @@
+<br>
 <div>
 	<h3>Basic Information</h3>
-	<%= f.input :name, label: 'Product Name' %>
-	<%= f.input :image_url, label: 'Image URL' %>
-	<%= f.input :company_name, label: 'Company', as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true %>
-	<%= f.label :tags %>
-	<%= f.autocomplete_field :tag_list, autocomplete_tag_name_products_path, 'data-delimiter' => ' ', :multiple => true, class: 'form-control' %>
-	<%= f.hint 'Tags separated by a space' %>
+	<div class="well">
+		<%= f.input :name, label: 'Product Name' %>
+		<%= f.input :image_url, label: 'Image URL' %>
+		<%= f.input :company_name, label: 'Company', as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true %>
+		<%= f.label :tags %>
+		<%= f.autocomplete_field :tag_list, autocomplete_tag_name_products_path, 'data-delimiter' => ' ', :multiple => true, class: 'form-control' %>
+		<%= f.hint 'Tags separated by a space' %>
+	</div>
 </div>
-<hr>
+<br>
 <div>
 	<h3>Technical Support</h3>
 	<%= f.simple_fields_for :technologist_assignments do |assignment| %>
@@ -19,7 +22,8 @@
 		<% end %>
 	</div>
 </div>
-<hr>
+<br>
+<br>
 <div>
 	<h3>Repair Service</h3>
 	<%= f.simple_fields_for :servicer_assignments do |assignment| %>
@@ -31,20 +35,24 @@
 		<% end %>
 	</div>
 </div>
-<hr>
+<br>
+<br>
 <div>
 	<h3>Product Notes</h3>
-	<%= f.hint 'Current note order is not guaranteed' %>
-	<%= f.simple_fields_for :notes do |note| %>
-		<%= render 'note_fields', :f => note %>
-	<% end %>
-	<div>
-		<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
-			<%= fa_icon 'plus', class: 'fa-lg' %>
+	<div class="well">
+		<%= f.hint 'Current note order is not guaranteed' %>
+		<%= f.simple_fields_for :notes do |note| %>
+			<%= render 'note_fields', :f => note %>
 		<% end %>
+		<div>
+			<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
+				<%= fa_icon 'plus', class: 'fa-lg' %>
+			<% end %>
+		</div>
 	</div>
 </div>
-<hr>
+<br>
+<br>
 <div>
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
 </div>

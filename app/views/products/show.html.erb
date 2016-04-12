@@ -1,51 +1,34 @@
 <% @page_title = "Products - Details" %>
 
 <div>
-	<div class="page-header">
+	<div>
 		<h2>Product Details</h2>
 		<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
 	</div>
-
-	<div class='panel panel-default'>
-		<div class='panel-heading'>
-			<h3>Basic Information</h3>
-		</div>
-		<div class="panel-body">
-			<table summary="Product detail view" class="table">
-				<tr>
-					<th>Name</th>
-					<td><%= @product.name %></td>
-				</tr>
-				<tr>
-					<th>Company</th>
-					<td><%= @product.company.name %></td>
-				</tr>
-				<tr>
-					<th>Tags</th>
-					<td><%= @product.tag_list %></td>
-				</tr>
-				<tr>
-					<th>Created</th>
-					<td><%= @product.created_at %></td>
-				</tr>
-				<tr>
-					<th>Updated</th>
-					<td><%= @product.updated_at %></td>
-				</tr>
-				<tr>
-					<th>Notes</th>
-					<td>
-						<ul>
-							<% @product.notes.reverse.each do |note| %>
-								<li><%= note.data %></li>
-							<% end %>
-						</ul>
-					</td>
-				</tr>
-			</table>
+	<br>
+	<br>
+	<h3><%= @product.name %></h3>
+	<div class="panel panel-default">
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-sm-3">
+					<h4>Company</h4>
+					<p><%= @product.company.name %></p>
+					<h4>Tags</h4>
+					<p><%= @product.tag_list %></p>
+				</div>
+				<div class="col-sm-7">
+					<h4>Notes</h4>
+					<% @product.notes.reverse.each do |note| %>
+						<li><%= note.data %></li>
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
-
+	<br>
+	<br>
 	<h3>Technical Support</h3>
 	<% @product.technologists.each do |technologist| %>
 		<div>
@@ -75,7 +58,8 @@
 			</tr>
 		</table>
 	<% end %>
-
+	<br>
+	<br>
 	<h3>Repair Service</h3>
 	<% @product.servicers.each do |servicer| %>
 		<div>
@@ -101,5 +85,4 @@
 			</tr>
 		</table>
 	<% end %>
-
 </div>

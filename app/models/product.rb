@@ -10,8 +10,12 @@ class Product < ActiveRecord::Base
 	has_many :notes, as: :annotatable, dependent: :destroy
 
 	# Accept nested attributes within product form
-	accepts_nested_attributes_for :technologist_assignments
-	accepts_nested_attributes_for :servicer_assignments
+	accepts_nested_attributes_for :technologist_assignments, 
+								  reject_if: lambda { |a| a[:data].blank? },
+								  allow_destroy: true
+	accepts_nested_attributes_for :servicer_assignments, 
+								  reject_if: lambda { |a| a[:data].blank? },
+								  allow_destroy: true
 	accepts_nested_attributes_for :notes, 
 								  reject_if: lambda { |a| a[:data].blank? },
 								  allow_destroy: true

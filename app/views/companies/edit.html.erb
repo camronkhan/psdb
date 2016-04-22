@@ -1,15 +1,16 @@
 <% @page_title = "Companies - Edit" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<div>
+	<h2>Edit Company</h2>
+	
+	<%= link_to("Back to List", {:action => 'index', :search => @search_value, :sort => @sort_direction}, class: 'btn btn-info') %>
 
-<div class="companies edit">
-	<h2>Update Company</h2>
-
-	<%= simple_form_for(:company,
+	<%= simple_form_for(@company,
 						:url => {
 							:action => 'update',
 							:id => @company.id
 						},
+						wrapper: :vertical_form,
 						class: 'form-group') do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 	<% end %>

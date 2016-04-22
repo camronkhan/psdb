@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
 
 	def new
 		@company = Company.new({:name => "Default"})
+		@company.notes.build
 	end
 
 	def create
@@ -24,6 +25,7 @@ class CompaniesController < ApplicationController
 
 	def edit
 		@company = Company.find(params[:id])
+		@company.notes.build
 	end
 
 	def update
@@ -48,11 +50,11 @@ class CompaniesController < ApplicationController
 
 	private
 
+		# Whitelist allowable attributes to be mass-assigned; raises an error if :subject is not present
 	    def company_params
-	      # same as using "params[:subject]", except that it:
-	      # - raises an error if :subject is not present
-	      # - allows listed attributes to be mass-assigned
-	      params.require(:company).permit(:name, :website_url)
+	      params.require(:company).permit(:name,
+	      								  :website_url,
+	      								  notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
 	    end
 	    
 end

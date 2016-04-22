@@ -1,9 +1,30 @@
+<br>
 <div>
-	<%= f.input :name %>	
+	<h3>Basic Information</h3>
+	<div class="well">
+		<%= f.input :name %>	
+		<%= f.input :website_url, label: 'Website URL' %>
+	</div>
 </div>
+<br>
+<br>
 <div>
-	<%= f.input :website_url, label: 'Website URL' %>
+	<h3>Company Notes</h3>
+		<div class="well">
+			<%= f.hint 'Current note order is not guaranteed' %>
+			<%= f.simple_fields_for :notes do |note| %>
+				<%= render 'note_fields', :f => note %>
+			<% end %>
+			<div>
+				<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
+					<%= fa_icon 'plus', class: 'fa-lg' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
+<br>
+<br>
 <div>
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
 </div>

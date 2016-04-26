@@ -104,19 +104,21 @@ class ProductsController < ApplicationController
 	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
 	    end
 
-    	# Sort product table by relevance rank, asc product name, or dsc product name
+    	
+
+	    # Search db and sort results based on params[:sort]
 	    def search_and_sort(value, direction)
-	    	if !direction
-	    		# Sort by relevance ranking
-	    		Product.full_text_search(value).with_pg_search_rank
-	    	elsif direction=='asc'
-	    		# Sort by product ascending
+	    	if value.blank? && direction.blank?
+	    		Product.all.order("products.name ASC")
+	    	elsif value.blank? && direction=='asc'
+	    		Product.all.order("products.name ASC")
+    		elsif value.blank? && direction=='desc'
+	    		Product.all.order("products.name DESC")
+	    	elsif value && direction=='asc'
 	    		Product.full_text_search(value).reorder("products.name ASC").with_pg_search_rank
-	    	elsif direction=='desc'
-	    		# Sort by product descending
+	    	elsif value && direction=='desc'
 	    		Product.full_text_search(value).reorder("products.name DESC").with_pg_search_rank
 	    	else
-	    		# Sort by relevance ranking
 	    		Product.full_text_search(value).with_pg_search_rank
 	    	end
 	    end

@@ -2,16 +2,16 @@
 
 <div>
 	<div>
-		<h2>Create Products</h2>
+		<h2>Create Product</h2>
 		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	</div>
 	<%= simple_form_for(@product,
-				 		:url => {
-						 	:action => 'create',
-						 	:search => @search_value,
-						 	:sort => @sort_direction
+				 		url: {
+						 	action: 'create',
+						 	search: @search_value,
+						 	sort: @sort_direction
 						},
 				 		class: 'form-group') do |f| %>
-		<%= render(:partial => "form", :locals => {:f => f}) %>
+		<%= render(partial: "form", locals: {f: f}) %>
 	<% end %>
 </div>

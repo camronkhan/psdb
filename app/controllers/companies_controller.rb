@@ -82,13 +82,13 @@ class CompaniesController < ApplicationController
 	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
 	    end
 
-	    # Sort company table by relevance rank, asc company name, or dsc company name
+	    # Search db and sort results based on params[:sort]
 	    def search_and_sort(value, direction)
-	    	if !value && !direction
+	    	if value.blank? && direction.blank?
 	    		Company.all.order("companies.name ASC")
-	    	elsif !value && direction=='asc'
+	    	elsif value.blank? && direction=='asc'
 	    		Company.all.order("companies.name ASC")
-    		elsif !value && direction=='desc'
+    		elsif value.blank? && direction=='desc'
 	    		Company.all.order("companies.name DESC")
 	    	elsif value && direction=='asc'
 	    		Company.full_text_search(value).reorder("companies.name ASC").with_pg_search_rank

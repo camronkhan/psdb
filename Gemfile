@@ -23,6 +23,8 @@ gem "font-awesome-rails"
 gem 'autoprefixer-rails'
 # Use will_paginate  https://github.com/mislav/will_paginate
 gem 'will_paginate'
+# Use will_paginate-bootstrap to format pagination links  https://github.com/bootstrap-ruby/will_paginate-bootstrap
+gem 'will_paginate-bootstrap'
 # Use acts-as-taggable-on  https://github.com/mbleigh/acts-as-taggable-on
 gem 'acts-as-taggable-on', '~> 3.4'
 # Use simple-form  https://github.com/plataformatec/simple_form

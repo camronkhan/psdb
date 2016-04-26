@@ -32,7 +32,7 @@
 		<tbody>
 			<% @products.each do |product| %>
 				<tr>
-					<td><img src='<%= product.image_url %>' class='img-thumbnail' alt='<%= product.name %>' style='height:50px; width:50px; overflow:hidden;'></td>
+					<td><img src='<%= product.image_url %>' class='img-thumbnail product-thumb' alt='<%= product.name %>'></td>
 					<td><%= product.name %></td>
 					<td><%= product.company.name %></td>
 					<td><%= product.tag_list %></td>

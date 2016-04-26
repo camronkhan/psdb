@@ -15,10 +15,8 @@
 		-->
 	</head>
 	<body>
-		
-		<!-- navbar fixed top -->
 		<div class="container">
-			<img style="height:50px;padding-top:10px;padding-bottom:10px;" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Motorola_Solutions_Logo.svg" alt="Motorola Solutions logo">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Motorola_Solutions_Logo.svg" alt="Motorola Solutions logo" id="msi-logo">
 		</div>
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 	      <div class="container">
@@ -42,10 +40,9 @@
 	            <li class="navlink"><a href="#">Requests</a></li>
 	            <li class="navlink"><a href="#">Help</a></li>
 	          </ul>
-	        </div><!--/.nav-collapse -->
+	        </div>
 	      </div>
 	    </nav>
-
 		<div class="main container">
 			<% if !flash[:notice].blank? %>
 				<div class="notice">
@@ -56,7 +53,6 @@
 				<%= yield %>
 			</div>
 		</div>
-
 		<footer class="footer">
 			This is my footer.
 		</footer>

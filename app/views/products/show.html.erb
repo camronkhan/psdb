@@ -1,21 +1,24 @@
 <% @page_title = "Products - Details" %>
 
 <div>
-	<div>
+	<div class="products-show-section">
 		<h2><%= @product.name %></h2>
 		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	</div>
-	<br>
-	<br>
-	<img src="<%= @product.image_url %>" alt="<%= @product.name %>" class="img-thumbnail">
-	<br>
-	<br>
-	<div>
+	<div class="products-show-section">
+		<img src="<%= @product.image_url %>" alt="<%= @product.name %>" class="img-thumbnail product-img">
+	</div>
+	<div class="products-show-section">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
 				<a href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab">
 					<h3>Product Details</h3>
+				</a>
+			</li>
+			<li role="presentation">
+				<a href="#company" aria-controls="company" role="tab" data-toggle="tab">
+					<h3>Company</h3>
 				</a>
 			</li>
 			<li role="presentation">
@@ -32,7 +35,7 @@
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="product-details">
-				<div class="panel panel-default" style="margin-top: 20px;">
+				<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>Product Name</h4>
 							<p><%= @product.name %></p>
@@ -63,9 +66,33 @@
 						</ul>
 					</div>
 			</div>
+			<div role="tabpanel" class="tab-pane" id="company">
+				<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>Company Name</h4>
+							<p><%= @product.company.name %></p>
+						</div>
+						<ul class="list-group">
+							<li class="list-group-item">
+								<h4>Website</h4>
+								<p><a href="<%= @product.company.website_url %>"><%= @product.company.website_url %></a></p>
+							</li>
+							<li class="list-group-item">
+								<h4>Notes</h4>
+								<ol>
+									<% @product.company.notes.reverse.each do |note| %>
+										<li>
+											<p><%= note.data %></p>
+										</li>
+									<% end %>
+								</ol>
+							</li>
+						</ul>
+					</div>
+			</div>
 			<div role="tabpanel" class="tab-pane" id="technical-support">
 				<% @product.technologists.each do |technologist| %>
-					<div class="panel panel-default" style="margin-top: 20px;">
+					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>Condition</h4>
 							<p><%= TechnologistAssignment.condition(@product.id, technologist.id) %></p>
@@ -97,7 +124,7 @@
 			</div>
 			<div role="tabpanel" class="tab-pane" id="repair-service">
 				<% @product.servicers.each do |servicer| %>
-					<div class="panel panel-default" style="margin-top: 20px;">
+					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4>Condition</h4>
 							<p><%= ServicerAssignment.condition(@product.id, servicer.id) %></p>

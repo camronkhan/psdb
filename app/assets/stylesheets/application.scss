@@ -2,3 +2,80 @@
 @import "bootstrap";
 @import "jquery-ui";
 @import "font-awesome";
+
+
+/***************
+     COLORS     
+***************/
+$msi-blue: #0063BE;
+$msi-dark-blue: #114488;
+
+
+/***************
+     NAVBAR     
+***************/
+$bgDefault      : $msi-blue;
+$bgHighlight    : $msi-dark-blue;
+$colDefault     : #FFF;
+$colHighlight   : #FFF;
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus { 
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus, {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+.navlink:hover {
+	background-color: $bgHighlight;
+}
+
+
+/***************
+     FOOTER     
+***************/
+footer {
+	background-color: $msi-blue;
+	color: #FFF;
+	height: 100px;
+	margin-top: 50px;
+}

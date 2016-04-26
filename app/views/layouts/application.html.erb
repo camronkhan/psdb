@@ -20,7 +20,7 @@
 		<div class="container">
 			<img style="height:50px;padding-top:10px;padding-bottom:10px;" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Motorola_Solutions_Logo.svg" alt="Motorola Solutions logo">
 		</div>
-		<nav class="navbar navbar-default navbar-static-top">
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 	      <div class="container">
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -33,32 +33,33 @@
 	        </div>
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
-	            <li><a href="/products">Products</a></li>
-	            <li><a href="/companies">Companies</a></li>
-	            <li><a href="/technologists">Technical Support</a></li>
-	            <li><a href="/servicers">Repair Service</a></li>
+	            <li class="navlink"><a href="/products">Products</a></li>
+	            <li class="navlink"><a href="/companies">Companies</a></li>
+	            <li class="navlink"><a href="/technologists">Technical Support</a></li>
+	            <li class="navlink"><a href="/servicers">Repair Service</a></li>
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="#">Requests</a></li>
-	            <li><a href="#">Help</a></li>
+	            <li class="navlink"><a href="#">Requests</a></li>
+	            <li class="navlink"><a href="#">Help</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    </nav>
 
 		<div class="main container">
-
 			<% if !flash[:notice].blank? %>
 				<div class="notice">
 					<%= flash[:notice] %>
 				</div>
 			<% end %>
-
 			<div>
 				<%= yield %>
 			</div>
-			
 		</div>
+
+		<footer class="footer">
+			This is my footer.
+		</footer>
 
 		<!-- Latest compiled and minified jQuery & JavaScript 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>

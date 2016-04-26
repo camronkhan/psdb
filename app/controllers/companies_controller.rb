@@ -10,10 +10,14 @@ class CompaniesController < ApplicationController
 	end
 
 	def show
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@company = Company.find(params[:id])
 	end
 
 	def new
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@company = Company.new({:name => "Default"})
 		@company.notes.build
 	end
@@ -29,6 +33,8 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@company = Company.find(params[:id])
 		@company.notes.build
 	end
@@ -44,6 +50,8 @@ class CompaniesController < ApplicationController
 	end
 
 	def delete
+		@search_value = search_value
+		@sort_direction = sort_direction
 		@company = Company.find(params[:id])
 	end
 

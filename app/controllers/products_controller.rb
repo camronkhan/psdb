@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-	# Access methods from view (helpers/application_helper.rb#sortable)
+	# Access methods from view (helpers/application_helper.rb)
 	helper_method :sort_direction
 
 	# Autocompletion in product form
@@ -97,14 +97,14 @@ class ProductsController < ApplicationController
 	    	params[:search] || nil
 	    end
 
-		# If sort direction param includes ascending or descending option,
-    		# Then set sort direction to option
-    		# Else set sort direction to nil 
+	    # If sort direction param includes ascending or descending option,
+			# Then set sort direction to option
+			# Else set sort direction to nil 
 	    def sort_direction
 	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
 	    end
-	    
-	    # Sort product table by relevance rank, asc product name, or dsc product name
+
+    	# Sort product table by relevance rank, asc product name, or dsc product name
 	    def search_and_sort(value, direction)
 	    	if !direction
 	    		# Sort by relevance ranking
@@ -120,4 +120,5 @@ class ProductsController < ApplicationController
 	    		Product.full_text_search(value).with_pg_search_rank
 	    	end
 	    end
+
 end

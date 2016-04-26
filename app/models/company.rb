@@ -10,7 +10,17 @@ class Company < ActiveRecord::Base
 	validates :name, presence: true, 
 					 uniqueness: true
 
-	scope :sorted, lambda { order("companies.name ASC") }
-	scope :reverse_sorted, lambda { order("companies.name ASC").reverse_order }
-
+	# PostgreSQL full text search
+	include PgSearch
+	pg_search_scope :full_text_search,
+					:against => :name,
+					:using => {
+						:tsearch => {
+							:prefix => true,			# search for partial words
+							:any_word => true			# returns all hits containing any word in search terms
+						},
+						:trigram => {
+							:threshold => 0.2 			# higher threshold --> more strict --> fewer results (default==0.3)
+						}
+					}
 end

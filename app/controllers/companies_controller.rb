@@ -1,7 +1,12 @@
 class CompaniesController < ApplicationController
 
+	# Access methods from view (helpers/application_helper.rb)
+	helper_method :sort_direction
+	
 	def index
-		@companies = Company.sorted
+		@search_value = search_value
+		@sort_direction = sort_direction
+		@companies = search_and_sort(@search_value, @sort_direction).paginate(:per_page => 10, :page => params[:page])
 	end
 
 	def show
@@ -56,5 +61,33 @@ class CompaniesController < ApplicationController
 	      								  :website_url,
 	      								  notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
 	    end
-	    
+	
+		# Use search value provided if params if present, else use nil
+	    def search_value
+	    	params[:search] || nil
+	    end
+
+	    # If sort direction param includes ascending or descending option,
+			# Then set sort direction to option
+			# Else set sort direction to nil 
+	    def sort_direction
+	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
+	    end
+
+	    # Sort company table by relevance rank, asc company name, or dsc company name
+	    def search_and_sort(value, direction)
+	    	if !value && !direction
+	    		Company.all.order("companies.name ASC")
+	    	elsif !value && direction=='asc'
+	    		Company.all.order("companies.name ASC")
+    		elsif !value && direction=='desc'
+	    		Company.all.order("companies.name DESC")
+	    	elsif value && direction=='asc'
+	    		Company.full_text_search(value).reorder("companies.name ASC").with_pg_search_rank
+	    	elsif value && direction=='desc'
+	    		Company.full_text_search(value).reorder("companies.name DESC").with_pg_search_rank
+	    	else
+	    		Company.full_text_search(value).with_pg_search_rank
+	    	end
+	    end
 end

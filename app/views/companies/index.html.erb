@@ -16,17 +16,11 @@
 		</div>
 	<% end %>
 
-
-
-
-
-	<%= link_to("Add New Company", {:action => 'new'}, :class => 'action new') %>
-
-	<div><%= pluralize(@companies.size, 'company') %> found</div>
+	<!--<div><%#= pluralize(@companies.size, 'company') %> found</div>-->
 	<table class="table table-striped listing" summary="company list">
 		<thead>
-			<tr class="header">
-				<th>Company</th>
+			<tr>
+				<th><%= sortable('Company') %></th>
 				<th>Website</th>
 				<th>Products</th>
 				<th>Actions</th>
@@ -34,17 +28,26 @@
 		</thead>
 		<tbody>
 			<% @companies.each do |company| %>
-				<tr class="<%= cycle('odd', 'even') %>">
+				<tr>
 					<td><%= company.name %></td>
 					<td><a href="<%= company.website_url %>"><%= company.website_url %></a></td>
-					<td class="center"><%= company.products.size %></td>
-					<td class="actions">
-						<%= link_to("Details", {:action => 'show', :id => company.id}, :class => 'action show') %>
-						<%= link_to("Edit", {:action => 'edit', :id => company.id}, :class => 'action edit') %>
-						<%= link_to("Delete", {:action => 'delete', :id => company.id}, :class => 'action delete') %>
+					<td><%= company.products.size %></td>
+					<td>
+						<%= link_to({action: 'show', id: company.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary') do %>
+							<%= fa_icon 'info-circle', class: 'fa-lg' %>
+						<% end %>
+						<%= link_to({action: 'edit', id: company.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-warning') do %>
+							<%= fa_icon 'pencil', class: 'fa-lg' %>
+						<% end %>
+						<%= link_to({action: 'delete', id: company.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-danger') do %>
+							<%= fa_icon 'trash-o', class: 'fa-lg' %>
+						<% end %>
 					</td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
+	<%= will_paginate @products %>
 </div>
+
+<%#= params.inspect %>

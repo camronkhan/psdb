@@ -1,7 +1,5 @@
 class Product < ActiveRecord::Base
 
-	include PgSearch
-
 	belongs_to :company
 	has_many :technologist_assignments
 	has_many :technologists, :through => :technologist_assignments
@@ -32,6 +30,7 @@ class Product < ActiveRecord::Base
 	validates :company, presence: true
 
 	# PostgreSQL full text search
+	include PgSearch
 	pg_search_scope :full_text_search,
 					:against => :name,
 					:associated_against => {

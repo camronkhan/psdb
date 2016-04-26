@@ -25,7 +25,6 @@
 				<th>&nbsp</th>
 				<th><%= sortable('Product') %></th>
 				<th>Company</th>
-				<th>Relevance</th>
 				<th>Tags</th>
 				<th>Action</th>
 			</tr>
@@ -36,7 +35,6 @@
 					<td><img src='<%= product.image_url %>' class='img-thumbnail' alt='<%= product.name %>' style='height:50px; width:50px; overflow:hidden;'></td>
 					<td><%= product.name %></td>
 					<td><%= product.company.name %></td>
-					<td><%#= product.pg_search_rank %></td>
 					<td><%= product.tag_list %></td>
 					<td>
 						<%= link_to({action: 'show', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary') do %>

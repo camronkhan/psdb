@@ -8,6 +8,16 @@
 		<%= f.label :tags %>
 		<%= f.autocomplete_field :tag_list, autocomplete_tag_name_products_path, 'data-delimiter' => ' ', :multiple => true, class: 'form-control' %>
 		<%= f.hint 'Tags separated by a space' %>
+		<%= f.label :notes %>
+		<%= f.simple_fields_for :notes do |note| %>
+			<%= render 'note_fields', :f => note %>
+		<% end %>
+		<div>
+			<%= f.hint 'Current note order is not guaranteed' %>
+			<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
+				<%= fa_icon 'plus', class: 'fa-lg' %>
+			<% end %>
+		</div>
 	</div>
 </div>
 <br>
@@ -38,21 +48,5 @@
 <br>
 <br>
 <div>
-	<h3>Product Notes</h3>
-	<div class="well">
-		<%= f.hint 'Current note order is not guaranteed' %>
-		<%= f.simple_fields_for :notes do |note| %>
-			<%= render 'note_fields', :f => note %>
-		<% end %>
-		<div>
-			<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
-				<%= fa_icon 'plus', class: 'fa-lg' %>
-			<% end %>
-		</div>
-	</div>
-</div>
-<br>
-<br>
-<div>
-	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+	<%= f.button :submit, 'Submit', class: 'btn btn-primary pull-right' %>
 </div>

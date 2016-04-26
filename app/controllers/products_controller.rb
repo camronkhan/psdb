@@ -120,5 +120,4 @@ class ProductsController < ApplicationController
 	    		Product.full_text_search(value).with_pg_search_rank
 	    	end
 	    end
-
 end

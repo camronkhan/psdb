@@ -1,20 +1,25 @@
 <% @page_title = "Companies" %>
 
-<div>
+<div class="companies-index-view">
 	<h2><%= @page_title %></h2>
-	
-	<%= form_tag('/companies', method: 'get', class: 'form-inline') do %>
-		<%= hidden_field_tag(:sort, params[sort: nil]) %>
-		<div class='form-group'>
-			<%= text_field_tag(:search, @search_value, class: 'form-control') %>
-			<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
-			    <%= fa_icon 'search', class: 'fa-lg' %>
-			<% end %>
-			<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
-				<%= fa_icon 'plus', class: 'fa-lg' %>
-			<% end %>
-		</div>
-	<% end %>
+	<div class="well well-lg company-search-box">
+		<%= form_tag('/companies', method: 'get', class: 'form-inline') do %>
+			<%= hidden_field_tag(:sort, params[sort: nil]) %>
+			<div class='form-group company-search-form'>
+				<%= text_field_tag(:search, @search_value, class: 'form-control') %>
+				<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+				    <%= fa_icon 'search', class: 'fa-lg' %>
+				<% end %>
+				<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
+					<%= fa_icon 'plus', class: 'fa-lg' %>
+				<% end %>
+			</div><!-- /.company-search-form -->
+		<% end %><!-- /%form_tag -->
+	</div><!-- /.company-search-box -->
+
+
+
+
 
 	<!--<div><%#= pluralize(@companies.size, 'company') %> found</div>-->
 	<table class="table table-striped listing" summary="company list">

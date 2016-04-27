@@ -3,7 +3,7 @@
 <div class="products-index-view">
 	<h2><%= @page_title %></h2>
 	<div class="well well-lg product-search-box">
-		<%= form_tag('/products', method: 'get', class: '') do %>
+		<%= form_tag('/products', method: 'get') do %>
 			<%= hidden_field_tag(:sort, params[sort: nil]) %>
 			<div class='form-group product-search-form'>
 				<div class="input-group">

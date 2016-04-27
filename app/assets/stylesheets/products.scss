@@ -5,12 +5,22 @@
 /*
 	products/index
 */
-.product-thumb {
-  height: 50px !important;
-  width: 50px !important;
-  overflow: hidden !important;
+.products-index-view {
+	.product-search-box {
+		margin-bottom: 50px;
+	}
+	.product-search-form {
+		margin-bottom: 0;
+	}
+	.product-buttons {
+		margin-top: 20px;
+	}
+	.product-thumb {
+		height: 50px !important;
+		width: 50px !important;
+		overflow: hidden !important;
+	}
 }
-
 /*
 	products/show
 */

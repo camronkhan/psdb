@@ -104,8 +104,6 @@ class ProductsController < ApplicationController
 	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
 	    end
 
-    	
-
 	    # Search db and sort results based on params[:sort]
 	    def search_and_sort(value, direction)
 	    	if value.blank? && direction.blank?

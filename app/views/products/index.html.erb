@@ -1,11 +1,11 @@
 <% @page_title = "Products" %>
 
-<div>
+<div class="products-index-view">
 	<h2><%= @page_title %></h2>
-	<div class="well well-lg">
+	<div class="well well-lg product-search-box">
 		<%= form_tag('/products', method: 'get', class: '') do %>
 			<%= hidden_field_tag(:sort, params[sort: nil]) %>
-			<div class='form-group'>
+			<div class='form-group product-search-form'>
 				<div class="input-group">
 					<%= text_field_tag(:product_search, @search_value, class: 'form-control') %>
 					<span class="input-group-btn">
@@ -14,14 +14,17 @@
 						<% end %><!-- /button_tag (search) -->
 					</span><!-- /.input-group-btn -->
 				</div><!-- /.input-group -->
-				<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
-					<%= fa_icon 'plus', text: 'New Product', class: 'fa-lg' %>
-				<% end %><!-- /link_to (new) -->
-
-				<%= link_to("http://www.motorolasolutions.com/en_us/search.html?q=#{@search_value}", class: 'btn btn-primary') do %>
-					<%= fa_icon 'search', text: 'Motorola Solutions', class: 'fa-lg' %>
-				<% end %>
-
+				<div class="product-buttons">
+					<%= link_to('#', id: 'msi-product-search', class: 'btn btn-primary') do %>
+						<%= fa_icon 'search', text: 'MSI.com', class: 'fa-lg' %>
+					<% end %><!-- /link_to (Search MSI.com) -->
+					<%= link_to('#', id: 'google-product-search', class: 'btn btn-primary') do %>
+						<%= fa_icon 'search', text: 'Google', class: 'fa-lg' %>
+					<% end %><!-- /link_to (Search Google) -->
+					<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
+						<%= fa_icon 'plus', text: 'Product', class: 'fa-lg' %>
+					<% end %><!-- /link_to (Add New Product) -->
+				</div><!-- /.product-buttons -->
 			</div><!-- /.form-group -->
 		<% end %><!-- /form_tag -->
 	</div><!-- /.well -->

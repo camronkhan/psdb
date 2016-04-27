@@ -37,23 +37,25 @@
 			</div>
 		</nav>
 	    <!-- MAIN -->
-		<div class="container">
-			<!-- FLASH -->
-			<% if !flash[:notice].blank? %>
-				<div>
-					<%= flash[:notice] %>
-				</div>
-			<% end %>
-			<!-- CONTENT -->
-			<div>
-				<%= yield %>
-			</div>
-		</div>
-		<!-- FOOTER -->
-		<footer class="footer">
+		<div class="main">
 			<div class="container">
-				This is my footer.
-			</div>
-		</footer>
+				<!-- FLASH -->
+				<% if !flash[:notice].blank? %>
+					<div>
+						<%= flash[:notice] %>
+					</div>
+				<% end %>
+				<!-- CONTENT -->
+				<div>
+					<%= yield %>
+				</div>
+			</div><!-- /.container -->
+			<!-- FOOTER -->
+			<footer class="footer">
+				<div class="container">
+					This is my footer.
+				</div>
+			</footer>
+		</div><!-- /.main -->
 	</body>
 </html>

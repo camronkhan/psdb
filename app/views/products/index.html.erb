@@ -2,20 +2,20 @@
 
 <div>
 	<h2><%= @page_title %></h2>
-	
-	<%= form_tag('/products', method: 'get', class: 'form-inline') do %>
-		<%= hidden_field_tag(:sort, params[sort: nil]) %>
-		<div class='form-group'>
-			<%= text_field_tag(:search, @search_value, class: 'form-control') %>
-			<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
-			    <%= fa_icon 'search', class: 'fa-lg' %>
-			<% end %>
-			<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
-				<%= fa_icon 'plus', class: 'fa-lg' %>
-			<% end %>
-		</div>
-	<% end %>
-
+	<div class="well well-lg">
+		<%= form_tag('/products', method: 'get', class: '') do %>
+			<%= hidden_field_tag(:sort, params[sort: nil]) %>
+			<div class='form-group'>
+				<%= text_field_tag(:search, @search_value, class: 'form-control') %>
+				<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+				    <%= fa_icon 'search', class: 'fa-lg' %>
+				<% end %>
+				<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
+					<%= fa_icon 'plus', class: 'fa-lg' %>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
 
 
 	<!--<div><%#= pluralize(@products.size, 'product') %> found</div>-->

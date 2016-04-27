@@ -5,20 +5,25 @@
 @import "products";
 
 
-/***************
-     COLORS     
-***************/
+/*************
+    COLORS     
+*************/
 $msi-blue: #0063BE;
 $msi-dark-blue: #114488;
+$white: #FFF;
+
+/**************
+    GENERAL
+**************/
 
 
-/***************
-     NAVBAR     
-***************/
+/*************
+    NAVBAR    
+*************/
 $bgDefault      : $msi-blue;
 $bgHighlight    : $msi-dark-blue;
-$colDefault     : #FFF;
-$colHighlight   : #FFF;
+$colDefault     : $white;
+$colHighlight   : $white;
 .navbar-default {
   background-color: $bgDefault;
   border-color: $bgHighlight;
@@ -78,9 +83,12 @@ $colHighlight   : #FFF;
 /***************
      FOOTER     
 ***************/
-footer {
-	background-color: $msi-blue;
-	color: #FFF;
-	height: 100px;
-	margin-top: 50px;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  margin-top: 50px;
+  background-color: $msi-blue;
+  color: $white;
 }

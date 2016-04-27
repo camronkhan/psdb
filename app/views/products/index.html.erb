@@ -11,23 +11,23 @@
 					<span class="input-group-btn">
 						<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
 						    <%= fa_icon 'search', class: 'fa-lg' %>
-						<% end %><!-- /button_tag (search) -->
+						<% end %><!-- /%button_tag (search) -->
 					</span><!-- /.input-group-btn -->
 				</div><!-- /.input-group -->
 				<div class="product-buttons">
 					<%= link_to('#', id: 'msi-product-search', class: 'btn btn-primary') do %>
 						<%= fa_icon 'search', text: 'MSI.com', class: 'fa-lg' %>
-					<% end %><!-- /link_to (Search MSI.com) -->
+					<% end %><!-- /%link_to (Search MSI.com) -->
 					<%= link_to('#', id: 'google-product-search', class: 'btn btn-primary') do %>
 						<%= fa_icon 'search', text: 'Google', class: 'fa-lg' %>
-					<% end %><!-- /link_to (Search Google) -->
+					<% end %><!-- /%link_to (Search Google) -->
 					<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
 						<%= fa_icon 'plus', text: 'Product', class: 'fa-lg' %>
-					<% end %><!-- /link_to (Add New Product) -->
+					<% end %><!-- /%link_to (Add New Product) -->
 				</div><!-- /.product-buttons -->
-			</div><!-- /.form-group -->
-		<% end %><!-- /form_tag -->
-	</div><!-- /.well -->
+			</div><!-- /.product-search-form -->
+		<% end %><!-- /%form_tag -->
+	</div><!-- /.product-search-box -->
 
 	<!--<div><%#= pluralize(@products.size, 'product') %> found</div>-->
 	<table class='table table-striped listing' summary='Product list'>
@@ -63,4 +63,4 @@
 		</tbody>
 	</table>
 	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
-</div>
+</div><!-- /.products-index-view -->

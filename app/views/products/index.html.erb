@@ -7,16 +7,21 @@
 			<%= hidden_field_tag(:sort, params[sort: nil]) %>
 			<div class='form-group'>
 				<div class="input-group">
-					<%= text_field_tag(:search, @search_value, class: 'form-control') %>
+					<%= text_field_tag(:product_search, @search_value, class: 'form-control') %>
 					<span class="input-group-btn">
 						<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
 						    <%= fa_icon 'search', class: 'fa-lg' %>
-						<% end %><!-- /button_tag -->
+						<% end %><!-- /button_tag (search) -->
 					</span><!-- /.input-group-btn -->
 				</div><!-- /.input-group -->
 				<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
-					<%= fa_icon 'plus', class: 'fa-lg' %>
-				<% end %><!-- /link_to -->
+					<%= fa_icon 'plus', text: 'New Product', class: 'fa-lg' %>
+				<% end %><!-- /link_to (new) -->
+
+				<%= link_to("http://www.motorolasolutions.com/en_us/search.html?q=#{@search_value}", class: 'btn btn-primary') do %>
+					<%= fa_icon 'search', text: 'Motorola Solutions', class: 'fa-lg' %>
+				<% end %>
+
 			</div><!-- /.form-group -->
 		<% end %><!-- /form_tag -->
 	</div><!-- /.well -->

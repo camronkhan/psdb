@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 	def index
 		@search_value = search_value
 		@sort_direction = sort_direction
-		@products = search_and_sort(@search_value, sort_direction).paginate(:per_page => 10, :page => params[:page])
+		@products = search_and_sort(@search_value, sort_direction).paginate(per_page: 10, page: params[:page])
 	end
 
 	def show
@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
 	def new
 		@search_value = search_value
 		@sort_direction = sort_direction
-		@product = Product.new({:name => "Default"})
+		@product = Product.new
 		@product.technologist_assignments.build
 		@product.servicer_assignments.build
 		@product.notes.build
@@ -32,10 +32,10 @@ class ProductsController < ApplicationController
 		@product = Product.new(product_params)
 		if @product.save
 			flash[:notice] = "Product '#{@product.name}' created successfully."
-			redirect_to(:action => 'show',
-						:id => @product.id,
-						:sort => sort_direction,
-						:search => search_value)
+			redirect_to(action: 'show',
+						id: @product.id,
+						sort: sort_direction,
+						product_search: search_value)
 		else
 			render('new')
 		end
@@ -52,10 +52,10 @@ class ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 		if @product.update_attributes(product_params)
 			flash[:notice] = "Product '#{@product.name}' updated successfully."
-			redirect_to(:action => 'show',
-						:id => @product.id,
-						:sort => sort_direction,
-						:search => search_value)
+			redirect_to(action: 'show',
+						id: @product.id,
+						sort: sort_direction,
+						product_search: search_value)
 		else
 			render('edit')
 		end
@@ -70,9 +70,9 @@ class ProductsController < ApplicationController
 	def destroy
 		product = Product.find(params[:id]).destroy
 		flash[:notice] = "Product '#{product.name}' deleted successfully."
-		redirect_to(:action => 'index',
-					:sort => sort_direction,
-					:search => search_value)
+		redirect_to(action: 'index',
+					sort: sort_direction,
+					product_search: search_value)
 	end
 
 	private
@@ -94,7 +94,7 @@ class ProductsController < ApplicationController
 
 	    # Use search value provided if params if present, else use nil
 	    def search_value
-	    	params[:search] || nil
+	    	params[:product_search] || nil
 	    end
 
 	    # If sort direction param includes ascending or descending option,

@@ -1,7 +1,7 @@
 <% @page_title = "Companies - Delete" %>
 
 <div class="companies-delete">
-	<h2 class="section-title">Delete Company</h2>
+	<h2 class="page-title">Delete Company</h2>
 	<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	<div class="form-section">
 		<%= simple_form_for(@company,

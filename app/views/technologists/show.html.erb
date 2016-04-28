@@ -1,10 +1,8 @@
 <% @page_title = "Technologists - Details" %>
 
 <div>
-	<div>
-		<h2>Technologist Details</h2>
-		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
-	</div>
+	<h2 class="page-title">Technologist Details</h2>
+	<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	<table summary="Technologist detail view" class="table table-striped">
 		<tr>
 			<th>Name</th>

@@ -2,7 +2,7 @@
 
 <div>
 	<div class="products-show-section">
-		<h2><%= @product.name %></h2>
+		<h2 class="page-title"><%= @product.name %></h2>
 		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	</div>
 	<div class="products-show-section">

@@ -1,7 +1,7 @@
 <% @page_title = "Servicers" %>
 
 <div class="servicers-index">
-	<h2><%= @page_title %></h2>
+	<h2 class="page-title"><%= @page_title %></h2>
 	<div class="well well-lg servicer-search-box">
 		<%= form_tag('/servicers', method: 'get') do %>
 			<%= hidden_field_tag(:sort, params[sort: nil]) %>

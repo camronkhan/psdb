@@ -1,10 +1,8 @@
 <% @page_title = "Servicers - Details" %>
 
 <div>
-	<div>
-		<h2>Servicer Details</h2>
-		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
-	</div>
+	<h2 class="page-title">Servicer Details</h2>
+	<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	<table summary="Servicer detail view" class="table table-striped">
 		<tr>
 			<th>Name</th>

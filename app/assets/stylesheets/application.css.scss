@@ -138,9 +138,24 @@ $colHighlight   : $white;
 /***************
      GENERAL     
 ***************/
+.page-title {
+  margin-bottom: 20px;
+}
+// _form
 .form-section {
   margin-top: 50px;
 }
-.page-title {
-  margin-bottom: 20px;
+// show
+.details-section {
+  margin-bottom: 50px;
+}
+.details-panel {
+  margin-top: 20px;
+}
+// index
+.search-box {
+  margin-bottom: 50px;
+}
+.search-form {
+  margin-bottom: 0;
 }

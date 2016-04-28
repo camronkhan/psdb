@@ -1,7 +1,7 @@
 <% @page_title = "Products - Details" %>
 
 <div>
-	<div class="products-show-section">
+	<div class="details-section">
 		<h2 class="page-title"><%= @product.name %></h2>
 		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	</div>
@@ -35,7 +35,7 @@
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="product-details">
-				<div class="panel panel-default">
+				<div class="panel panel-default details-panel">
 						<div class="panel-heading">
 							<h4>Product Name</h4>
 							<p><%= @product.name %></p>
@@ -67,7 +67,7 @@
 					</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="company">
-				<div class="panel panel-default">
+				<div class="panel panel-default details-panel">
 						<div class="panel-heading">
 							<h4>Company Name</h4>
 							<p><%= @product.company.name %></p>
@@ -92,7 +92,7 @@
 			</div>
 			<div role="tabpanel" class="tab-pane" id="technical-support">
 				<% @product.technologists.each do |technologist| %>
-					<div class="panel panel-default">
+					<div class="panel panel-default details-panel">
 						<div class="panel-heading">
 							<h4>Condition</h4>
 							<p><%= TechnologistAssignment.condition(@product.id, technologist.id) %></p>
@@ -124,7 +124,7 @@
 			</div>
 			<div role="tabpanel" class="tab-pane" id="repair-service">
 				<% @product.servicers.each do |servicer| %>
-					<div class="panel panel-default">
+					<div class="panel panel-default details-panel">
 						<div class="panel-heading">
 							<h4>Condition</h4>
 							<p><%= ServicerAssignment.condition(@product.id, servicer.id) %></p>

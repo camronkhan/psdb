@@ -2,10 +2,10 @@
 
 <div class="servicers-index">
 	<h2 class="page-title"><%= @page_title %></h2>
-	<div class="well well-lg servicer-search-box">
+	<div class="well well-lg search-box">
 		<%= form_tag('/servicers', method: 'get') do %>
 			<%= hidden_field_tag(:sort, params[sort: nil]) %>
-			<div class='form-group servicer-search-form'>
+			<div class='form-group search-form'>
 				<div class="input-group">
 					<%= text_field_tag(:search, @search_value, class: 'form-control') %>
 					<span class="input-group-btn">
@@ -17,9 +17,9 @@
 						<% end %><!-- /%link_to (Add New Servicer) -->
 					</span><!-- /.input-group-btn -->
 				</div><!-- /.input-group -->
-			</div><!-- /.servicer-search-form -->
+			</div><!-- /.search-form -->
 		<% end %><!-- /%form_tag -->
-	</div><!-- /.servicer-search-box -->
+	</div><!-- /.search-box -->
 
 	<!--<div><%#= pluralize(@servicers.size, 'servicer') %> found</div>-->
 	<table class="table table-striped listing" summary="Servicer list">

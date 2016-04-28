@@ -2,11 +2,20 @@ Rails.application.routes.draw do
  
   root 'products#index'
 
-  # Autocompletion of specified form fields
   resources :products do
     get :autocomplete_company_name, on: :collection    # company
     get :autocomplete_tag_name, on: :collection        # tag
   end
+
+  resources :companies
+
+  resources :technologists
+
+  resources :technologist_assignments
+
+  resources :servicers
+
+  resources :servicer_assignments
 
   match ':controller(/:action(/:id))', :via => [:get, :post]
   

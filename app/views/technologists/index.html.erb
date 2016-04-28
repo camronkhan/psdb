@@ -36,14 +36,14 @@
 					<td><%= technologist.name %></td>
 					<td><%= technologist.technologist_assignments.size %></td>
 					<td>
-						<%= link_to({action: 'show', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary') do %>
-							<%= fa_icon 'info-circle', class: 'fa-lg' %>
+						<%= link_to({action: 'show', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>
+							<%= fa_icon 'info-circle', class: 'fa-lg icon-primary' %>
 						<% end %>
-						<%= link_to({action: 'edit', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-warning') do %>
-							<%= fa_icon 'pencil', class: 'fa-lg' %>
+						<%= link_to({action: 'edit', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-warning btn-warning-transparent') do %>
+							<%= fa_icon 'pencil', class: 'fa-lg icon-warning' %>
 						<% end %>
-						<%= link_to({action: 'delete', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-danger') do %>
-							<%= fa_icon 'trash-o', class: 'fa-lg' %>
+						<%= link_to({action: 'delete', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-danger btn-danger-transparent') do %>
+							<%= fa_icon 'trash-o', class: 'fa-lg icon-danger' %>
 						<% end %>
 					</td>
 				</tr>

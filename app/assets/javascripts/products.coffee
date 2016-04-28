@@ -7,7 +7,7 @@
 #=============================================
 $ ->
 	$('#msi-product-search').click ->
-	    window.location.href = 'http://www.motorolasolutions.com/en_us/search.html?q=' + $('#product_search').val()
+	    window.location.href = 'http://www.motorolasolutions.com/en_us/search.html?q=' + $('.product-search-bar').val()
 	    false
 
 #=============================================
@@ -15,5 +15,5 @@ $ ->
 #=============================================
 $ ->
 	$('#google-product-search').click ->
-	    window.location.href = 'https://www.google.com/?gws_rd=ssl#safe=active&q=' + $('#product_search').val()
+	    window.location.href = 'https://www.google.com/?gws_rd=ssl#safe=active&q=' + $('.product-search-bar').val()
 	    false

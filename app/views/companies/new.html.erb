@@ -5,7 +5,7 @@
 		<h2>Create Company</h2>
 		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	</div>
-	<%= simple_form_for(:company,
+	<%= simple_form_for(@company,
 						url: {
 							action: 'create',
 						 	search: @search_value,

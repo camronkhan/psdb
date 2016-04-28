@@ -1,15 +1,31 @@
 <% @page_title = "Technologists" %>
 
-<div class="technologists index">
+<div class="technologists-index-view">
 	<h2><%= @page_title %></h2>
-	
-	<%= link_to("Add New Technologist", {:action => 'new'}, :class => 'action new') %>
+	<div class="well well-lg technologist-search-box">
+		<%= form_tag('/technologists', method: 'get') do %>
+			<%= hidden_field_tag(:sort, params[sort: nil]) %>
+			<div class='form-group technologist-search-form'>
+				<div class="input-group">
+					<%= text_field_tag(:search, @search_value, class: 'form-control') %>
+					<span class="input-group-btn">
+						<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+						    <%= fa_icon 'search', class: 'fa-lg' %>
+						<% end %><!-- /%button_tag (Search PSDB) -->
+						<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
+							<%= fa_icon 'plus', class: 'fa-lg' %>
+						<% end %><!-- /%link_to (Add New Technologist) -->
+					</span><!-- /.input-group-btn -->
+				</div><!-- /.input-group -->
+			</div><!-- /.technologist-search-form -->
+		<% end %><!-- /%form_tag -->
+	</div><!-- /.technologist-search-box -->
 
-	<div><%= pluralize(@technologists.size, 'technologist') %> found</div>
+	<!--<div><%#= pluralize(@technologists.size, 'technologist') %> found</div>-->
 	<table class="table table-striped listing" summary="Technologist list">
 		<thead>
 			<tr class="header">
-				<th>Technologist</th>
+				<th><%= sortable('Technologist') %></th>
 				<th>Assignments</th>
 				<th>Action</th>
 			</tr>
@@ -19,13 +35,20 @@
 				<tr>
 					<td><%= technologist.name %></td>
 					<td><%= technologist.technologist_assignments.size %></td>
-					<td class="actions">
-						<%= link_to("Details", {:action => 'show', :id => technologist.id}, :class => 'action show') %>
-						<%= link_to("Edit", {:action => 'edit', :id => technologist.id}, :class => 'action edit') %>
-						<%= link_to("Delete", {:action => 'delete', :id => technologist.id}, :class => 'action delete') %>
+					<td>
+						<%= link_to({action: 'show', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary') do %>
+							<%= fa_icon 'info-circle', class: 'fa-lg' %>
+						<% end %>
+						<%= link_to({action: 'edit', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-warning') do %>
+							<%= fa_icon 'pencil', class: 'fa-lg' %>
+						<% end %>
+						<%= link_to({action: 'delete', id: technologist.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-danger') do %>
+							<%= fa_icon 'trash-o', class: 'fa-lg' %>
+						<% end %>
 					</td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
+	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 </div>

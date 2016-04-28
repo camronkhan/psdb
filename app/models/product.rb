@@ -7,7 +7,10 @@ class Product < ActiveRecord::Base
 	has_many :servicers, :through => :servicer_assignments
 	has_many :notes, as: :annotatable, dependent: :destroy
 
-	# Accept nested attributes within product form
+	# Alias for acts_as_taggable_on :tags
+	acts_as_taggable
+
+	# Nested attributes
 	accepts_nested_attributes_for :technologist_assignments, 
 								  reject_if: lambda { |a| a[:data].blank? },
 								  allow_destroy: true
@@ -18,15 +21,10 @@ class Product < ActiveRecord::Base
 								  reject_if: lambda { |a| a[:data].blank? },
 								  allow_destroy: true
 
-	# Alias for acts_as_taggable_on :tags
-	acts_as_taggable
-
-	# Validate product name is provided and unique (per company) before saving product
+	# Validations
 	validates :name, presence: true,
 					 uniqueness: { scope: :company_id,
 					 			   message: "can appear only once for each company"}
-
-	# Validate presence of company before saving product
 	validates :company, presence: true
 
 	# PostgreSQL full text search

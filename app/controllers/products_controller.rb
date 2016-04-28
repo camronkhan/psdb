@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
 			redirect_to(action: 'show',
 						id: @product.id,
 						sort: sort_direction,
-						product_search: search_value)
+						search: search_value)
 		else
 			render('new')
 		end
@@ -55,7 +55,7 @@ class ProductsController < ApplicationController
 			redirect_to(action: 'show',
 						id: @product.id,
 						sort: sort_direction,
-						product_search: search_value)
+						search: search_value)
 		else
 			render('edit')
 		end
@@ -72,12 +72,12 @@ class ProductsController < ApplicationController
 		flash[:notice] = "Product '#{product.name}' deleted successfully."
 		redirect_to(action: 'index',
 					sort: sort_direction,
-					product_search: search_value)
+					search: search_value)
 	end
 
 	private
 
-      	# Whitelist allowable attributes to be mass-assigned; raises an error if :subject is not present
+      	# Whitelist allowable attributes
 	    def product_params
 	      params.require(:product).permit(:id,
 	      								  :company_id,
@@ -94,7 +94,7 @@ class ProductsController < ApplicationController
 
 	    # Use search value provided if params if present, else use nil
 	    def search_value
-	    	params[:product_search] || nil
+	    	params[:search] || nil
 	    end
 
 	    # If sort direction param includes ascending or descending option,

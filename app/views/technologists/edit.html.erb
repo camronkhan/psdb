@@ -1,16 +1,19 @@
 <% @page_title = "Technologists - Edit" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
-
-<div class="technologists edit">
-	<h2>Edit Technologist</h2>
-
-	<%= simple_form_for(:technologist,
-						:url => {
-							:action => 'update',
-							:id => @technologist.id
+<div>
+	<div>
+		<h2>Edit Technologist</h2>
+		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
+	</div>
+	<%= simple_form_for(@technologist,
+						url: {
+						 	action: 'update',
+						 	id: @technologist.id,
+						 	search: @search_value,
+						 	sort: @sort_direction
 						},
+						wrapper: :vertical_form,
 						class: 'form-group') do |f| %>
-		<%= render(:partial => "form", :locals => {:f => f}) %>
+		<%= render(partial: "form", locals: {f: f}) %>
 	<% end %>
 </div>

@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
 	def index
 		@search_value = search_value
 		@sort_direction = sort_direction
-		@companies = search_and_sort(@search_value, @sort_direction).paginate(:per_page => 10, :page => params[:page])
+		@companies = search_and_sort(@search_value, sort_direction).paginate(per_page: 10, page: params[:page])
 	end
 
 	def show
@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
 	def new
 		@search_value = search_value
 		@sort_direction = sort_direction
-		@company = Company.new({:name => "Default"})
+		@company = Company.new
 		@company.notes.build
 	end
 
@@ -26,7 +26,10 @@ class CompaniesController < ApplicationController
 		@company = Company.new(company_params)
 		if @company.save
 			flash[:notice] = "Company '#{@company.name}' created successfully."
-			redirect_to(:action => 'index')
+			redirect_to(action: 'show',
+						id: @company.id,
+						sort: sort_direction,
+						search: search_value)
 		else
 			render('new')
 		end
@@ -43,7 +46,10 @@ class CompaniesController < ApplicationController
 		@company = Company.find(params[:id])
 		if @company.update_attributes(company_params)
 			flash[:notice] = "Company '#{@company.name}' updated successfully."
-			redirect_to(:action => 'show', :id => @company.id)
+			redirect_to(action: 'show',
+						id: @company.id,
+						sort: sort_direction,
+						search: search_value)
 		else
 			render('edit')		
 		end
@@ -58,12 +64,14 @@ class CompaniesController < ApplicationController
 	def destroy
 		company = Company.find(params[:id]).destroy
 		flash[:notice] = "Company '#{company.name}' deleted successfully."
-		redirect_to(:action => 'index')
+		redirect_to(action: 'index',
+					sort: sort_direction,
+					search: search_value)
 	end
 
 	private
 
-		# Whitelist allowable attributes to be mass-assigned; raises an error if :subject is not present
+		# Whitelist allowable attributes
 	    def company_params
 	      params.require(:company).permit(:name,
 	      								  :website_url,

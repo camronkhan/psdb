@@ -1,15 +1,31 @@
 <% @page_title = "Servicers" %>
 
-<div class="servicers index">
+<div class="servicers-index-view">
 	<h2><%= @page_title %></h2>
-	
-	<%= link_to("Add New Servicer", {:action => 'new'}, :class => 'action new') %>
+	<div class="well well-lg servicer-search-box">
+		<%= form_tag('/servicers', method: 'get') do %>
+			<%= hidden_field_tag(:sort, params[sort: nil]) %>
+			<div class='form-group servicer-search-form'>
+				<div class="input-group">
+					<%= text_field_tag(:search, @search_value, class: 'form-control') %>
+					<span class="input-group-btn">
+						<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+						    <%= fa_icon 'search', class: 'fa-lg' %>
+						<% end %><!-- /%button_tag (Search PSDB) -->
+						<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
+							<%= fa_icon 'plus', class: 'fa-lg' %>
+						<% end %><!-- /%link_to (Add New Servicer) -->
+					</span><!-- /.input-group-btn -->
+				</div><!-- /.input-group -->
+			</div><!-- /.servicer-search-form -->
+		<% end %><!-- /%form_tag -->
+	</div><!-- /.servicer-search-box -->
 
-	<div><%= pluralize(@servicers.size, 'servicer') %> found</div>
+	<!--<div><%#= pluralize(@servicers.size, 'servicer') %> found</div>-->
 	<table class="table table-striped listing" summary="Servicer list">
 		<thead>
 			<tr class="header">
-				<th>Servicer</th>
+				<th><%= sortable('Servicer') %></th>
 				<th>Assignments</th>
 				<th>Action</th>
 			</tr>
@@ -19,13 +35,20 @@
 				<tr>
 					<td><%= servicer.name %></td>
 					<td><%= servicer.servicer_assignments.size %></td>
-					<td class="actions">
-						<%= link_to("Details", {:action => 'show', :id => servicer.id}, :class => 'action show') %>
-						<%= link_to("Edit", {:action => 'edit', :id => servicer.id}, :class => 'action edit') %>
-						<%= link_to("Delete", {:action => 'delete', :id => servicer.id}, :class => 'action delete') %>
+					<td>
+						<%= link_to({action: 'show', id: servicer.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary') do %>
+							<%= fa_icon 'info-circle', class: 'fa-lg' %>
+						<% end %>
+						<%= link_to({action: 'edit', id: servicer.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-warning') do %>
+							<%= fa_icon 'pencil', class: 'fa-lg' %>
+						<% end %>
+						<%= link_to({action: 'delete', id: servicer.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-danger') do %>
+							<%= fa_icon 'trash-o', class: 'fa-lg' %>
+						<% end %>
 					</td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
+	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 </div>

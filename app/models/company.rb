@@ -3,10 +3,12 @@ class Company < ActiveRecord::Base
 	has_many :products
 	has_many :notes, as: :annotatable, dependent: :destroy
 
+	# Nested attributes
 	accepts_nested_attributes_for :notes, 
 								  reject_if: lambda { |a| a[:data].blank? },
 								  allow_destroy: true
-
+	
+	# Validations
 	validates :name, presence: true, 
 					 uniqueness: true
 

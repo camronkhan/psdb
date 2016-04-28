@@ -1,14 +1,26 @@
 <div>
-	<%= f.input :name %>	
+	<h3>Basic Information</h3>
+	<div class="well">
+		<%= f.input :name %>	
+		<%= f.input :internal_phone, label: 'MERX Workgroup' %>
+		<%= f.input :external_phone, label: 'Phone Number' %>
+		<%= f.input :address %>
+	</div>
 </div>
 <div>
-	<%= f.input :internal_phone, label: 'Phone - Internal' %>
-</div>
-<div>
-	<%= f.input :external_phone, label: 'Phone - External' %>
-</div>
-<div>
-	<%= f.input :address %>
+	<h3>Servicer Notes</h3>
+		<div class="well">
+			<%= f.hint 'Current note order is not guaranteed' %>
+			<%= f.simple_fields_for :notes do |note| %>
+				<%= render 'note_fields', f: note %>
+			<% end %>
+			<div>
+				<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
+					<%= fa_icon 'plus', class: 'fa-lg' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
 <div>
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>

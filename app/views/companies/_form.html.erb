@@ -1,4 +1,3 @@
-<br>
 <div>
 	<h3>Basic Information</h3>
 	<div class="well">
@@ -6,14 +5,12 @@
 		<%= f.input :website_url, label: 'Website URL' %>
 	</div>
 </div>
-<br>
-<br>
 <div>
 	<h3>Company Notes</h3>
 		<div class="well">
 			<%= f.hint 'Current note order is not guaranteed' %>
 			<%= f.simple_fields_for :notes do |note| %>
-				<%= render 'note_fields', :f => note %>
+				<%= render 'note_fields', f: note %>
 			<% end %>
 			<div>
 				<%= link_to_add_association f, :notes, class: 'btn btn-success' do %>
@@ -23,8 +20,6 @@
 		</div>
 	</div>
 </div>
-<br>
-<br>
 <div>
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
 </div>

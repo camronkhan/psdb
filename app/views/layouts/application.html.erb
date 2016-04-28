@@ -9,7 +9,7 @@
 		<!-- BRANDBAR -->
 		<div class="container">
 			<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Motorola_Solutions_Logo.svg" alt="Motorola Solutions logo" id="msi-logo">
-		</div>
+		</div><!-- /.container -->
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container">
@@ -21,8 +21,8 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#">SSC Product Support</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
+				</div><!-- /.navbar-header -->
+				<div class="navbar-collapse collapse" id="navbar">
 					<ul class="nav navbar-nav">
 						<li class="navlink"><a href="/products">Products</a></li>
 						<li class="navlink"><a href="/companies">Companies</a></li>
@@ -33,8 +33,8 @@
 						<li class="navlink"><a href="#">Requests</a></li>
 						<li class="navlink"><a href="#">Help</a></li>
 					</ul>
-				</div>
-			</div>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /. container -->
 		</nav>
 	    <!-- MAIN -->
 		<div class="main">
@@ -50,12 +50,12 @@
 					<%= yield %>
 				</div>
 			</div><!-- /.container -->
-			<!-- FOOTER -->
-			<footer class="footer">
-				<div class="container">
-					<p class="copyright">&copy; <%= Date.today.year %> Motorola Solutions, Inc. All Rights Reserved.</p>
-				</div>
-			</footer>
 		</div><!-- /.main -->
+		<!-- FOOTER -->
+		<footer class="footer">
+			<div class="container">
+				<p class="copyright">&copy; <%= Date.today.year %> Motorola Solutions, Inc. All Rights Reserved.</p>
+			</div><!-- /.container -->
+		</footer>
 	</body>
 </html>

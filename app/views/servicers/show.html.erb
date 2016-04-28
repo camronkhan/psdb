@@ -1,33 +1,42 @@
 <% @page_title = "Servicers - Details" %>
 
-<div>
-	<h2 class="page-title">Servicer Details</h2>
-	<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
-	<table summary="Servicer detail view" class="table table-striped">
-		<tr>
-			<th>Name</th>
-			<td><%= @servicer.name %></td>
-		</tr>
-		<tr>
-			<th>Phone - Internal</th>
-			<td><%= @servicer.internal_phone %></td>
-		</tr>
-		<tr>
-			<th>Phone - External</th>
-			<td><%= @servicer.external_phone %></td>
-		</tr>
-		<tr>
-			<th>Address</th>
-			<td><%= @servicer.address %></td>
-		</tr>
-		<tr>
-			<th>Created</th>
-			<td><%= @servicer.created_at %></td>
-		</tr>
-		<tr>
-			<th>Updated</th>
-			<td><%= @servicer.updated_at %></td>
-		</tr>
-	</table>
-	
-</div>
+<div class="servicers-show">
+	<div class="details-section">
+		<h2 class="page-title"><%= @servicer.name %></h2>
+		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
+	</div><!-- /.details-section -->
+	<div class="panel panel-default details-panel">
+		<div class="panel-heading">
+			<h4>Servicer Name</h4>
+			<p><%= @servicer.name %></p>
+		</div><!-- /.panel-heading -->
+		<ul class="list-group">
+			<li class="list-group-item">
+				<h4>MERX Workgroup</h4>
+				<p><%= @servicer.internal_phone %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Phone Number</h4>
+				<p><%= @servicer.external_phone %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Address</h4>
+				<p><%= @servicer.address %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Service Assignments</h4>
+				<p><%= @servicer.servicer_assignments.size %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Notes</h4>
+				<ol>
+					<% @servicer.notes.reverse.each do |note| %>
+						<li>
+							<p><%= note.data %></p>
+						</li>
+					<% end %>
+				</ol>
+			</li><!-- /.list-group-item -->
+		</ul><!-- /.list-group -->
+	</div><!-- /.panel -->
+</div><!-- /.servicers-show -->

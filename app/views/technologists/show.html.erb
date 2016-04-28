@@ -1,37 +1,46 @@
 <% @page_title = "Technologists - Details" %>
 
-<div>
-	<h2 class="page-title">Technologist Details</h2>
-	<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
-	<table summary="Technologist detail view" class="table table-striped">
-		<tr>
-			<th>Name</th>
-			<td><%= @technologist.name %></td>
-		</tr>
-		<tr>
-			<th>Phone - Internal</th>
-			<td><%= @technologist.internal_phone %></td>
-		</tr>
-		<tr>
-			<th>Phone - External</th>
-			<td><%= @technologist.external_phone %></td>
-		</tr>
-		<tr>
-			<th>Hours of Operation</th>
-			<td><%= @technologist.hours %></td>
-		</tr>
-		<tr>
-			<th>Escalations</th>
-			<td><%= @technologist.escalation %></td>
-		</tr>
-		<tr>
-			<th>Created</th>
-			<td><%= @technologist.created_at %></td>
-		</tr>
-		<tr>
-			<th>Updated</th>
-			<td><%= @technologist.updated_at %></td>
-		</tr>
-	</table>
-	
-</div>
+<div class="technologists-show">
+	<div class="details-section">
+		<h2 class="page-title"><%= @technologist.name %></h2>
+		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
+	</div><!-- /.details-section -->
+	<div class="panel panel-default details-panel">
+		<div class="panel-heading">
+			<h4>Technologist Name</h4>
+			<p><%= @technologist.name %></p>
+		</div><!-- /.panel-heading -->
+		<ul class="list-group">
+			<li class="list-group-item">
+				<h4>MERX Workgroup</h4>
+				<p><%= @technologist.internal_phone %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Phone Number</h4>
+				<p><%= @technologist.external_phone %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Hours of Operation</h4>
+				<p><%= @technologist.hours %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Escalations</h4>
+				<p><%= @technologist.escalation %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Support Assignments</h4>
+				<p><%= @technologist.technologist_assignments.size %></p>
+			</li><!-- /.list-group-item -->
+			<li class="list-group-item">
+				<h4>Notes</h4>
+				<ol>
+					<% @technologist.notes.reverse.each do |note| %>
+						<li>
+							<p><%= note.data %></p>
+						</li>
+					<% end %>
+				</ol>
+			</li><!-- /.list-group-item -->
+		</ul><!-- /.list-group -->
+	</div><!-- /.panel -->
+</div><!-- /.technologists-show -->

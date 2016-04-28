@@ -1,13 +1,13 @@
 <% @page_title = "Products - Details" %>
 
-<div>
+<div class="products-show">
 	<div class="details-section">
 		<h2 class="page-title"><%= @product.name %></h2>
 		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
-	</div>
+	</div><!-- /.details-section -->
 	<div class="details-section">
 		<img src="<%= @product.image_url %>" alt="<%= @product.name %>" class="img-thumbnail product-img">
-	</div>
+	</div><!-- /.details-section -->
 	<div class="details-section">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
@@ -31,7 +31,7 @@
 					<h3>Repair Service</h3>
 				</a>
 			</li>
-		</ul>
+		</ul><!-- /.nav-tabs -->
 		<!-- Tab panes -->
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="product-details">
@@ -39,22 +39,22 @@
 					<div class="panel-heading">
 						<h4>Product Name</h4>
 						<p><%= @product.name %></p>
-					</div>
+					</div><!-- /.panel-heading -->
 					<ul class="list-group">
 						<li class="list-group-item">
 							<h4>Company</h4>
 							<p><%= @product.company.name %></p>
-						</li>
+						</li><!-- /.list-group-item -->
 						<li class="list-group-item">
 							<h4>Website</h4>
 							<p><a href="<%= @product.company.website_url %>"><%= @product.company.website_url %></a></p>
-						</li>
+						</li><!-- /.list-group-item -->
 						<li class="list-group-item">
 							<h4>Tags</h4>
 							<p><%= @product.tag_list %></p>
-						</li>
+						</li><!-- /.list-group-item -->
 						<li class="list-group-item">
-							<h4>Notes</h4>
+							<h4>Product Notes</h4>
 							<ol>
 								<% @product.notes.reverse.each do |note| %>
 									<li>
@@ -62,23 +62,23 @@
 									</li>
 								<% end %>
 							</ol>
-						</li>
-					</ul>
-				</div>
-			</div>
+						</li><!-- /.list-group-item -->
+					</ul><!-- /.list-group -->
+				</div><!-- /.panel -->
+			</div><!-- /#product-details -->
 			<div role="tabpanel" class="tab-pane" id="company">
 				<div class="panel panel-default details-panel">
 					<div class="panel-heading">
 						<h4>Company Name</h4>
 						<p><%= @product.company.name %></p>
-					</div>
+					</div><!-- /.panel-heading -->
 					<ul class="list-group">
 						<li class="list-group-item">
 							<h4>Website</h4>
 							<p><a href="<%= @product.company.website_url %>"><%= @product.company.website_url %></a></p>
-						</li>
+						</li><!-- /.list-group-item -->
 						<li class="list-group-item">
-							<h4>Notes</h4>
+							<h4>Company Notes</h4>
 							<ol>
 								<% @product.company.notes.reverse.each do |note| %>
 									<li>
@@ -86,70 +86,90 @@
 									</li>
 								<% end %>
 							</ol>
-						</li>
-					</ul>
-				</div>
-			</div>
+						</li><!-- /.list-group-item -->
+					</ul><!-- /.list-group -->
+				</div><!-- /.panel -->
+			</div><!-- /#company -->
 			<div role="tabpanel" class="tab-pane" id="technical-support">
 				<% @product.technologists.each do |technologist| %>
 					<div class="panel panel-default details-panel">
 						<div class="panel-heading">
 							<h4>Condition</h4>
 							<p><%= TechnologistAssignment.condition(@product.id, technologist.id) %></p>
-						</div>
+						</div><!-- /.panel-heading -->
 						<ul class="list-group">
 							<li class="list-group-item">
 								<h4>Technologist Name</h4>
 								<p><%= technologist.name %></p>
-							</li>
+							</li><!-- /.list-group-item -->
 							<li class="list-group-item">
 								<h4>MERX Workgroup</h4>
 								<p><%= technologist.internal_phone %></p>
-							</li>
+							</li><!-- /.list-group-item -->
 							<li class="list-group-item">
 								<h4>Phone Number</h4>
 								<p><%= technologist.external_phone %></p>
-							</li>
+							</li><!-- /.list-group-item -->
 							<li class="list-group-item">
 								<h4>Hours of Operation</h4>
 								<p><%= technologist.hours %></p>
-							</li>
+							</li><!-- /.list-group-item -->
 							<li class="list-group-item">
 								<h4>Escalation</h4>
 								<p><%= technologist.escalation %></p>
-							</li>
-						</ul>
-					</div>
+							</li><!-- /.list-group-item -->
+							<li class="list-group-item">
+								<h4>Support Notes</h4>
+								<ol>
+									<% technologist.notes.reverse.each do |note| %>
+										<li>
+											<p><%= note.data %></p>
+										</li>
+									<% end %>
+								</ol>
+							</li><!-- /.list-group-item -->
+						</ul><!-- /.list-group -->
+					</div><!-- /.panel -->
 				<% end %>
-			</div>
+			</div><!-- /#technical-support -->
 			<div role="tabpanel" class="tab-pane" id="repair-service">
 				<% @product.servicers.each do |servicer| %>
 					<div class="panel panel-default details-panel">
 						<div class="panel-heading">
 							<h4>Condition</h4>
 							<p><%= ServicerAssignment.condition(@product.id, servicer.id) %></p>
-						</div>
+						</div><!-- /.panel-heading -->
 						<ul class="list-group">
 							<li class="list-group-item">
 								<h4>Servicer Name</h4>
 								<p><%= servicer.name %></p>
-							</li>
+							</li><!-- /.list-group-item -->
 							<li class="list-group-item">
 								<h4>MERX Workgroup</h4>
 								<p><%= servicer.internal_phone %></p>
-							</li>
+							</li><!-- /.list-group-item -->
 							<li class="list-group-item">
 								<h4>Phone Number</h4>
 								<p><%= servicer.external_phone %></p>
-							</li>
+							</li><!-- /.list-group-item -->
 							<li class="list-group-item">
 								<h4>Address</h4>
 								<p><%= servicer.address %></p>
-							</li>
-						</ul>
-					</div>
+							</li><!-- /.list-group-item -->
+							<li class="list-group-item">
+								<h4>Service Notes</h4>
+								<ol>
+									<% servicer.notes.reverse.each do |note| %>
+										<li>
+											<p><%= note.data %></p>
+										</li>
+									<% end %>
+								</ol>
+							</li><!-- /.list-group-item -->
+						</ul><!-- /.list-group -->
+					</div><!-- /.panel -->
 				<% end %>
-			</div>
-		</div>
-	</div>
-</div>
+			</div><!-- /#repair-service -->
+		</div><!-- /.tab-content -->
+	</div><!-- /.details-section -->
+</div><!-- /.products-show -->

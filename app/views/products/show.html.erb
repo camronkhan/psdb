@@ -5,10 +5,10 @@
 		<h2 class="page-title"><%= @product.name %></h2>
 		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
 	</div>
-	<div class="products-show-section">
+	<div class="details-section">
 		<img src="<%= @product.image_url %>" alt="<%= @product.name %>" class="img-thumbnail product-img">
 	</div>
-	<div class="products-show-section">
+	<div class="details-section">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active">
@@ -36,59 +36,59 @@
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="product-details">
 				<div class="panel panel-default details-panel">
-						<div class="panel-heading">
-							<h4>Product Name</h4>
-							<p><%= @product.name %></p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item">
-								<h4>Company</h4>
-								<p><%= @product.company.name %></p>
-							</li>
-							<li class="list-group-item">
-								<h4>Website</h4>
-								<p><a href="<%= @product.company.website_url %>"><%= @product.company.website_url %></a></p>
-							</li>
-							<li class="list-group-item">
-								<h4>Tags</h4>
-								<p><%= @product.tag_list %></p>
-							</li>
-							<li class="list-group-item">
-								<h4>Notes</h4>
-								<ol>
-									<% @product.notes.reverse.each do |note| %>
-										<li>
-											<p><%= note.data %></p>
-										</li>
-									<% end %>
-								</ol>
-							</li>
-						</ul>
+					<div class="panel-heading">
+						<h4>Product Name</h4>
+						<p><%= @product.name %></p>
 					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h4>Company</h4>
+							<p><%= @product.company.name %></p>
+						</li>
+						<li class="list-group-item">
+							<h4>Website</h4>
+							<p><a href="<%= @product.company.website_url %>"><%= @product.company.website_url %></a></p>
+						</li>
+						<li class="list-group-item">
+							<h4>Tags</h4>
+							<p><%= @product.tag_list %></p>
+						</li>
+						<li class="list-group-item">
+							<h4>Notes</h4>
+							<ol>
+								<% @product.notes.reverse.each do |note| %>
+									<li>
+										<p><%= note.data %></p>
+									</li>
+								<% end %>
+							</ol>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="company">
 				<div class="panel panel-default details-panel">
-						<div class="panel-heading">
-							<h4>Company Name</h4>
-							<p><%= @product.company.name %></p>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item">
-								<h4>Website</h4>
-								<p><a href="<%= @product.company.website_url %>"><%= @product.company.website_url %></a></p>
-							</li>
-							<li class="list-group-item">
-								<h4>Notes</h4>
-								<ol>
-									<% @product.company.notes.reverse.each do |note| %>
-										<li>
-											<p><%= note.data %></p>
-										</li>
-									<% end %>
-								</ol>
-							</li>
-						</ul>
+					<div class="panel-heading">
+						<h4>Company Name</h4>
+						<p><%= @product.company.name %></p>
 					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<h4>Website</h4>
+							<p><a href="<%= @product.company.website_url %>"><%= @product.company.website_url %></a></p>
+						</li>
+						<li class="list-group-item">
+							<h4>Notes</h4>
+							<ol>
+								<% @product.company.notes.reverse.each do |note| %>
+									<li>
+										<p><%= note.data %></p>
+									</li>
+								<% end %>
+							</ol>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="technical-support">
 				<% @product.technologists.each do |technologist| %>

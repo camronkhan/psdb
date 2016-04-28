@@ -1,20 +1,28 @@
 <% @page_title = "Products - Delete" %>
 
-<div>
-	<div>
-		<h2>Delete Product</h2>
-		<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
-	</div>
-	<%= simple_form_for(@product,
-				 		url: {
-						 	action: 'destroy',
-						 	id: @product.id,
-						 	search: @search_value,
-						 	sort: @sort_direction
-						},
-						method: 'delete') do |f| %>
-		<p>Are you sure you want to permanently delete this product?</p>
-		<p><%= @product.name %></p>
-		<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
-	<% end %>
-</div>
+<div class="products-delete">
+	<h2 class="section-title">Delete Product</h2>
+	<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
+	<div class="form-section">
+		<%= simple_form_for(@product,
+					 		url: {
+							 	action: 'destroy',
+							 	id: @product.id,
+							 	search: @search_value,
+							 	sort: @sort_direction
+							},
+							method: 'delete') do |f| %>
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					Are you sure you want to permanently delete this product?
+				</div><!-- /.panel-heading -->
+				<div class="panel-body">
+					<%= @product.name %>
+				</div><!-- /.panel-body -->
+			</div><!-- /.panel -->
+			<div class="form-section">
+				<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
+			</div><!-- /.form-section -->
+		<% end %><!-- /%simple_form_for -->
+	</div><!-- /.form-section -->
+</div><!-- /.products-delete -->

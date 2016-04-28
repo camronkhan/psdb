@@ -1,4 +1,4 @@
-<div>
+<div class="form-section">
 	<h3>Basic Information</h3>
 	<div class="well">
 		<%= f.input :name, label: 'Product Name' %>
@@ -19,7 +19,7 @@
 		</div>
 	</div>
 </div>
-<div>
+<div class="form-section">
 	<h3>Technical Support</h3>
 	<%= f.simple_fields_for :technologist_assignments do |assignment| %>
 		<%= render 'technologist_assignment_fields', f: assignment %>
@@ -30,7 +30,7 @@
 		<% end %>
 	</div>
 </div>
-<div>
+<div class="form-section">
 	<h3>Repair Service</h3>
 	<%= f.simple_fields_for :servicer_assignments do |assignment| %>
 		<%= render 'servicer_assignment_fields', f: assignment %>
@@ -41,6 +41,6 @@
 		<% end %>
 	</div>
 </div>
-<div>
+<div class="form-section">
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
 </div>

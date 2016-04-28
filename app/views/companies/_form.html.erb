@@ -1,11 +1,11 @@
-<div>
+<div class="form-section">
 	<h3>Basic Information</h3>
 	<div class="well">
 		<%= f.input :name %>	
 		<%= f.input :website_url, label: 'Website URL' %>
 	</div>
 </div>
-<div>
+<div class="form-section">
 	<h3>Company Notes</h3>
 		<div class="well">
 			<%= f.hint 'Current note order is not guaranteed' %>
@@ -20,6 +20,6 @@
 		</div>
 	</div>
 </div>
-<div>
+<div class="form-section">
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
 </div>

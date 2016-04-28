@@ -4,6 +4,8 @@
 @import "font-awesome";
 @import "products";
 @import "companies";
+@import "servicers";
+@import "technologists";
 
 
 /*************
@@ -127,4 +129,18 @@ $colHighlight   : $white;
   margin-top: 50px;
   background-color: $msi-blue;
   color: $white;
+  .copyright {
+    margin-top: 20px;
+  }
+}
+
+
+/***************
+     GENERAL     
+***************/
+.form-section {
+  margin-top: 50px;
+}
+.section-title {
+  margin-bottom: 20px;
 }

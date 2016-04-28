@@ -1,4 +1,4 @@
-<div>
+<div class="form-section">
 	<h3>Basic Information</h3>
 	<div class="well">
 		<%= f.input :name %>	
@@ -8,7 +8,7 @@
 		<%= f.input :escalation, label: 'Escalations' %>
 	</div>
 </div>
-<div>
+<div class="form-section">
 	<h3>Technologist Notes</h3>
 		<div class="well">
 			<%= f.hint 'Current note order is not guaranteed' %>
@@ -23,6 +23,6 @@
 		</div>
 	</div>
 </div>
-<div>
+<div class="form-section">
 	<%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
 </div>

@@ -2,9 +2,9 @@ class Product < ActiveRecord::Base
 
 	belongs_to :company
 	has_many :technologist_assignments
-	has_many :technologists, :through => :technologist_assignments
+	has_many :technologists, through: :technologist_assignments
 	has_many :servicer_assignments
-	has_many :servicers, :through => :servicer_assignments
+	has_many :servicers, through: :servicer_assignments
 	has_many :notes, as: :annotatable, dependent: :destroy
 
 	# Alias for acts_as_taggable_on :tags
@@ -30,19 +30,19 @@ class Product < ActiveRecord::Base
 	# PostgreSQL full text search
 	include PgSearch
 	pg_search_scope :full_text_search,
-					:against => :name,
-					:associated_against => {
-						:company => :name,
-						:tags => :name
+					against: :name,
+					associated_against: {
+						company: :name,
+						tags: :name
 					},
-					:using => {
-						:tsearch => {
-							:prefix => true,			# search for partial words
-							:dictionary => 'english',	# allows for stemming
-							:any_word => true			# returns all hits containing any word in search terms
+					using: {
+						tsearch: {
+							prefix: true,			# search for partial words
+							dictionary: 'english',	# allows for stemming
+							any_word: true			# returns all hits containing any word in search terms
 						},
-						:trigram => {
-							:threshold => 0.2 			# higher threshold --> more strict --> fewer results (default==0.3)
+						trigram: {
+							threshold: 0.2 			# higher threshold --> more strict --> fewer results (default==0.3)
 						}
 					}
 
@@ -55,5 +55,4 @@ class Product < ActiveRecord::Base
 	def company_name=(name)
 		self.company = Company.find_by(name: name) if name.present?
 	end
-
 end

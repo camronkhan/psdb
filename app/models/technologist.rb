@@ -6,7 +6,7 @@ class Technologist < ActiveRecord::Base
 
 	# Nested attributes
 	accepts_nested_attributes_for :notes, 
-								  reject_if: lambda { |a| a[:data].blank? },
+								  reject_if: :all_blank,
 								  allow_destroy: true
 
 	# Validations

@@ -11,14 +11,16 @@ class Product < ActiveRecord::Base
 	acts_as_taggable
 
 	# Nested attributes
+	accepts_nested_attributes_for :technologists
 	accepts_nested_attributes_for :technologist_assignments, 
-								  reject_if: lambda { |a| a[:data].blank? },
+								  reject_if: :all_blank,
 								  allow_destroy: true
+	accepts_nested_attributes_for :servicers	  
 	accepts_nested_attributes_for :servicer_assignments, 
-								  reject_if: lambda { |a| a[:data].blank? },
+								  reject_if: :all_blank,
 								  allow_destroy: true
 	accepts_nested_attributes_for :notes, 
-								  reject_if: lambda { |a| a[:data].blank? },
+								  reject_if: :all_blank,
 								  allow_destroy: true
 
 	# Validations

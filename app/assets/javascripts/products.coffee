@@ -17,9 +17,3 @@ $ ->
 	$('#google-product-search').click ->
 	    window.location.href = 'https://www.google.com/?gws_rd=ssl#safe=active&q=' + $('.product-search-bar').val()
 	    false
-
-#==============================================================
-# Provides jQuery UI Autocomplete functionality to select tags
-#==============================================================
-$ ->
-	$('#product_tag_list').autocomplete source: '/tags'

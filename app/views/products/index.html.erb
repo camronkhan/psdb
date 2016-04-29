@@ -28,13 +28,19 @@
 			</div><!-- /.search-form -->
 		<% end %><!-- /%form_tag -->
 	</div><!-- /.search-box -->
-
-	<!--<div><%#= pluralize(@products.size, 'product') %> found</div>-->
 	<table class='table table-striped listing' summary='Product list'>
 		<thead>
 			<tr>
 				<th>&nbsp</th>
-				<th><%= sortable('Product') %></th>
+				<th>
+					<%= sortable('Product') %>
+					<!-- Insert Caret based on asc/desc order of products -->
+					<% if params[:sort] === 'asc' %>
+						<%= fa_icon 'caret-up' %>
+					<% elsif params[:sort] === 'desc' %>
+						<%= fa_icon 'caret-down' %>
+					<% end %>
+				</th>
 				<th>Company</th>
 				<th>Tags</th>
 				<th>Action</th>
@@ -62,5 +68,6 @@
 			<% end %>
 		</tbody>
 	</table>
+	<!--<div><%#= pluralize(@products.size, 'product') %> found</div>-->
 	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 </div><!-- /.products-index-view -->

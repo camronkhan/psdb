@@ -2,10 +2,10 @@
 	<h3>Basic Information</h3>
 	<div class="well">
 		<%= f.input :name, label: 'Product Name' %>
+		<%= f.association :company, collection: Company.order('name ASC') %>
 		<%= f.input :image_url, label: 'Image URL' %>
-		<%= f.input :company_name, label: 'Company', as: :autocomplete, url: autocomplete_company_name_products_path, 'data-auto-focus' => true %>
 		<%= f.label :tags %>
-		<%= f.autocomplete_field :tag_list, autocomplete_tag_name_products_path, 'data-delimiter' => ' ', multiple: true, class: 'form-control' %>
+		<%= f.autocomplete_field :tag_list, autocomplete_tag_name_products_path, 'data-delimiter' => ' ', multiple: true, 'data-auto-focus' => true, class: 'form-control' %>
 		<%= f.hint 'Tags separated by a space' %>
 		<%= f.label :notes %>
 		<%= f.simple_fields_for :notes do |note| %>

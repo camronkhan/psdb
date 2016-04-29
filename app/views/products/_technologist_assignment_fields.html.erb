@@ -1,5 +1,5 @@
 <div class="nested-fields well clearfix">
-	<%= f.association :technologist %>
+	<%= f.association :technologist, collection: Technologist.order('name ASC') %>
 	<%= f.input :condition %>
 	<%= link_to_remove_association f, class: 'btn btn-danger pull-right' do %>
 		<%= fa_icon 'trash-o', class: 'fa-lg' %>

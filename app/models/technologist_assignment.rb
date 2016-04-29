@@ -6,7 +6,9 @@ class TechnologistAssignment < ActiveRecord::Base
 
 	accepts_nested_attributes_for :technologist,
 								  reject_if: :all_blank
-	accepts_nested_attributes_for :notes
+	accepts_nested_attributes_for :notes, 
+								  reject_if: :all_blank,
+								  allow_destroy: true
 		
 	# Returns the condition of a single technologist assignment give the product and technologist IDs
 	def self.condition(p_id, t_id)

@@ -12,3 +12,9 @@ $(function() {
     return false;
   });
 });
+
+$(function() {
+  return $('#product_tag_list').autocomplete({
+    source: '/tags'
+  });
+});

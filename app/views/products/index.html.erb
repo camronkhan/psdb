@@ -32,7 +32,6 @@
 		<thead>
 			<tr>
 				<th>&nbsp</th>
-				<th>Response Code</th>
 				<th>
 					<%= sortable('Product') %>
 					<!-- Insert Caret based on asc/desc order of products -->
@@ -51,7 +50,6 @@
 			<% @products.each do |product| %>
 				<tr>
 					<td><img src='<%= product.image_url %>' class='img-thumbnail product-thumb' alt='<%= product.name %>'></td>
-					<td><%= validateImage(product.image_url) %></td>
 					<td><%= product.name %></td>
 					<td><%= product.company.name %></td>
 					<td><%= product.tag_list %></td>

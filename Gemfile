@@ -65,3 +65,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Serve static assets
+# https://github.com/heroku/rails_12factor
+# https://devcenter.heroku.com/articles/rails-4-asset-pipeline
+gem 'rails_12factor', group: :production

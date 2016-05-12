@@ -43,6 +43,7 @@ class Product < ActiveRecord::Base
 						tsearch: {
 							prefix: true,			# search for partial words
 							dictionary: 'english',	# allows for stemming
+							tsvector_column: 'tsvector_content_tsearch',
 							any_word: true			# returns all hits containing any word in search terms
 						}#,
 						#trigram: {

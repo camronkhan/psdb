@@ -1,3 +1,5 @@
+<%= params.inspect %>
+
 <% @page_title = "Products" %>
 
 <div class="products-index">
@@ -5,7 +7,7 @@
 	<div class="well well-lg search-box">
 		<%= form_tag('/products', method: 'get') do %>
 			<%= hidden_field_tag(:sort, params[sort: nil]) %>
-			<div class='form-group search-form'>
+			<div class='form-group search-form clearfix'>
 				<div class="input-group">
 					<%= text_field_tag(:search, @search_value, class: 'product-search-bar form-control') %>
 					<span class="input-group-btn">
@@ -14,7 +16,7 @@
 						<% end %><!-- /%button_tag (Search PSDB) -->
 					</span><!-- /.input-group-btn -->
 				</div><!-- /.input-group -->
-				<div class="product-buttons">
+				<div class="product-buttons pull-right">
 					<%= link_to('#', id: 'msi-product-search', class: 'btn btn-primary') do %>
 						<%= fa_icon 'search', text: 'MSI.com', class: 'fa-lg' %>
 					<% end %><!-- /%link_to (Search MSI.com) -->
@@ -25,6 +27,19 @@
 						<%= fa_icon 'plus', text: 'Product', class: 'fa-lg' %>
 					<% end %><!-- /%link_to (Add New Product) -->
 				</div><!-- /.product-buttons -->
+				<div class="product-checkboxes pull-left">
+					<div class="btn-group" data-toggle="buttons">
+				  		<label class="btn btn-info active">
+					    	<input type="checkbox" name="product-checkbox" autocomplete="off" checked> Product
+					  	</label>
+					  	<label class="btn btn-info">
+					    	<input type="checkbox" name="company-checkbox" autocomplete="off"> Company
+					  	</label>
+					  	<label class="btn btn-info">
+					    	<input type="checkbox" name="tags-checkbox" autocomplete="off"> Tags
+					  	</label>
+					</div>
+				</div><!-- /.product-checkboxes -->
 			</div><!-- /.search-form -->
 		<% end %><!-- /%form_tag -->
 	</div><!-- /.search-box -->

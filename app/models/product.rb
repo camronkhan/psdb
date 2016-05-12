@@ -35,20 +35,22 @@ class Product < ActiveRecord::Base
 	include PgSearch
 	pg_search_scope :full_text_search,
 					against: :name,
-					associated_against: {
-						company: :name,
-						tags: :name
-					},
+					#associated_against: {
+					#	company: :name,
+					#	tags: :name
+					#},
 					using: {
 						tsearch: {
 							prefix: true,			# search for partial words
-							dictionary: 'english',	# allows for stemming
+							#dictionary: 'english',	# allows for stemming
 							any_word: true			# returns all hits containing any word in search terms
 						},
-						trigram: {
-							threshold: 0.1 			# higher threshold --> more strict --> fewer results (default==0.3)
-						}
-					}
+						#trigram: {
+						#	threshold: 0.2 			# higher threshold --> more strict --> fewer results (default==0.3)
+						#},
+						dmetaphone: {}
+					},
+					ranked_by: ":dmetaphone"
 
 	# Define company_name virtual attribute utilized for form autocompletion
 	# Getter method - return nil if name is not found

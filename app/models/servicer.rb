@@ -22,9 +22,9 @@ class Servicer < ActiveRecord::Base
 							prefix: true,			# search for partial words
 							dictionary: 'english',	# allows for stemming
 							any_word: true			# returns all hits containing any word in search terms
-						},
-						trigram: {
-							threshold: 0.1 			# higher threshold --> more strict --> fewer results (default==0.3)
-						}
+						}#,
+						#trigram: {
+						#	threshold: 0.1 			# higher threshold --> more strict --> fewer results (default==0.3)
+						#}
 					}
 end

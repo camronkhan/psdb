@@ -1,4 +1,4 @@
-<%= params.inspect %>
+<%#= params.inspect %>
 
 <% @page_title = "Products" %>
 
@@ -9,7 +9,7 @@
 			<%= hidden_field_tag(:sort, params[sort: nil]) %>
 			<div class='form-group search-form clearfix'>
 				<div class="input-group">
-					<%= text_field_tag(:search, @search_value, class: 'product-search-bar form-control') %>
+					<%= text_field_tag(:query, @search_value, class: 'product-search-bar form-control') %>
 					<span class="input-group-btn">
 						<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
 						    <%= fa_icon 'search', class: 'fa-lg' %>
@@ -27,16 +27,16 @@
 						<%= fa_icon 'plus', text: 'Product', class: 'fa-lg' %>
 					<% end %><!-- /%link_to (Add New Product) -->
 				</div><!-- /.product-buttons -->
-				<div class="product-checkboxes pull-left">
+				<div class="search-criteria-checkboxes pull-left">
 					<div class="btn-group" data-toggle="buttons">
 				  		<label class="btn btn-info active">
-					    	<input type="checkbox" name="product-checkbox" autocomplete="off" checked> Product
+					    	<input type="checkbox" name="productsearch" autocomplete="off" checked> Product
 					  	</label>
 					  	<label class="btn btn-info">
-					    	<input type="checkbox" name="company-checkbox" autocomplete="off"> Company
+					    	<input type="checkbox" name="companysearch" autocomplete="off"> Company
 					  	</label>
 					  	<label class="btn btn-info">
-					    	<input type="checkbox" name="tags-checkbox" autocomplete="off"> Tags
+					    	<input type="checkbox" name="tagsearch" autocomplete="off"> Tag
 					  	</label>
 					</div>
 				</div><!-- /.product-checkboxes -->
@@ -57,6 +57,7 @@
 					<% end %>
 				</th>
 				<th>Company</th>
+				<%= raw "<th>Relevance</th>" unless @search_value.blank? %>
 				<th>Tags</th>
 				<th>Action</th>
 			</tr>
@@ -67,6 +68,7 @@
 					<td><img src='<%= product.image_url %>' class='img-thumbnail product-thumb' alt='<%= product.name %>'></td>
 					<td><%= product.name %></td>
 					<td><%= product.company.name %></td>
+					<%= raw "<td>#{product.pg_search_rank}</td>" unless @search_value.blank? %>
 					<td><%= product.tag_list %></td>
 					<td>
 						<%= link_to({action: 'show', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>

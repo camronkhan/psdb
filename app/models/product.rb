@@ -31,6 +31,20 @@ class Product < ActiveRecord::Base
 					 			   message: "can appear only once for each company"}
 	validates :company, presence: true
 
+	# Virtual Attributes (utilized for form autocompletion)
+	def company_name			# Getter method - return nil if name is not found
+		company.try(:name)
+	end
+	def company_name=(name)		# Setter method - only set if name is present
+		self.company = Company.find_by(name: name) if name.present?
+	end
+
+	# Scopes
+	scope :ascending, 		-> { order("products.name ASC") }
+	scope :descending,		-> { order("products.name DESC") }
+	scope :fts_ascending,	-> { reorder("products.name ASC") }
+	scope :fts_descending,	-> { reorder("products.name DESC") }
+
 	# PostgreSQL full text search
 	include PgSearch
 	pg_search_scope :full_text_search,
@@ -40,26 +54,110 @@ class Product < ActiveRecord::Base
 					#	tags: :name
 					#},
 					using: {
+						#tsearch: {
+							#prefix: true,			# search for partial words
+							#dictionary: 'english',	# allows for stemming
+							#any_word: true			# returns all hits containing any word in search terms
+						#},
+						trigram: {
+							threshold: 0.2			# higher threshold --> more strict --> fewer results (default==0.3)
+						}#,
+						#dmetaphone: {}
+					},
+					ranked_by: ":trigram"
+
+	pg_search_scope :search_by_product,
+					against: :name,
+					using: {
+						trigram: {
+							threshold: 0.2			# higher threshold --> more strict --> fewer results (default==0.3)
+						}
+					},
+					ranked_by: ":trigram"			# ranking algorithm
+	pg_search_scope :search_by_company,
+					associated_against: {
+						company: :name
+					},
+					using: {
 						tsearch: {
 							prefix: true,			# search for partial words
 							dictionary: 'english',	# allows for stemming
-							tsvector_column: 'tsvector_content_tsearch',
 							any_word: true			# returns all hits containing any word in search terms
-						}#,
-						#trigram: {
-						#	threshold: 0.2 			# higher threshold --> more strict --> fewer results (default==0.3)
-						#},
-						#dmetaphone: {}
-					}#,
-					#ranked_by: ":dmetaphone"
-
-	# Define company_name virtual attribute utilized for form autocompletion
-	# Getter method - return nil if name is not found
-	def company_name
-		company.try(:name)
-	end
-	# Setter method - only set if name is present
-	def company_name=(name)
-		self.company = Company.find_by(name: name) if name.present?
-	end
+						}
+					}
+	pg_search_scope :search_by_tag,
+					associated_against: {
+						tags: :name
+					},
+					using: {
+						tsearch: {
+							prefix: true,			# search for partial words
+							dictionary: 'english',	# allows for stemming
+							any_word: true			# returns all hits containing any word in search terms
+						}
+					}
+	pg_search_scope :search_by_product_company,
+					against: :name,
+					associated_against: {
+						company: :name,
+					},
+					using: {
+						tsearch: {
+							prefix: true,			# search for partial words
+							dictionary: 'english',	# allows for stemming
+							any_word: true			# returns all hits containing any word in search terms
+						},
+						trigram: {
+							only: [:name],			# only use trigram from product name
+							threshold: 0.2			# higher threshold --> more strict --> fewer results (default==0.3)
+						}
+					},
+					ranked_by: "(0.75 * :trigram) + (0.25 * :tsearch)"		# ranking algorithm
+	pg_search_scope :search_by_product_tag,
+					against: :name,
+					associated_against: {
+						tags: :name,
+					},
+					using: {
+						tsearch: {
+							prefix: true,			# search for partial words
+							dictionary: 'english',	# allows for stemming
+							any_word: true			# returns all hits containing any word in search terms
+						},
+						trigram: {
+							only: [:name],			# only use trigram from product name
+							threshold: 0.2			# higher threshold --> more strict --> fewer results (default==0.3)
+						}
+					},
+					ranked_by: "(0.75 * :trigram) + (0.25 * :tsearch)"		# ranking algorithm
+	pg_search_scope :search_by_company_tag,
+					associated_against: {
+						company: :name,
+						tags: :name,
+					},
+					using: {
+						tsearch: {
+							prefix: true,			# search for partial words
+							dictionary: 'english',	# allows for stemming
+							any_word: true			# returns all hits containing any word in search terms
+						},
+					}
+	pg_search_scope :search_by_product_company_tag,
+					against: :name,
+					associated_against: {
+						company: :name,
+						tags: :name
+					},
+					using: {
+						tsearch: {
+							prefix: true,			# search for partial words
+							dictionary: 'english',	# allows for stemming
+							any_word: true			# returns all hits containing any word in search terms
+						},
+						trigram: {
+							only: [:name],			# only use trigram from product name
+							threshold: 0.2			# higher threshold --> more strict --> fewer results (default==0.3)
+						}
+					},
+					ranked_by: "(0.75 * :trigram) + (0.25 * :tsearch)"		# ranking algorithm
 end

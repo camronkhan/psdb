@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 	def index
 		@search_value = search_value
 		@sort_direction = sort_direction
-		@products = search_and_sort(@search_value, sort_direction).paginate(per_page: 10, page: params[:page])
+		@products = search_and_sort(@search_value, search_criteria, sort_direction).paginate(per_page: 10, page: params[:page])
 	end
 
 	def show
@@ -96,30 +96,101 @@ class ProductsController < ApplicationController
 
 	    # Use search value provided if params if present, else use nil
 	    def search_value
-	    	params[:search] || nil
+	    	params[:query] || nil
 	    end
 
-	    # If sort direction param includes ascending or descending option,
-			# Then set sort direction to option
-			# Else set sort direction to nil 
+	    # Return search criteria based on checkboxes selected
+	    def search_criteria
+	    	if params[:productsearch]=='on'
+	    		if params[:companysearch]=='on'
+	    			params[:tagsearch]=='on' ? 'pct' : 'pc'
+	    		else
+	    			params[:tagsearch]=='on' ? 'pt' : 'p'
+	    		end
+	    	else
+	    		if params[:companysearch]=='on'
+	    			params[:tagsearch]=='on' ? 'ct' : 'c'
+	    		else
+	    			params[:tagsearch]=='on' ? 't' : nil
+	    		end
+	    	end
+	    end
+
+	    # Set sort direction to 'nil' unless params[:sort] includes 'asc' or 'desc'
 	    def sort_direction
 	    	%w[asc desc].include?(params[:sort]) ? params[:sort] : nil
 	    end
 
 	    # Search db and sort results based on params[:sort]
-	    def search_and_sort(value, direction)
-	    	if value.blank? && direction.blank?
-	    		Product.all.order("products.name ASC")
-	    	elsif value.blank? && direction=='asc'
-	    		Product.all.order("products.name ASC")
-    		elsif value.blank? && direction=='desc'
-	    		Product.all.order("products.name DESC")
-	    	elsif value && direction=='asc'
-	    		Product.full_text_search(value).reorder("products.name ASC").with_pg_search_rank
-	    	elsif value && direction=='desc'
-	    		Product.full_text_search(value).reorder("products.name DESC").with_pg_search_rank
-	    	else
-	    		Product.full_text_search(value).with_pg_search_rank
-	    	end
-	    end
+		def search_and_sort(query, criteria, order)
+			if query.blank? 
+				if order=='asc'
+					Product.all.ascending
+				elsif order=='desc'
+					Product.all.descending
+				else
+					Product.all.ascending
+				end
+			else
+				if criteria=='p'
+					if order=='asc'
+						Product.search_by_product(query).fts_ascending.with_pg_search_rank
+					elsif order=='desc'
+						Product.search_by_product(query).fts_descending.with_pg_search_rank
+					else
+						Product.search_by_product(query).with_pg_search_rank
+					end
+				elsif criteria=='c'
+					if order=='asc'
+						Product.search_by_company(query).fts_ascending.with_pg_search_rank
+					elsif order=='desc'
+						Product.search_by_company(query).fts_descending.with_pg_search_rank
+					else
+						Product.search_by_company(query).with_pg_search_rank
+					end
+				elsif criteria=='t'
+					if order=='asc'
+						Product.search_by_tag(query).fts_ascending.with_pg_search_rank
+					elsif order=='desc'
+						Product.search_by_tag(query).fts_descending.with_pg_search_rank
+					else
+						Product.search_by_tag(query).with_pg_search_rank
+					end
+				elsif criteria=='pc'
+					if order=='asc'
+						Product.search_by_product_company(query).fts_ascending.with_pg_search_rank
+					elsif order=='desc'
+						Product.search_by_product_company(query).fts_descending.with_pg_search_rank
+					else
+						Product.search_by_product_company(query).with_pg_search_rank
+					end
+				elsif criteria=='pt'
+					if order=='asc'
+						Product.search_by_product_tag(query).fts_ascending.with_pg_search_rank
+					elsif order=='desc'
+						Product.search_by_product_tag(query).fts_descending.with_pg_search_rank
+					else
+						Product.search_by_product_tag(query).with_pg_search_rank
+					end
+				elsif criteria=='ct'
+					if order=='asc'
+						Product.search_by_company_tag(query).fts_ascending.with_pg_search_rank
+					elsif order=='desc'
+						Product.search_by_company_tag(query).fts_descending.with_pg_search_rank
+					else
+						Product.search_by_company_tag(query).with_pg_search_rank
+					end
+				elsif criteria=='pct'
+					if order=='asc'
+						Product.search_by_product_company_tag(query).fts_ascending.with_pg_search_rank
+					elsif order=='desc'
+						Product.search_by_product_company_tag(query).fts_descending.with_pg_search_rank
+					else
+						Product.search_by_product_company_tag(query).with_pg_search_rank
+					end
+				else
+					Product.search_by_product_company_tag(query).with_pg_search_rank
+				end
+			end
+		end
 end

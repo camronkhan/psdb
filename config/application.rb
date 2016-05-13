@@ -27,6 +27,6 @@ module Psdb
     # The options are :ruby (the default) for a database-independent version that depends on migrations, or :sql for a set of (potentially database-dependent) SQL statements.
     # You cannot dump a tsvector column to schema.rb. Instead, you need to switch to using the native PostgreSQL SQL format schema dump. In your config/application.rb you should set
     # https://github.com/Casecommons/pg_search
-    config.active_record.schema_format = :sql
+    #config.active_record.schema_format = :sql
   end
 end

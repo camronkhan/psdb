@@ -2,4 +2,4 @@
 
 Product Supported Database:
 
-http://product-support.herokuapp.com
+http://ssc-product-support.herokuapp.com

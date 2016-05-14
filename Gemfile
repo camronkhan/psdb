@@ -54,19 +54,30 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
+	gem 'byebug'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+	# Access an IRB console on exception pages or by using <%= console %> in views
+	gem 'web-console', '~> 2.0'
+end
+
+group :production do
+	# Serve static assets
+	# https://github.com/heroku/rails_12factor
+	# https://devcenter.heroku.com/articles/rails-4-asset-pipeline
+	gem 'rails_12factor'
+	# Web server for Heroku
+	# https://devcenter.heroku.com/articles/ruby-default-web-server
+	# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
+	gem 'puma'
+	# Allow Puma to timeout
+	# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
+	# https://github.com/heroku/rack-timeout
+	gem 'rack-timeout'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Serve static assets
-# https://github.com/heroku/rails_12factor
-# https://devcenter.heroku.com/articles/rails-4-asset-pipeline
-gem 'rails_12factor', group: :production

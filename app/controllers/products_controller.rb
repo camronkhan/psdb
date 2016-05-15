@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+	# Pre-Signed Post for AWS S3
+	# https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails#pre-signed-post-options-success_action_status
+	before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+
 	# Access methods from view (helpers/application_helper.rb)
 	helper_method :sort_direction
 
@@ -78,6 +82,14 @@ class ProductsController < ApplicationController
 	end
 
 	private
+
+		# Pre-Signed Post for AWS S3
+		# https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails#pre-signed-post-options-success_action_status
+		def set_s3_direct_post
+			@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}",
+													   success_action_status: '201',
+													   acl: 'public-read')
+		end
 
       	# Whitelist allowable attributes
 	    def product_params

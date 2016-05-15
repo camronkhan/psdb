@@ -1,7 +1,7 @@
 MIN_THREADS = 1
 RAILS_MAX_THREADS = 1
 
-workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+#workers Integer(ENV['WEB_CONCURRENCY'] || 2)	# omit this line when running Puma on Windows
 threads_count = RAILS_MAX_THREADS
 threads threads_count, threads_count
 

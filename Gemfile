@@ -68,7 +68,13 @@ group :production do
 	# https://github.com/heroku/rails_12factor
 	# https://devcenter.heroku.com/articles/rails-4-asset-pipeline
 	gem 'rails_12factor'
-	# Web server for Heroku
+	
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Web server for Heroku
 	# https://devcenter.heroku.com/articles/ruby-default-web-server
 	# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
 	gem 'puma'
@@ -76,8 +82,3 @@ group :production do
 	# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
 	# https://github.com/heroku/rack-timeout
 	gem 'rack-timeout'
-end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-

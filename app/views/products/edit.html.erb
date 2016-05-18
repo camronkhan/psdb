@@ -11,7 +11,10 @@
 						 	sort: @sort_direction
 						},
 						wrapper: :vertical_form,
-				 		class: 'form-group') do |f| %>
+				 		html: {
+							multipart: true,
+							class: 'form-group'
+						}) do |f| %>
 		<%= render(partial: "form", locals: {f: f}) %>
 	<% end %>
 </div>

@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
-//= require jquery.ui.widget
-//= require z.jquery.fileupload
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require cocoon

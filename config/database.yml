@@ -82,4 +82,4 @@ production:
   <<: *default
   database: psdb_production
   username: nmq687
-  password: douglas33
+  password: ENV['POSTGRESQLPW']

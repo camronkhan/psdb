@@ -1,11 +1,7 @@
 class ProductsController < ApplicationController
 
-	# Pre-Signed Post for AWS S3
-	# https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails#pre-signed-post-options-success_action_status
-	before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
-
 	# Access methods from view (helpers/application_helper.rb)
-	helper_method :sort_direction
+	#helper_method :sort_direction
 
 	# Autocompletion in product form
 	autocomplete :company, :name, full: true
@@ -26,6 +22,8 @@ class ProductsController < ApplicationController
 	def new
 		@search_value = search_value
 		@sort_direction = sort_direction
+		@uploader = Product.new.image_url
+		@uploader.success_action_redirect = new_product_url
 		@product = Product.new
 		@product.technologist_assignments.build
 		@product.servicer_assignments.build
@@ -83,27 +81,19 @@ class ProductsController < ApplicationController
 
 	private
 
-		# Pre-Signed Post for AWS S3
-		# https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails#pre-signed-post-options-success_action_status
-		def set_s3_direct_post
-			@s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}",
-													   success_action_status: '201',
-													   acl: 'public-read')
-		end
-
       	# Whitelist allowable attributes
 	    def product_params
-	      params.require(:product).permit(:id,
-	      								  :company_id,
-	      								  :name,
-	      								  :image_url,
-	      								  :company_name,
-	      								  tag_list: [],
-	      								  technologist_ids: [],
-	      								  servicer_ids: [],
-	      								  technologist_assignments_attributes: [:id, :product_id, :technologist_id, :condition, :_destroy],
-	      								  servicer_assignments_attributes: [:id, :product_id, :servicer_id, :condition, :_destroy],
-	      								  notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
+			params.require(:product).permit(:id,
+	      								  	:company_id,
+	      								  	:name,
+	      								  	:image_url,
+	      								  	:company_name,
+	      								  	tag_list: [],
+	      								  	technologist_ids: [],
+	      								  	servicer_ids: [],
+	      								  	technologist_assignments_attributes: [:id, :product_id, :technologist_id, :condition, :_destroy],
+	      								  	servicer_assignments_attributes: [:id, :product_id, :servicer_id, :condition, :_destroy],
+	      								  	notes_attributes: [:id, :annotatable_id, :annotatable_type, :data, :position, :_destroy])
 	    end
 
 	    # Use search value provided if params if present, else use nil

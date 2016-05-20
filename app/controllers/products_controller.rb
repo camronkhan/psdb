@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
 	# Access methods from view (helpers/application_helper.rb)
-	#helper_method :sort_direction
+	helper_method :sort_direction
 
 	# Autocompletion in product form
 	autocomplete :company, :name, full: true

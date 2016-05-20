@@ -15,3 +15,5 @@
 # Ignore environment variables
 /.env
 
+# Ignore byebug history
+/.byebug_history

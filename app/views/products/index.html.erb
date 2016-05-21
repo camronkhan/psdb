@@ -38,14 +38,14 @@
 				</div><!-- /.product-buttons -->
 				<div class="search-criteria-checkboxes pull-left">
 					<div class="btn-group" data-toggle="buttons">
-				  		<label class="btn btn-info <%= is_active?('filter_by_product', @filter_by_product) %>">
-					    	<input type="checkbox" name="filter_by_product" autocomplete="off" <%= is_checked?('filter_by_product', @filter_by_product) %>> Product
+				  		<label class="btn btn-info <%= is_active?('filter_by_product') %>">
+					    	<input type="checkbox" name="filter_by_product" autocomplete="off" <%= is_checked?('filter_by_product') %>> Product
 					  	</label>
-					  	<label class="btn btn-info <%= is_active?('filter_by_company', @filter_by_company) %>">
-					    	<input type="checkbox" name="filter_by_company" autocomplete="off" <%= is_checked?('filter_by_company', @filter_by_company) %>> Company
+					  	<label class="btn btn-info <%= is_active?('filter_by_company') %>">
+					    	<input type="checkbox" name="filter_by_company" autocomplete="off" <%= is_checked?('filter_by_company') %>> Company
 					  	</label>
-					  	<label class="btn btn-info <%= is_active?('filter_by_tag', @filter_by_tag) %>">
-							<input type="checkbox" name="filter_by_tag" autocomplete="off" <%= is_checked?('filter_by_tag', @filter_by_tag) %>> Tag
+					  	<label class="btn btn-info <%= is_active?('filter_by_tag') %>">
+							<input type="checkbox" name="filter_by_tag" autocomplete="off" <%= is_checked?('filter_by_tag') %>> Tag
 					  	</label>
 					</div><!-- /.btn-group -->
 				</div><!-- /.product-checkboxes -->

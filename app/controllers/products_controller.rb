@@ -22,8 +22,6 @@ class ProductsController < ApplicationController
 	def new
 		@search_value = search_value
 		@sort_direction = sort_direction
-		@uploader = Product.new.image_url
-		@uploader.success_action_redirect = new_product_url
 		@product = Product.new
 		@product.technologist_assignments.build
 		@product.servicer_assignments.build

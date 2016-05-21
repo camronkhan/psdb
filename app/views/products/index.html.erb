@@ -1,13 +1,9 @@
-<%
-=begin %>
 <pre><%= params.inspect %></pre>
 <pre><%= @search_value.inspect %></pre>
 <pre><%= @filter_by_product.inspect %></pre>
 <pre><%= @filter_by_company.inspect %></pre>
 <pre><%= @filter_by_tag.inspect %></pre>
 <pre><%= @sort_direction.inspect %></pre>
-<%
-=end %>
 
 <% @page_title = "Products" %>
 
@@ -77,7 +73,7 @@
 					<td><img src='<%= product.image_url %>' class='img-thumbnail product-thumb' alt='<%= product.name %>'></td>
 					<td><%= product.name %></td>
 					<td><%= product.company.name %></td>
-					<%= raw "<td>#{product.pg_search_rank}</td>" unless @search_value.blank? %>
+					<%= relevance_to_percentage(product.pg_search_rank) unless @search_value.blank? %>
 					<td><%= product.tag_list %></td>
 					<td>
 						<%= link_to({action: 'show', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>

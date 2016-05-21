@@ -13,4 +13,11 @@ module ProductsHelper
 				return nil
 			end
 	end
+
+	# Format relevance ranking float as percentage
+	def relevance_to_percentage(relevance)
+		relevance *= 100
+		percent = number_to_percentage(relevance, precision: 2)
+		raw "<td>#{percent}</td>"
+	end
 end

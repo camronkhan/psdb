@@ -9,18 +9,21 @@ class ProductsController < ApplicationController
 
 	def index
 		@search_value = search_value
+		@search_criteria = search_criteria
 		@sort_direction = sort_direction
 		@products = search_and_sort(@search_value, search_criteria, sort_direction).paginate(per_page: 10, page: params[:page])
 	end
 
 	def show
 		@search_value = search_value
+		@search_criteria = search_criteria
 		@sort_direction = sort_direction
 		@product = Product.find(params[:id])
 	end
 
 	def new
 		@search_value = search_value
+		@search_criteria = search_criteria
 		@sort_direction = sort_direction
 		@product = Product.new
 		@product.technologist_assignments.build
@@ -43,6 +46,7 @@ class ProductsController < ApplicationController
 
 	def edit
 		@search_value = search_value
+		@search_criteria = search_criteria
 		@sort_direction = sort_direction
 		@product = Product.find(params[:id])
 		@product.technologist_assignments.build
@@ -65,6 +69,7 @@ class ProductsController < ApplicationController
 
 	def delete
 		@search_value = search_value
+		@search_criteria = search_criteria
 		@sort_direction = sort_direction
 		@product = Product.find(params[:id])
 	end
@@ -100,13 +105,13 @@ class ProductsController < ApplicationController
 	    end
 
 	    # Return search criteria based on checkboxes selected
-	    def search_criteria
-	    	if params[:productsearch]=='on'
-	    		if params[:companysearch]=='on'
-	    			params[:tagsearch]=='on' ? 'pct' : 'pc'
-	    		else
-	    			params[:tagsearch]=='on' ? 'pt' : 'p'
-	    		end
+	    def search_criteria											# p == product
+	    	if params[:productsearch]=='on'							# c == company
+	    		if params[:companysearch]=='on'						# t == tag
+	    			params[:tagsearch]=='on' ? 'pct' : 'pc'			# pc == product & company
+	    		else												# pt == product & tag
+	    			params[:tagsearch]=='on' ? 'pt' : 'p'			# ct == company & tag
+	    		end													# pct == product & company & tag
 	    	else
 	    		if params[:companysearch]=='on'
 	    			params[:tagsearch]=='on' ? 'ct' : 'c'

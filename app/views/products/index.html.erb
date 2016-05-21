@@ -1,4 +1,13 @@
+<%
+=begin %>
 <pre><%= params.inspect %></pre>
+<pre><%= @search_value.inspect %></pre>
+<pre><%= @filter_by_product.inspect %></pre>
+<pre><%= @filter_by_company.inspect %></pre>
+<pre><%= @filter_by_tag.inspect %></pre>
+<pre><%= @sort_direction.inspect %></pre>
+<%
+=end %>
 
 <% @page_title = "Products" %>
 
@@ -6,10 +15,10 @@
 	<h2 class="page-title"><%= @page_title %></h2>
 	<div class="well well-lg search-box">
 		<%= form_tag('/products', method: 'get') do %>
-			<%= hidden_field_tag(:sort, params[sort: nil]) %>
+			<%= hidden_field_tag(:sort_by, params[sort_by: nil]) %>
 			<div class='form-group search-form clearfix'>
 				<div class="input-group">
-					<%= text_field_tag(:query, @search_value, class: 'product-search-bar form-control') %>
+					<%= text_field_tag(:search_for, @search_value, class: 'product-search-bar form-control') %>
 					<span class="input-group-btn">
 						<%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
 						    <%= fa_icon 'search', class: 'fa-lg' %>
@@ -23,20 +32,20 @@
 					<%= link_to('#', id: 'google-product-search', class: 'btn btn-primary') do %>
 						<%= fa_icon 'search', text: 'Google', class: 'fa-lg' %>
 					<% end %><!-- /%link_to (Search Google) -->
-					<%= link_to({action: 'new', search: @search_value, sort: @sort_direction}, class: 'btn btn-success') do %>
+					<%= link_to({action: 'new', search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-success') do %>
 						<%= fa_icon 'plus', text: 'Product', class: 'fa-lg' %>
 					<% end %><!-- /%link_to (Add New Product) -->
 				</div><!-- /.product-buttons -->
 				<div class="search-criteria-checkboxes pull-left">
 					<div class="btn-group" data-toggle="buttons">
-				  		<label class="btn btn-info active">
-					    	<input type="checkbox" name="productsearch" autocomplete="off" checked> Product
+				  		<label class="btn btn-info <%= is_active?('filter_by_product', @filter_by_product) %>">
+					    	<input type="checkbox" name="filter_by_product" autocomplete="off"> Product
 					  	</label>
-					  	<label class="btn btn-info">
-					    	<input type="checkbox" name="companysearch" autocomplete="off"> Company
+					  	<label class="btn btn-info <%= is_active?('filter_by_company', @filter_by_company) %>">
+					    	<input type="checkbox" name="filter_by_company" autocomplete="off"> Company
 					  	</label>
-					  	<label class="btn btn-info">
-					    	<input type="checkbox" name="tagsearch" autocomplete="off"> Tag
+					  	<label class="btn btn-info <%= is_active?('filter_by_tag', @filter_by_tag) %>">
+							<input type="checkbox" name="filter_by_tag" autocomplete="off"> Tag
 					  	</label>
 					</div><!-- /.btn-group -->
 				</div><!-- /.product-checkboxes -->
@@ -50,9 +59,9 @@
 				<th>
 					<%= sortable('Product') %>
 					<!-- Insert Caret based on asc/desc order of products -->
-					<% if params[:sort] === 'asc' %>
+					<% if params[:sort_by]==='asc' %>
 						<%= fa_icon 'caret-up' %>
-					<% elsif params[:sort] === 'desc' %>
+					<% elsif params[:sort_by]==='desc' %>
 						<%= fa_icon 'caret-down' %>
 					<% end %>
 				</th>
@@ -71,13 +80,13 @@
 					<%= raw "<td>#{product.pg_search_rank}</td>" unless @search_value.blank? %>
 					<td><%= product.tag_list %></td>
 					<td>
-						<%= link_to({action: 'show', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>
+						<%= link_to({action: 'show', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>
 							<%= fa_icon 'info-circle', class: 'fa-lg icon-primary' %>
 						<% end %>
-						<%= link_to({action: 'edit', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-warning btn-warning-transparent') do %>
+						<%= link_to({action: 'edit', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-warning btn-warning-transparent') do %>
 							<%= fa_icon 'pencil', class: 'fa-lg icon-warning' %>
 						<% end %>
-						<%= link_to({action: 'delete', id: product.id, search: @search_value, sort: @sort_direction}, class: 'btn btn-danger btn-danger-transparent') do %>
+						<%= link_to({action: 'delete', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-danger btn-danger-transparent') do %>
 							<%= fa_icon 'trash-o', class: 'fa-lg icon-danger' %>
 						<% end %>
 					</td>

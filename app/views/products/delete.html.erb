@@ -2,7 +2,7 @@
 
 <div class="products-delete">
 	<h2 class="page-title">Delete Product</h2>
-	<%= link_to("Back to List", {action: 'index', search: @search_value, sort: @sort_direction}, class: 'btn btn-info') %>
+	<%= link_to("Back to List", {action: 'index', search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-info') %>
 	<div class="form-section">
 		<%= simple_form_for(@product,
 					 		url: {

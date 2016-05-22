@@ -16,7 +16,8 @@ class ProductsController < ApplicationController
 		@filter_by_company = filter_by_company
 		@filter_by_tag = filter_by_tag
 		@sort_direction = sort_direction
-		@products = search_and_sort(search_value, filter_criteria, sort_direction).paginate(per_page: 10, page: params[:page])
+		@total_products = search_and_sort(search_value, filter_criteria, sort_direction)
+		@products = @total_products.paginate(per_page: 10, page: params[:page])
 	end
 
 	def show

@@ -52,48 +52,73 @@
 			</div><!-- /.search-form -->
 		<% end %><!-- /%form_tag -->
 	</div><!-- /.search-box -->
-	<table class='table table-striped listing' summary='Product list'>
-		<thead>
-			<tr>
-				<th>&nbsp</th>
-				<th>
-					<%= sortable('Product') %>
-					<!-- Insert Caret based on asc/desc order of products -->
-					<% if params[:sort_by]==='asc' %>
-						<%= fa_icon 'caret-up' %>
-					<% elsif params[:sort_by]==='desc' %>
-						<%= fa_icon 'caret-down' %>
-					<% end %>
-				</th>
-				<th>Company</th>
-				<%= raw "<th>Relevance</th>" unless @search_value.blank? %>
-				<th>Tags</th>
-				<th>Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @products.each do |product| %>
+	<% if @products.blank? %>
+		<div>
+			<p class="lead">Sorry, no search results were found.</p>
+			<hr>
+			<p><strong>Search Suggestions</strong></p>
+			<ul>
+				<li>Check your spelling</li>
+				<li>Try more general words</li>
+				<li>Search by different criteria</li>
+			</ul>
+			<br>
+			<p><strong>You Can Also Try</strong></p>
+			<ul>
+				<li>Searching <a href="http://knowledge.mot.com/">ATG</a></li>
+				<li>Searching the <a href="http://www.motorolasolutions.com/">Motorola Solutions</a> website</li>
+				<li>Searching <a href="https://www.google.com/">Google</a></li>
+				<li>Requesting a new product</li>
+			</ul>
+		</div>
+	<% else %>
+		<table class='table table-striped listing' summary='Product list'>
+			<thead>
 				<tr>
-					<td><img src='<%= product.image_url %>' class='img-thumbnail product-thumb' alt='<%= product.name %>'></td>
-					<td><%= product.name %></td>
-					<td><%= product.company.name %></td>
-					<%= relevance_to_percentage(product.pg_search_rank) unless @search_value.blank? %>
-					<td><%= product.tag_list %></td>
-					<td>
-						<%= link_to({action: 'show', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>
-							<%= fa_icon 'info-circle', class: 'fa-lg icon-primary' %>
+					<th>&nbsp</th>
+					<th>
+						<%= sortable('Product') %>
+						<!-- Insert Caret based on asc/desc order of products -->
+						<% if params[:sort_by]==='asc' %>
+							<%= fa_icon 'caret-up' %>
+						<% elsif params[:sort_by]==='desc' %>
+							<%= fa_icon 'caret-down' %>
 						<% end %>
-						<%= link_to({action: 'edit', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-warning btn-warning-transparent') do %>
-							<%= fa_icon 'pencil', class: 'fa-lg icon-warning' %>
-						<% end %>
-						<%= link_to({action: 'delete', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-danger btn-danger-transparent') do %>
-							<%= fa_icon 'trash-o', class: 'fa-lg icon-danger' %>
-						<% end %>
-					</td>
+					</th>
+					<th>Company</th>
+					<%= raw "<th>Relevance</th>" unless @search_value.blank? %>
+					<!--<th>Tags</th>-->
+					<th>Action</th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<!--<div><%#= pluralize(@products.size, 'product') %> found</div>-->
-	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+			</thead>
+			<tbody>
+				<% @products.each do |product| %>
+					<tr>
+						<td><img src='<%= product.image_url %>' class='img-thumbnail product-thumb' alt='<%= product.name %>'></td>
+						<td><%= product.name %></td>
+						<td><%= product.company.name %></td>
+						<%= relevance_to_percentage(product.pg_search_rank) unless @search_value.blank? %>
+						<!--<td><%#= product.tag_list %></td>-->
+						<td>
+							<%= link_to({action: 'show', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>
+								<%= fa_icon 'info-circle', class: 'fa-lg icon-primary' %>
+							<% end %>
+							<%= link_to({action: 'edit', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-warning btn-warning-transparent') do %>
+								<%= fa_icon 'pencil', class: 'fa-lg icon-warning' %>
+							<% end %>
+							<%= link_to({action: 'delete', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-danger btn-danger-transparent') do %>
+								<%= fa_icon 'trash-o', class: 'fa-lg icon-danger' %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div class="text-center">
+			<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+			<div class="page_info">
+				<small><%= page_entries_info @products %></small>
+			</div><!-- /.page_info -->
+		</div><!-- /.text-center -->
+	<% end %>
 </div><!-- /.products-index-view -->

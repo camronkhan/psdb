@@ -87,7 +87,7 @@
 					</th>
 					<th>Company</th>
 					<%= raw "<th>Relevance</th>" unless @search_value.blank? %>
-					<!--<th>Tags</th>-->
+					<th>Tags</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -98,7 +98,7 @@
 						<td><%= product.name %></td>
 						<td><%= product.company.name %></td>
 						<%= relevance_to_percentage(product.pg_search_rank) unless @search_value.blank? %>
-						<!--<td><%#= product.tag_list %></td>-->
+						<td><%= product.tag_list %></td>
 						<td>
 							<%= link_to({action: 'show', id: product.id, search_for: @search_value, filter_by_product: @filter_by_product, filter_by_company: @filter_by_company, filter_by_tag: @filter_by_tag, sort_by: @sort_direction}, class: 'btn btn-primary btn-primary-transparent') do %>
 								<%= fa_icon 'info-circle', class: 'fa-lg icon-primary' %>

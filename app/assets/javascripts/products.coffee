@@ -6,6 +6,14 @@
 # Use value from search bar to search MSI.com
 #=============================================
 $ ->
+	$('#global-item-master-product-search').click ->
+	    window.location.href = 'http://shamu.comm.mot.com/cgi-bin/gim_screens/gimqry002?PartNo=' + $('.product-search-bar').val()
+	    false
+
+#=============================================
+# Use value from search bar to search MSI.com
+#=============================================
+$ ->
 	$('#msi-product-search').click ->
 	    window.location.href = 'http://www.motorolasolutions.com/en_us/search.html?q=' + $('.product-search-bar').val()
 	    false

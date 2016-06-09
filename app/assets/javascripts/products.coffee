@@ -1,13 +1,17 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-#=============================================
-# Use value from search bar to search MSI.com
-#=============================================
+#=======================================================
+# Use value from search bar to search Global Item Master
+#=======================================================
 $ ->
 	$('#global-item-master-product-search').click ->
 	    window.location.href = 'http://shamu.comm.mot.com/cgi-bin/gim_screens/gimqry002?PartNo=' + $('.product-search-bar').val()
+	    false
+
+#==========================================================
+# Use value from search bar to search Oracle Data Warehouse
+#==========================================================
+$ ->
+	$('#oracle-data-warehouse-product-search').click ->
+	    window.location.href = 'http://rpsd.comm.mot.com/oracle_reports/bin/inv_display.asp?tb_material_nb=' + $('.product-search-bar').val()
 	    false
 
 #=============================================
